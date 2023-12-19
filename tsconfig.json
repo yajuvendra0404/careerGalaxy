@@ -2,8 +2,36 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
+    "paths": {
+
+      "@app/*": [
+        "./app/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@home/*": [
+        "./app/home/*"
+      ],
+      "@services/*": [
+        "./app/services/*"
+      ],
+      "@planets/*": [
+        "./app/planets/*"
+      ],
+      "@interfaces/*": [
+        "./app/interface/*"
+      ],
+      "@model/*": [
+        "./app/model/*"
+      ],
+      // "@lib/*": [
+      //   "./app/lib/*"
+      // ]
+      
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
