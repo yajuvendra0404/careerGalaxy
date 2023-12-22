@@ -6,7 +6,6 @@ import { PlanetService } from '@app/services/dataShare/planet.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'environments/environment.development';
 
-
 @Component({
   selector: 'app-planets',
   templateUrl: './planets.component.html',
@@ -14,6 +13,7 @@ import { environment } from 'environments/environment.development';
 })
 
 export class PlanetsComponent {
+
   ASSETS_PATH: string = `${environment.ASSETS_PATH}`;
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
@@ -73,7 +73,7 @@ export class PlanetsComponent {
     mesh.userData['name'] = name;
     mesh.position.x = position;
     return {mesh, obj}
-}
+  }
 
   addLight ():void {
     this.scene.add( this.ambientLight);
@@ -126,6 +126,7 @@ export class PlanetsComponent {
     this.renderer.setAnimationLoop(this.animate.bind(this))
     this.renderViewPort();
   }
+
   ngDestroy (): void {
     this.subscriptionStore.forEach( (e) => {
       e.unsubscribe();

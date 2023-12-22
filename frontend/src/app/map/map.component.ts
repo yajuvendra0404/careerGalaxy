@@ -22,3 +22,9 @@ export class MapComponent {
     this.planetService.data.next(this.planetsData);
   }
 }
+
+
+//gs://recipe-b3530.appspot.com/earth.jpg
+//gs://recipe-b3530.appspot.com/mars.jpg
+//gs://recipe-b3530.appspot.com/mercury.jpg
+//gs://recipe-b3530.appspot.com/venus.jpg
