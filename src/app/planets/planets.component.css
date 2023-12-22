@@ -1,0 +1,35 @@
+canvas {
+  position: fixed;
+  z-index: 0;
+  top: 0px;
+  left: 0px;
+}
+
+.row {
+  position: absolute;
+  width: 100%;
+  z-index: 10 !important;
+  color: white;
+}
+.row .card {
+  background-image: linear-gradient(to bottom right, black 60%, grey);
+  border: 0.5px solid white;
+  border-radius: 5px;
+}
+.row .custom_card {
+  background-image: linear-gradient(to bottom right, black 60%, grey);
+  border: 0.5px solid white;
+  border-radius: 5px;
+  margin-right: 20%;
+  max-height: 100%;
+}
+.row .custom_job_card {
+  padding: 2%;
+  background: #38d11c;
+  border: 1px solid white;
+  margin: 2%;
+  border-radius: 2%;
+}
+.row fa-icon {
+  margin: 1%;
+}/*# sourceMappingURL=planets.component.css.map */

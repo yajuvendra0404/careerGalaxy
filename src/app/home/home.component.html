@@ -1,0 +1,42 @@
+<app-planets></app-planets>
+<div class="row"></div>
+<div class="row m-4">
+    <div class="col-md-6 ">
+        <div class="card " style="">
+            <div class="card-body text-white">
+                <div class="card-title ">
+                    <h2>Tool Cupboard</h2>
+                </div>
+                <div class="custom_job_card" (click)="openSkillPassportDialog()">
+                    Skill Passport
+                </div>
+                <div class="custom_job_card" (click)="openWorkHabitDialog()">
+                    Work Habits
+                </div>
+                <div class="custom_job_card" (click)="openJobWalletDialog()">
+                    Job Wallet
+                </div>
+                <div class="custom_job_card" (click)="openComparatorDialog()">
+                    Comparator
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 d-flex flex-row-reverse">
+        <div class="custom_card m-5">
+
+            <div class="custom_job_card" routerLink="/map">
+                <h1>Map</h1>
+            </div>
+            <div class="custom_job_card">
+                <h1>Inventory</h1>
+            </div>
+            <div class="custom_job_card">
+                <h1>Exit</h1>
+            </div>
+        </div>
+
+    </div>
+
+</div>

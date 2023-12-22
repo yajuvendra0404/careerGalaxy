@@ -1,0 +1,156 @@
+<!-- <app-header></app-header> -->
+<!-- <div class="_container">
+    <div class="overlay">
+        <div class="row">
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control form-control-sm" type="file" id="formFile">
+          </div>
+        </div> 
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                <input class="form-control form-control-sm" type="file" id="formFileMultiple" multiple>
+              </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileDisabled" class="form-label">Disabled file input example</label>
+                <input class="form-control form-control-sm" type="file" id="formFileDisabled" >
+              </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileSm" class="form-label">Small file input example</label>
+                <input class="form-control form-control-sm" id="formFileSm" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileLg" class="form-label">Large file input example</label>
+                <input class="form-control form-control-sm" id="formFileLg" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileLg" class="form-label">Large file input example</label>
+                <input class="form-control form-control-sm" id="formFileLg" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileLg" class="form-label">Large file input example</label>
+                <input class="form-control form-control-sm" id="formFileLg" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileLg" class="form-label">Large file input example</label>
+                <input class="form-control form-control-sm" id="formFileLg" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileLg" class="form-label">Large file input example</label>
+                <input class="form-control form-control-sm" id="formFileLg" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileLg" class="form-label">Large file input example</label>
+                <input class="form-control form-control-sm" id="formFileLg" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3">
+                <label for="formFileLg" class="form-label">Large file input example</label>
+                <input class="form-control form-control-sm" id="formFileLg" type="file">
+            </div>
+        </div>
+          
+    </div>
+</div>
+ -->
+<div class="_container">
+  <div class="overlay">
+    <div>
+      <h1>Admin Panel</h1>
+    </div>
+
+    <mat-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel><span class="stepper-label">Planet Appearance</span></ng-template>
+
+          <div class="custom-form">
+            <mat-form-field appearance="outline">
+              <label><span class="field-label">Planet Name</span></label>
+              <input matInput placeholder="Name" class="input">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+              <label><span class="field-label">Planet Size</span></label>
+              <input matInput placeholder="Size" class="input">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+              <label><span class="field-label">Planet Surface</span></label>
+              <input matInput placeholder="Surface" class="input">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+              <label><span class="field-label">Planet Position</span></label>
+              <input matInput placeholder="Position" class="input">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+              <label><span class="field-label">Rotaion Speed</span></label>
+              <input matInput  placeholder="Rotation Speed" class="input">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+              <label><span class="field-label">Revolution Speed</span></label>
+              <input matInput placeholder="Revolution Speed" class="input">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-button matStepperNext mat-flat-button color="primary">Submit</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel><span class="stepper-label">Fill out your address</span></ng-template>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel><span class="stepper-label">Done</span></ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button mat-flat-button color="primary" matStepperPrevious>Back</button>
+          <button mat-button mat-flat-button color="primary" (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>
