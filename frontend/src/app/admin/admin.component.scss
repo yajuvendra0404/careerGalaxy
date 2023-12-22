@@ -73,6 +73,7 @@ $text_color: rgb(104, 103, 103);
 ::ng-deep .mat-horizontal-content-container {
     // input:
     color: $text_color;
+    border-radius: 5px;
 }
 .custom-form {
     display: grid;
