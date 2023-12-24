@@ -4,6 +4,7 @@ import { injectable } from "tsyringe";
 
 @injectable()
 export default class Routes {
+
     path:string ="/"
     routes = Router();
 
@@ -18,6 +19,12 @@ export default class Routes {
         })
         this.routes.post(`${this.path}generateOTP`,(req, res, next)=> {
             _controller.generateOTP(req, res, next);
+        })
+        this.routes.get(`${this.path}planets`,( req, res, next)=>{
+            _controller.getPlanets(req, res, next);       
+        })
+        this.routes.post(`${this.path}planet`,( req, res, next)=>{
+            _controller.setPlanets(req, res, next);     
         })
     }
 }

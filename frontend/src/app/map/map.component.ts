@@ -10,10 +10,10 @@ import { PlanetService } from '@app/services/dataShare/planet.service';
 export class MapComponent {
   
   planetsData: IPlanetsData[] = [
-    {name:"earth",size: 20.8, position: 0, texture: "earth.jpg",rotation: 0.003, revolve: 0.01},
-    {name:"mars",size: 5.8, position: 42, texture: "mars.jpg",rotation: 0.004, revolve: 0.015},
-    {name:"pluto",size: 4.0, position: 62, texture: "pluto.jpg",rotation: 0.002, revolve: 0.012},
-    {name:"jupiter",size: 4.8, position: 82, texture: "jupiter.jpg",rotation: 0.001, revolve: 0.014}
+    {name:"earth",size: 20.8, position: 0, texture: "earth.jpg",rotationSpeed: 0.003, orbitingSpeed: 0.01},
+    {name:"mars",size: 5.8, position: 42, texture: "mars.jpg",rotationSpeed: 0.004, orbitingSpeed: 0.015},
+    {name:"pluto",size: 4.0, position: 62, texture: "pluto.jpg",rotationSpeed: 0.002, orbitingSpeed: 0.012},
+    {name:"jupiter",size: 4.8, position: 82, texture: "jupiter.jpg",rotationSpeed: 0.001, orbitingSpeed: 0.014}
   ] 
 
   constructor(private planetService : PlanetService) {}

@@ -17,9 +17,3 @@ export default class Models {
     }))
     
 }
-
-
-// emailId: 'yajuvendra0404@gmail.com',
-// subject: 'dsafasdf',
-// message: 'asdfasdfasdfasdfas',
-// OTP: 315431

@@ -17,9 +17,9 @@ export class HomeComponent {
 
   constructor (private _dialog: MatDialog) {}
   planetsData: IPlanetsData[] = [
-    {name:"some", size: 20, position: 0, texture: "../../assets/mars_surface.jpg", rotation: 0.004, revolve: 0},
-    {name:"some", size: 3.2, position: 58, texture: "../../assets/mercury.jpg", rotation: 0.004, revolve: 0.04},
-    {name:"some", size: 5.8, position: 70, texture: "../../assets/mercury.jpg", rotation: 0.004, revolve: 0.01}
+    {name:"some", size: 20, position: 0, texture: "../../assets/mars_surface.jpg", rotationSpeed: 0.004, orbitingSpeed: 0},
+    {name:"some", size: 3.2, position: 58, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.04},
+    {name:"some", size: 5.8, position: 70, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.01}
   ];
   openSkillPassportDialog () {
     const dialogRef = this._dialog.open(SkillPassportComponent,{

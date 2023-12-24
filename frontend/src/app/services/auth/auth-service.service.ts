@@ -32,7 +32,7 @@ export class AuthService {
       let expiresIn = new Date().getTime() + +res.expiresIn * 1000; // the + plus sign in ""+res.expiresIn"" is used to convert the string into number
       let user  = new User(res.email, res.localId, res.idToken, expiresIn);
       this.userSubject.next(user);
-    } )) 
+    })) 
   }
 
   signIn(email: string, password: string): Observable<IAuthResponseData> {

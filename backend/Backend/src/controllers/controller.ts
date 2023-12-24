@@ -38,4 +38,12 @@ export default class Controller {
         let mailSent = await this._service.sendMail(_req.body.emailId);
         _res.status(200).json(mailSent);
     }
+
+    async getPlanets (_req: Request, _res: Response, _next: NextFunction) {
+        console.log(_req);
+        _res.status(200).json({message: "got - it"});
+    } 
+    
+    async setPlanets (_req: Request, _res: Response, _next: NextFunction) {
+    }
 }

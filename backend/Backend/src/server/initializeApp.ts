@@ -16,7 +16,7 @@ export default class InitializeApp{
 
   constructor(
     private _config:Config,
-    private _routes:Routes
+    private _routes:Routes,
   ){
     
     // ------ config variable initialization
@@ -44,7 +44,7 @@ export default class InitializeApp{
       this.listen();
       console.log(`---------- Database connection established`);
     }).catch( err => {
-      console.log(`---------- Database connection error -----`,err)
+      console.log(`---------- Database connection error -----`, err)
     });
   }
 

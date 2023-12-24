@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDialogModule} from '@angular/material/dialog';
 import { MapComponent } from './map/map.component';
-
+import {MatIconModule} from '@angular/material/icon';
 import { MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatStepperModule} from '@angular/material/stepper';
@@ -56,6 +56,7 @@ import { AuthComponent } from './auth/auth.component';
     MatInputModule,
     MatFormFieldModule,
     MatStepperModule,
+    MatIconModule
   
   ],
   providers: [],

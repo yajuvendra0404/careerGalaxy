@@ -12,10 +12,10 @@ export interface IAuthResponseData {
 }
   
 export interface IPlanetsData {
-    name:string;
+    name: string;
     size: number;
     texture: string;
     position: number;
-    rotation: number;
-    revolve: number;
-} 
+    rotationSpeed: number;
+    orbitingSpeed: number;
+}

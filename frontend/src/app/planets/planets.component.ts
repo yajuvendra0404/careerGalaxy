@@ -25,7 +25,7 @@ export class PlanetsComponent {
 
   subscriptionStore : Subscription[] = [];
   planet: { mesh:THREE.Mesh, obj:THREE.Object3D, rotation: number, revolve: number }[] = [];
-  planetsData: IPlanetsData[] = [ {name:"earth",size: 70, position: 0, texture: "earth.jpg",rotation: 0.0, revolve: 0.002} ] 
+  planetsData: IPlanetsData[] = [ {name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002} ] 
   
   @ViewChild("canvas", { static: true }) canvas!: ElementRef;
 
@@ -118,8 +118,8 @@ export class PlanetsComponent {
     this.planetsData.forEach( ele => {
       this.planet.push({
         ...this.createPlanets( ele.size , ele.texture, ele.position, ele.name),
-        rotation: ele.rotation, 
-        revolve: ele.revolve
+        rotation: ele.rotationSpeed, 
+        revolve: ele.orbitingSpeed
       });
     });
     window.addEventListener('click', this.onPointerMove.bind(this));
