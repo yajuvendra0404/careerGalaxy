@@ -25,7 +25,7 @@ export default class Routes {
         })
         this.routes.post(`${this.path}planets`,( req, res, next)=>{
             console.log("-- routes --")
-            _controller.setPlanets(req, res, next);     
+            _controller.setPlanet(req, res, next);     
         })
     }
 }
