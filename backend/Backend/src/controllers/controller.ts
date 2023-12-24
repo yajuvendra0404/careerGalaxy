@@ -40,10 +40,14 @@ export default class Controller {
     }
 
     async getPlanets (_req: Request, _res: Response, _next: NextFunction) {
-        console.log(_req);
+        console.log(_req.body);
+        console.log("---got the request---");
         _res.status(200).json({message: "got - it"});
     } 
     
-    async setPlanets (_req: Request, _res: Response, _next: NextFunction) {
+    async setPlanet (_req: Request, _res: Response, _next: NextFunction) {
+
+        this._service.createPlanet(_req.body);
+        _res.status(200).json({message: "success"});
     }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlanetsData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -10,9 +11,11 @@ import { ApiService } from '@app/services/api/api.service';
 })
 export class AdminComponent {
   planetAppearanceFormGroup:FormGroup;
+  subscriptionStore: Subscription[] = [];
   skillPassportFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
+  
   isEditable = false;
 
   constructor(
@@ -22,7 +25,7 @@ export class AdminComponent {
     this.planetAppearanceFormGroup = this._formBuilder.group({
       name: [null, Validators.required],
       size: [null, Validators.required],
-      texture: [null, Validators.required],
+      texture: [null],
       position: [null, Validators.required],
       rotationSpeed: [null, Validators.required],
       orbitingSpeed: [null, Validators.required],
@@ -30,10 +33,16 @@ export class AdminComponent {
   }
   
   onSubmit () {
-    // let data = this._apiService.createPlanets();
-    // let data: IPlanetsData = {...this.planetAppearanceFormGroup.value};
-    this._apiService.createPlanets(this.planetAppearanceFormGroup.value);
-    // console.log("-- data --", data);
+    this.subscriptionStore.push(
+      this._apiService.createPlanet(this.planetAppearanceFormGroup.value).subscribe(data => {
+        console.log("subscription data --", data);
+      })
+    );
+    console.log("-- data --", this.planetAppearanceFormGroup.value);
   }
-
+  ngDestroy() {
+    this.subscriptionStore.forEach(el => {
+      el.unsubscribe();
+    })
+  }
 }

@@ -65,6 +65,28 @@ export class Service {
         }
 
     }
+    async createPlanet (_body: any): Promise<{[key:string]:string }> {
+
+        try{
+            let error = "";
+            if( !_body.name )  error = "name";
+            if( !_body.position ) error = "position"; 
+            if( !_body.size )  error = "size";
+            if( !_body.rotatingSpeed ) error = "rotating speed";
+            if( !_body.orbitingSpeed ) error = "orbiting speed";
+            if( error) return { message: `Please Enter  for ${error} The Planet.`};
+
+            let data = await this._models.Planets.findOne({name: _body.name});
+            if( data?.name == _body.name ) return { message: "Planet name already exists."}; 
+
+            await this._models.Planets.create({..._body,isVerified:true});  
+            return { message: "Message has been delivered."};
+            
+        } catch (exp) {
+            return { error: exp};
+        }
+
+    }
     private getTemplate(): string {
         this.generatedOTP = parseInt((Math.random()*1000000).toFixed(0));
 
@@ -79,4 +101,5 @@ export class Service {
 
         return template;
     }
+
 }

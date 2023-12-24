@@ -11,10 +11,11 @@ export class ApiService {
   constructor(private _httpService: HttpService) {}
 
   fetchPlanets( id: string = "" ): Observable<{[key:string]:string}>{
-    return this._httpService.fetchPlanets("getPlanets",id);
+    return this._httpService.fetchPlanets("planets",id);
   }
-  createPlanets( formData: IPlanetsData ): Observable<{[key:string]:string}>{
-    return this._httpService.createPlanets("setPlanets", formData);
+  createPlanet( formData: IPlanetsData ): Observable<{[key:string]:string}>{
+    console.log("-- data --",formData);
+    return this._httpService.createPlanets("planet", formData);
   }
 
 }
