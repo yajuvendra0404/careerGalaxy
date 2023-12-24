@@ -46,8 +46,10 @@ export default class Controller {
     } 
     
     async setPlanet (_req: Request, _res: Response, _next: NextFunction) {
+        console.log('---files uploaded -- ',_req.files);
+        console.log(_req.body);
 
-        this._service.createPlanet(_req.body);
-        _res.status(200).json({message: "success"});
+       let data = await this._service.createPlanet( _req.body, _req.files);
+        _res.status(200).json(data);
     }
 }

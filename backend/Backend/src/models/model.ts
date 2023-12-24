@@ -16,13 +16,13 @@ export default class Models {
         expiresAt: { type: Date, required: true, index: true, expires:'1m'},  
     }))
     Planets = mongoose.model ("planet", new mongoose.Schema({
-        
-        name:{ type:String, required: true, trim: true },
-        size:{ type:Number, trim:true, required:true},
-        position: { type: Date, required: true, index: true, },  
-        rotationSpeed: { type: Date, required: true, index: true, },  
-        orbitingSpeed: { type: Date, required: true, index: true, },  
 
+        name:{ type:String, required: true, trim: true },
+        size:{ type:String, trim:true, required:true },
+        position: { type: String, required: true },  
+        rotationSpeed: { type: String, required: true },  
+        orbitingSpeed: { type: String, required: true },  
+        texture: { type: String, required: true},
     }))
     
 }

@@ -20,8 +20,8 @@ export class HttpService {
       catchError(this.errorHandler.bind(this)))
   }
 
-  createPlanets(url: string, Json:any) : Observable<any> {
-    return this._http.post<any>(`${this.baseURL}${url}`,Json)
+  createPlanets(url: string, formData:FormData) : Observable<any> {
+    return this._http.post<any>(`${this.baseURL}${url}`,formData)
     .pipe(catchError(this.errorHandler.bind(this)))
   }
 

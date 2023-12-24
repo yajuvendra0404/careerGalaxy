@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class AdminComponent {
   planetAppearanceFormGroup:FormGroup;
+  selectedFile!: File;
   subscriptionStore: Subscription[] = [];
   skillPassportFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
@@ -25,7 +26,7 @@ export class AdminComponent {
     this.planetAppearanceFormGroup = this._formBuilder.group({
       name: [null, Validators.required],
       size: [null, Validators.required],
-      texture: [null],
+      texture: [null, Validators.required],
       position: [null, Validators.required],
       rotationSpeed: [null, Validators.required],
       orbitingSpeed: [null, Validators.required],
@@ -33,12 +34,23 @@ export class AdminComponent {
   }
   
   onSubmit () {
+    const formData = new FormData();
+
+    formData.append('name', this.planetAppearanceFormGroup.value.name);
+    formData.append('size', this.planetAppearanceFormGroup.value.size);
+    formData.append('texture', this.selectedFile);
+    formData.append('position', this.planetAppearanceFormGroup.value.position);
+    formData.append('rotationSpeed', this.planetAppearanceFormGroup.value.rotationSpeed);
+    formData.append('orbitingSpeed', this.planetAppearanceFormGroup.value.orbitingSpeed);
     this.subscriptionStore.push(
-      this._apiService.createPlanet(this.planetAppearanceFormGroup.value).subscribe(data => {
+      this._apiService.createPlanet(formData).subscribe(data => {
         console.log("subscription data --", data);
       })
     );
     console.log("-- data --", this.planetAppearanceFormGroup.value);
+  }
+  onFileSelected (event:any) {
+    this.selectedFile = event.target.files[0];
   }
   ngDestroy() {
     this.subscriptionStore.forEach(el => {

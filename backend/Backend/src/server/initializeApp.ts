@@ -5,6 +5,9 @@ import mongoose from 'mongoose';
 import {  injectable } from "tsyringe";
 import Config from "../configs/config";
 import Routes from '../routes/routes';
+import fileUpload from "express-fileupload";
+// import multer from 'multer';
+const _fileUpload = fileUpload;
 
 @injectable()
 export default class InitializeApp{
@@ -29,6 +32,9 @@ export default class InitializeApp{
     this.app.use(morgan('tiny'));
     this.app.use(cors()); 
     this.app.use(express.json());
+    this.app.use(_fileUpload({
+      limits: {fileSize: 10 *1024 *1024} /* file limit is 10 Mb */
+    })) /* middleware for file upload*/
 
     // ------ init functions initialization
     this.initalizeDatabase();

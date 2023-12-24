@@ -7,7 +7,7 @@
 
     <mat-stepper linear #stepper>
       <mat-step [stepControl]="planetAppearanceFormGroup">
-        <form [formGroup]="planetAppearanceFormGroup" (ngSubmit)="onSubmit()">
+        <form [formGroup]="planetAppearanceFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
           <ng-template matStepLabel><span class="stepper-label">Planet Appearance 
           </span></ng-template>
 
@@ -114,7 +114,7 @@
 
             <div class="m-3">
               <label for="formFileLg" class="form-label bold">Planet Surface <small>( Choose a file to upload. )</small></label>
-              <input class="form-control form-control-sm" id="formFileLg" type="file">
+              <input class="form-control form-control-sm" id="formFileLg" type="file" (change)="onFileSelected($event)">
             </div>
 
           </div>

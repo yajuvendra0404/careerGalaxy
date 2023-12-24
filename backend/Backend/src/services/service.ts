@@ -3,6 +3,7 @@ import { injectable } from "tsyringe";
 import nodemailer from 'nodemailer';
 import Config from "../configs/config";
 import Models from "../models/model";
+import fileUpload from "express-fileupload";
 
 @injectable()
 export class Service {
@@ -65,22 +66,23 @@ export class Service {
         }
 
     }
-    async createPlanet (_body: any): Promise<{[key:string]:string }> {
-
+    async createPlanet (_body: any, file: any): Promise<{[key:string]:string }> {
+        console.log("---- data - --  service --",_body);
         try{
             let error = "";
             if( !_body.name )  error = "name";
             if( !_body.position ) error = "position"; 
             if( !_body.size )  error = "size";
-            if( !_body.rotatingSpeed ) error = "rotating speed";
+            if( !_body.rotationSpeed ) error = "rotating speed";
             if( !_body.orbitingSpeed ) error = "orbiting speed";
             if( error) return { message: `Please Enter  for ${error} The Planet.`};
 
+            if( file ) console.log(file);
             let data = await this._models.Planets.findOne({name: _body.name});
             if( data?.name == _body.name ) return { message: "Planet name already exists."}; 
 
-            await this._models.Planets.create({..._body,isVerified:true});  
-            return { message: "Message has been delivered."};
+            await this._models.Planets.create({..._body});  
+            return { message: "data saved"};
             
         } catch (exp) {
             return { error: exp};
