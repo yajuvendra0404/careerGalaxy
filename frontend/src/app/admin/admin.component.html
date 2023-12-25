@@ -10,18 +10,17 @@
         <form [formGroup]="planetAppearanceFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
           <ng-template matStepLabel><span class="stepper-label">Planet Appearance 
           </span></ng-template>
-
+          
           <div class="custom-form">
 
             <mat-form-field appearance="outline">
               <label><span class="field-label">Planet Name 
                 <mat-icon 
-                  aria-hidden="false" 
-                  aria-label="Example home icon" 
+                  aria-hidden="false"  
                   color="primary" 
                   fontIcon="info"
-                  matTooltip="Info about the action"
-                  matTooltipPosition="right"> 
+                  title="Info about the action"
+                  matTooltipPosition="bottom"> 
                 </mat-icon>
               </span></label>
               <input 
@@ -39,8 +38,8 @@
                   aria-label="Example home icon" 
                   color="primary" 
                   fontIcon="info"
-                  matTooltip="Info about the action"
-                  matTooltipPosition="right"> 
+                  title="Info about the action"
+                  matTooltipPosition="bottom"> 
                 </mat-icon>
               </span></label>
               <input 
@@ -59,8 +58,8 @@
                     aria-label="Example home icon" 
                     color="primary" 
                     fontIcon="info"
-                    matTooltip="Info about the action"
-                    matTooltipPosition="right"> 
+                    title="Info about the action"
+                    matTooltipPosition="bottom"> 
                   </mat-icon>
                 </span>
               </label>
@@ -79,8 +78,8 @@
                   aria-label="Example home icon" 
                   color="primary" 
                   fontIcon="info"
-                  matTooltip="Info about the action"
-                  matTooltipPosition="right"> 
+                  title="Info about the action"
+                  matTooltipPosition="bottom"> 
                 </mat-icon>
               </span></label>
               <input 
@@ -99,8 +98,8 @@
                     aria-label="Example home icon" 
                     color="primary" 
                     fontIcon="info"
-                    matTooltip="Info about the action"
-                    matTooltipPosition="right"> 
+                    title="Info about the action"
+                    matTooltipPosition="bottom"> 
                   </mat-icon>
                 </span>
               </label>
@@ -114,7 +113,7 @@
 
             <div class="m-3">
               <label for="formFileLg" class="form-label bold">Planet Surface <small>( Choose a file to upload. )</small></label>
-              <input class="form-control form-control-sm" id="formFileLg" type="file" (change)="onFileSelected($event)">
+              <input class="form-control form-control-sm input" id="formFileLg" type="file" (change)="onFileSelected($event)">
             </div>
 
           </div>

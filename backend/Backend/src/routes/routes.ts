@@ -24,7 +24,6 @@ export default class Routes {
             _controller.getPlanets(req, res, next);       
         })
         this.routes.post(`${this.path}planet`,( req, res, next)=>{
-            console.log("-- routes --")
             _controller.setPlanet(req, res, next);     
         })
     }

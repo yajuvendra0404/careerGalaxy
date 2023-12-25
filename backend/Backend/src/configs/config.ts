@@ -11,7 +11,8 @@ export default class Config{
     SMTP_PORT?:string;
     SMTP_USERNAME?:string;
     SMTP_PASSWORD?:string;
-    
+    UPLOAD_PATH?:string;
+
     constructor() {
         config({path:`./src/env/${process.env.NODE_ENV}.env`});
         this.MONGODB_CONNECTION_STRING = process.env.MONGO_DB_CONNECTION_STRING;
@@ -21,5 +22,6 @@ export default class Config{
         this.SMTP_PORT= process.env.SMTP_PORT;
         this.SMTP_USERNAME= process.env.SMTP_USERNAME;
         this.SMTP_PASSWORD= process.env.SMTP_PASSWORD;
+        this.UPLOAD_PATH = process.env.UPLOAD_PATH;
     }
 }

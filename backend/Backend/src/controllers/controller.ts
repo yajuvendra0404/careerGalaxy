@@ -40,16 +40,16 @@ export default class Controller {
     }
 
     async getPlanets (_req: Request, _res: Response, _next: NextFunction) {
-        console.log(_req.body);
-        console.log("---got the request---");
         _res.status(200).json({message: "got - it"});
     } 
     
     async setPlanet (_req: Request, _res: Response, _next: NextFunction) {
-        console.log('---files uploaded -- ',_req.files);
-        console.log(_req.body);
-
-       let data = await this._service.createPlanet( _req.body, _req.files);
-        _res.status(200).json(data);
+        try {
+            let data = await this._service.createPlanet( _req.body, _req.files);
+            _res.status(200).json(data);
+        } catch (error) {
+            console.log("---- error ---- ",error);
+            _next(error);
+        }
     }
 }

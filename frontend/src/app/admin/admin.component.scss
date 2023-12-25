@@ -88,3 +88,8 @@ $text_color: rgb(0, 0, 0);
     color: grey !important;
     // border-bottom: 1px solid #707070;
 }
+mat-icon {
+    &:hover{
+        cursor: pointer;
+    }
+}

@@ -24,7 +24,7 @@ export class AdminComponent {
     private _apiService: ApiService
   ) {
     this.planetAppearanceFormGroup = this._formBuilder.group({
-      name: [null, Validators.required],
+      name: [null],
       size: [null, Validators.required],
       texture: [null, Validators.required],
       position: [null, Validators.required],
@@ -42,12 +42,13 @@ export class AdminComponent {
     formData.append('position', this.planetAppearanceFormGroup.value.position);
     formData.append('rotationSpeed', this.planetAppearanceFormGroup.value.rotationSpeed);
     formData.append('orbitingSpeed', this.planetAppearanceFormGroup.value.orbitingSpeed);
+
     this.subscriptionStore.push(
       this._apiService.createPlanet(formData).subscribe(data => {
         console.log("subscription data --", data);
       })
     );
-    console.log("-- data --", this.planetAppearanceFormGroup.value);
+    console.log("-- data --", {...this.planetAppearanceFormGroup.value});
   }
   onFileSelected (event:any) {
     this.selectedFile = event.target.files[0];

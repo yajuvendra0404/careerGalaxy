@@ -4,6 +4,7 @@ import nodemailer from 'nodemailer';
 import Config from "../configs/config";
 import Models from "../models/model";
 import fileUpload from "express-fileupload";
+import HttpException from "@/exceptions/httpExceptions";
 
 @injectable()
 export class Service {
@@ -67,27 +68,33 @@ export class Service {
 
     }
     async createPlanet (_body: any, file: any): Promise<{[key:string]:string }> {
-        console.log("---- data - --  service --",_body);
-        try{
-            let error = "";
-            if( !_body.name )  error = "name";
-            if( !_body.position ) error = "position"; 
-            if( !_body.size )  error = "size";
-            if( !_body.rotationSpeed ) error = "rotating speed";
-            if( !_body.orbitingSpeed ) error = "orbiting speed";
-            if( error) return { message: `Please Enter  for ${error} The Planet.`};
-
-            if( file ) console.log(file);
-            let data = await this._models.Planets.findOne({name: _body.name});
-            if( data?.name == _body.name ) return { message: "Planet name already exists."}; 
-
-            await this._models.Planets.create({..._body});  
-            return { message: "data saved"};
+            let error: string = "";
+            let fileName : string = file.texture.name;
             
-        } catch (exp) {
-            return { error: exp};
-        }
+            /*loop through all the key/ value to check if all key has value*/
+            for(let key in _body){
+                if( !_body.hasOwnProperty(key) || _body[key] == null || _body[key] == "null" || _body[key] == ""  ) 
+                    error = key;
+            }
 
+            /* if a field stays empty */
+            if( error) throw new HttpException(400,`Please enter for ${error} the planet.`);
+
+            /* if image for the planet's surface is not uploaded*/
+            if( !fileName ) throw new HttpException(400,`Please upload planet surface image.`)
+            
+            /* move the file to uploads folder. */
+            file.texture.mv( this._config.UPLOAD_PATH + fileName);
+            
+            /* check if the planet's name already exist*/
+            let data = await this._models.Planets.findOne({name: _body.name});
+            if ( data?.name == _body.name ) throw new HttpException(409, "Planet name already exists.");
+
+            /* save the data*/
+            _body.texture = this._config.UPLOAD_PATH + fileName;
+            await this._models.Planets.create({..._body});  
+
+            return { message: "Data saved."};
     }
     private getTemplate(): string {
         this.generatedOTP = parseInt((Math.random()*1000000).toFixed(0));
