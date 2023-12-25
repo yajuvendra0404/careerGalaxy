@@ -7,7 +7,7 @@ import Config from "../configs/config";
 import Routes from '../routes/routes';
 import fileUpload from "express-fileupload";
 import HttpException from '../exceptions/httpExceptions';
-// import multer from 'multer';
+
 const _fileUpload = fileUpload;
 
 @injectable()
