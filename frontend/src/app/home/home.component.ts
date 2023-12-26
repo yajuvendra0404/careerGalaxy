@@ -5,7 +5,10 @@ import { JobWalletComponent } from '@app/dialogs/job-wallet/job-wallet.component
 import { SkillPassportComponent } from '@app/dialogs/skill-passport/skill-passport.component';
 import { WorkHabitComponent } from '@app/dialogs/work-habit/work-habit.component';
 import { IPlanetsData } from '@app/interface/common.interface';
+import { ApiService } from '@app/services/api/api.service';
+import { PlanetService } from '@app/services/dataShare/planet.service';
 import { faCircleCheck, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,11 +18,15 @@ export class HomeComponent {
   faCircleCheck = faCircleCheck;
   faCircleInfo = faCircleInfo;
 
-  constructor (private _dialog: MatDialog) {}
+  constructor (
+    private _dialog: MatDialog,
+    private _apiService: ApiService,
+    private _planetService : PlanetService,  
+  ) {}
   planetsData: IPlanetsData[] = [
-    {name:"some", size: 20, position: 0, texture: "../../assets/mars_surface.jpg", rotationSpeed: 0.004, orbitingSpeed: 0},
-    {name:"some", size: 3.2, position: 58, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.04},
-    {name:"some", size: 5.8, position: 70, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.01}
+    // {name:"some", size: 20, position: 0, texture: "../../assets/mars_surface.jpg", rotationSpeed: 0.004, orbitingSpeed: 0},
+    // {name:"some", size: 3.2, position: 58, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.04},
+    // {name:"some", size: 5.8, position: 70, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.01}
   ];
   openSkillPassportDialog () {
     const dialogRef = this._dialog.open(SkillPassportComponent,{
@@ -65,4 +72,6 @@ export class HomeComponent {
       console.log(`Dialog result: ${result}`);
     });
   } 
+
+
 }

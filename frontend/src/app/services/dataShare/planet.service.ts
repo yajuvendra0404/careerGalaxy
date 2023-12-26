@@ -7,5 +7,6 @@ import { Subject } from 'rxjs';
 })
 export class PlanetService {
   data: Subject<IPlanetsData[]> = new Subject<IPlanetsData[]>();
+  isDataAvailable:Boolean = false;
   constructor() { }
 }

@@ -12,6 +12,7 @@ export interface IAuthResponseData {
 }
   
 export interface IPlanetsData {
+    _id:string;
     name: string;
     size: number;
     texture: string;

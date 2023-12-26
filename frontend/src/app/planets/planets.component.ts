@@ -15,6 +15,7 @@ import { environment } from 'environments/environment.development';
 export class PlanetsComponent {
 
   ASSETS_PATH: string = `${environment.ASSETS_PATH}`;
+  DOMAIN:string = `${environment.DOMAIN}`;
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
   renderer!: THREE.WebGLRenderer;
@@ -25,13 +26,15 @@ export class PlanetsComponent {
 
   subscriptionStore : Subscription[] = [];
   planet: { mesh:THREE.Mesh, obj:THREE.Object3D, rotation: number, revolve: number }[] = [];
-  planetsData: IPlanetsData[] = [ {name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002} ] 
+  planetsData: IPlanetsData[] = [];
+    // {_id:"home", name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}];
+  //   
   
   @ViewChild("canvas", { static: true }) canvas!: ElementRef;
 
-  constructor( private planetService: PlanetService) {
+  constructor( private _planetService: PlanetService) {
     this.subscriptionStore.push(
-      this.planetService.data.subscribe((data : IPlanetsData[]) => {
+      this._planetService.data.subscribe((data : IPlanetsData[]) => {
         this.planetsData = data.slice();
       }
     ));
@@ -63,7 +66,7 @@ export class PlanetsComponent {
   createPlanets(size: number, texture:string, position:number, name: string) {
     const geo = new THREE.SphereGeometry(size, 30, 30);
     const mat = new THREE.MeshStandardMaterial({
-        map: new THREE.TextureLoader().load(this.ASSETS_PATH+"/"+texture)
+        map: new THREE.TextureLoader().load(this.DOMAIN+""+texture)
     });
     const mesh = new THREE.Mesh(geo, mat);
     const obj = new THREE.Object3D();
@@ -111,26 +114,31 @@ export class PlanetsComponent {
   }
 
   ngAfterViewInit() {
-    this.initRenderer();
-    this.addLight();
-    this.addBackGround();
-    this.addOrbitControl();
-    this.planetsData.forEach( ele => {
-      this.planet.push({
-        ...this.createPlanets( ele.size , ele.texture, ele.position, ele.name),
-        rotation: ele.rotationSpeed, 
-        revolve: ele.orbitingSpeed
+
+    // if(this._planetService.isDataAvailable){
+      this.initRenderer();
+      this.addLight();
+      this.addBackGround();
+      this.addOrbitControl();
+      this.planetsData.forEach( ele => {
+        this.planet.push({
+          ...this.createPlanets( ele.size , ele.texture, ele.position, ele.name),
+          rotation: ele.rotationSpeed, 
+          revolve: ele.orbitingSpeed
+        });
       });
-    });
-    window.addEventListener('click', this.onPointerMove.bind(this));
-    this.renderer.setAnimationLoop(this.animate.bind(this))
-    this.renderViewPort();
+      window.addEventListener('click', this.onPointerMove.bind(this));
+      this.renderer.setAnimationLoop(this.animate.bind(this))
+      this.renderViewPort();
+    // }
+
   }
 
   ngDestroy (): void {
     this.subscriptionStore.forEach( (e) => {
       e.unsubscribe();
     })
+    this.renderer.dispose();
   }
 
 }

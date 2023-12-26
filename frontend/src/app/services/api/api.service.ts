@@ -10,11 +10,10 @@ import { IPlanetsData } from '@app/interface/common.interface';
 export class ApiService {
   constructor(private _httpService: HttpService) {}
 
-  fetchPlanets( id: string = "" ): Observable<{[key:string]:string}>{
+  fetchPlanets( id: string = "" ): Observable<IPlanetsData[]>{
     return this._httpService.fetchPlanets("planets",id);
   }
   createPlanet( formData: FormData ): Observable<{[key:string]:string}>{
-    console.log("-- data --",formData);
     return this._httpService.createPlanets("planet", formData);
   }
 }

@@ -11,11 +11,11 @@ export class HttpService {
   private baseURL: string= environment.DOMAIN;
   constructor(private _http: HttpClient) {}
 
-  fetchPlanets(url: string, id: string): Observable<any> {
+  fetchPlanets(url: string, id: string = ""): Observable<any> {
     return this._http.get<any>(`${this.baseURL}${url}/${id}`)
     .pipe(
       tap((data) => {
-        console.log("--tap data respose--", data);
+        console.log("--tap data respose--", data );
       }),
       catchError(this.errorHandler.bind(this)))
   }
@@ -28,22 +28,4 @@ export class HttpService {
   private errorHandler() {
     return "error occured";
   }
-  
 }
-
-
-// private baseURL: string= environment.DOMAIN;
-// constructor(private _http: HttpClient) {}
-
-// sendFetchRequest(url: string): Observable<any> {
-//   return this._http.get<any>(`${this.baseURL}${url}`)
-//   .pipe(catchError(this.errorHandler.bind(this)))
-// }
-// sendPostRequest(url: string, Json:any) : Observable<any> {
-//   return this._http.post<any>(`${this.baseURL}${url}`,Json)
-//   .pipe(catchError(this.errorHandler.bind(this)))
-// }
-// private errorHandler() {
-//   return "error occured";
-// }
-// }
