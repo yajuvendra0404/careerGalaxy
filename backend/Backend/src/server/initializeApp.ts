@@ -8,6 +8,7 @@ import Routes from '../routes/routes';
 import fileUpload from "express-fileupload";
 import HttpException from '../exceptions/httpExceptions';
 import Models from '@/models/model';
+import path from 'path';
 
 const _fileUpload = fileUpload;
 
@@ -38,6 +39,9 @@ export default class InitializeApp {
     this.app.use(_fileUpload({
       limits: { fileSize: 10 * 1024 * 1024 } /* file limit is 10 Mb */
     })) /* middleware for file upload*/
+
+    // Serve static files from the 'uploads' folder
+    this.app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
     // ------ init database and routes initialization
     this.initalizeDatabase();

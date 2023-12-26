@@ -24,9 +24,7 @@ export class HomeComponent {
     private _planetService : PlanetService,  
   ) {}
   planetsData: IPlanetsData[] = [
-    // {name:"some", size: 20, position: 0, texture: "../../assets/mars_surface.jpg", rotationSpeed: 0.004, orbitingSpeed: 0},
-    // {name:"some", size: 3.2, position: 58, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.04},
-    // {name:"some", size: 5.8, position: 70, texture: "../../assets/mercury.jpg", rotationSpeed: 0.004, orbitingSpeed: 0.01}
+    {_id:"home", name:"earth",size: 70, position: 0, texture: "uploads/earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}
   ];
   openSkillPassportDialog () {
     const dialogRef = this._dialog.open(SkillPassportComponent,{
@@ -73,5 +71,10 @@ export class HomeComponent {
     });
   } 
 
+  ngOnInit() {
+    this._planetService.data.next(this.planetsData);
+  }
 
 }
+
+//{_id:"home", name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}

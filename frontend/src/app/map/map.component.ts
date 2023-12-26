@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class MapComponent {
   
   subscriptionStore: Subscription[] = [];
-  planetsData: IPlanetsData[] = [] 
+  planetsData: IPlanetsData[] = []; 
   isDataAvailable:boolean = false;
   
   // {name:"earth",size: 20.8, position: 0, texture: "earth.jpg",rotationSpeed: 0.003, orbitingSpeed: 0.01},
@@ -25,23 +25,19 @@ export class MapComponent {
     private _apiService: ApiService
   ) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.subscriptionStore.push(
       this._apiService.fetchPlanets().subscribe(( data ) => {
+        console.log('map - conponent ---', data);
         this._planetService.data.next(data);
         this.isDataAvailable = true;
       })
     )
   }
+  
   ngDestroy() {
     this.subscriptionStore.forEach( (ele) => {
       ele.unsubscribe();
     })
   }
 }
-
-
-//gs://recipe-b3530.appspot.com/earth.jpg
-//gs://recipe-b3530.appspot.com/mars.jpg
-//gs://recipe-b3530.appspot.com/mercury.jpg
-//gs://recipe-b3530.appspot.com/venus.jpg

@@ -28,7 +28,6 @@ export class PlanetsComponent {
   planet: { mesh:THREE.Mesh, obj:THREE.Object3D, rotation: number, revolve: number }[] = [];
   planetsData: IPlanetsData[] = [];
     // {_id:"home", name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}];
-  //   
   
   @ViewChild("canvas", { static: true }) canvas!: ElementRef;
 
@@ -64,6 +63,7 @@ export class PlanetsComponent {
   }
 
   createPlanets(size: number, texture:string, position:number, name: string) {
+
     const geo = new THREE.SphereGeometry(size, 30, 30);
     const mat = new THREE.MeshStandardMaterial({
         map: new THREE.TextureLoader().load(this.DOMAIN+""+texture)
@@ -115,7 +115,6 @@ export class PlanetsComponent {
 
   ngAfterViewInit() {
 
-    // if(this._planetService.isDataAvailable){
       this.initRenderer();
       this.addLight();
       this.addBackGround();
@@ -130,7 +129,6 @@ export class PlanetsComponent {
       window.addEventListener('click', this.onPointerMove.bind(this));
       this.renderer.setAnimationLoop(this.animate.bind(this))
       this.renderViewPort();
-    // }
 
   }
 
@@ -139,6 +137,7 @@ export class PlanetsComponent {
       e.unsubscribe();
     })
     this.renderer.dispose();
+
   }
 
 }
