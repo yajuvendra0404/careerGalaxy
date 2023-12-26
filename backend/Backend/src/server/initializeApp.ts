@@ -7,6 +7,7 @@ import Config from "../configs/config";
 import Routes from '../routes/routes';
 import fileUpload from "express-fileupload";
 import HttpException from '../exceptions/httpExceptions';
+import Models from '@/models/model';
 
 const _fileUpload = fileUpload;
 
@@ -21,6 +22,7 @@ export default class InitializeApp {
   constructor(
     private _config: Config,
     private _routes: Routes,
+    // private _models: Models
   ) {
 
     // ------ config variable initialization
@@ -41,6 +43,9 @@ export default class InitializeApp {
     this.initalizeDatabase();
     this.initializeRouter();
 
+    /* Ensures that home planet is always there in the mongoDB.*/
+    // this.initializeHomePlanet();
+
     /* middleware for error handling */
     this.app.use((_error: HttpException, _req: Request, _res: Response, _next: NextFunction) => {
       let message: string = _error.message || "Someting Went Wrong";
@@ -51,11 +56,22 @@ export default class InitializeApp {
         }
       })
     });
+
   }
 
   initializeRouter() {
     this.app.use("/", this.routes);
   }
+
+  // async initializeHomePlanet () {
+  //   let data = await this._models.Planets.find({});
+  //   if(!data[0]) {
+  //     let defaultData =  [
+  //             {_id:"1703545323396-earth",name:"earth",size: 20.8, position: 0, texture: "./src/uploads/earth.jpg",rotationSpeed: 0.003, orbitingSpeed: 0.01},
+  //     ] 
+  //     await this._models.Planets.create({...defaultData});
+  //   }
+  // }
 
   initalizeDatabase() {
     mongoose.connect("mongodb" + this.MONGODB_CONNECTION_STRING).then(() => {

@@ -9,6 +9,7 @@
 import { injectable } from "tsyringe";
 import { NextFunction,Request, Response } from "express";
 import { Service } from "../services/service";
+import { IPlanetsData } from "@/interfaces/common.interface";
 
 @injectable()
 export default class Controller {
@@ -39,16 +40,24 @@ export default class Controller {
         _res.status(200).json(mailSent);
     }
 
+    /*  Get planets data by "Id". if no "Id" exist returns all data. 
+     *  And returns an array of JSON <IPlanetData []> ---*/
     async getPlanets (_req: Request, _res: Response, _next: NextFunction) {
-        _res.status(200).json({message: "got - it"});
+        try {
+            let data: IPlanetsData[] = await this._service.getPlanets(_req.params.id);
+            _res.status(200).json([...data]);
+        } catch ( error ) {
+            _next(error);
+        }
     } 
     
+    /* Set planets data including the image file for planets' surface. 
+     * Returns  { message: "" } , if no exception occur.*/
     async setPlanet (_req: Request, _res: Response, _next: NextFunction) {
         try {
             let data = await this._service.createPlanet( _req.body, _req.files);
             _res.status(200).json(data);
         } catch (error) {
-            console.log("---- error ---- ",error);
             _next(error);
         }
     }

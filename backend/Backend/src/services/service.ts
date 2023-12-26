@@ -5,6 +5,7 @@ import Config from "../configs/config";
 import Models from "../models/model";
 import fileUpload from "express-fileupload";
 import HttpException from "@/exceptions/httpExceptions";
+import { IPlanetsData } from "@/interfaces/common.interface";
 
 @injectable()
 export class Service {
@@ -68,16 +69,18 @@ export class Service {
 
     }
     async createPlanet (_body: any, file: any): Promise<{[key:string]:string }> {
+
+
             let error: string = "";
             let fileName : string = file.texture.name;
             
-            /*loop through all the key/ value to check if all key has value*/
+            /* loop through all the key/ value to check if all key has value */
             for(let key in _body){
                 if( !_body.hasOwnProperty(key) || _body[key] == null || _body[key] == "null" || _body[key] == ""  ) 
                     error = key;
             }
 
-            /* if a field stays empty */
+            /* if any of the field is empty */
             if( error) throw new HttpException(400,`Please enter for ${error} the planet.`);
 
             /* if image for the planet's surface is not uploaded*/
@@ -86,16 +89,33 @@ export class Service {
             /* move the file to uploads folder. */
             file.texture.mv( this._config.UPLOAD_PATH + fileName);
             
-            /* check if the planet's name already exist*/
+            /* check if the planet's name already exist */
             let data = await this._models.Planets.findOne({name: _body.name});
             if ( data?.name == _body.name ) throw new HttpException(409, "Planet name already exists.");
 
-            /* save the data*/
+            /* create custom "_id", set file path to "texture key" and save the data */
+            _body._id = new Date().getTime() +"-"+ _body.name;
             _body.texture = this._config.UPLOAD_PATH + fileName;
             await this._models.Planets.create({..._body});  
 
             return { message: "Data saved."};
+
     }
+
+    async getPlanets ( id: string = "" ): Promise<IPlanetsData[]> {
+
+        let filter = {};
+        filter = ( id == "" || id == null || id =="null" ) ? {} : { "_id": id };
+
+        let data: IPlanetsData[] = await this._models.Planets.find(filter);
+
+        if(!data[0]) throw new HttpException( 404 , 'Planet data not found' );
+
+        return data;
+    }
+
+
+
     private getTemplate(): string {
         this.generatedOTP = parseInt((Math.random()*1000000).toFixed(0));
 

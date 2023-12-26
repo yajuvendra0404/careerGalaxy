@@ -20,7 +20,7 @@ export default class Routes {
         this.routes.post(`${this.path}generateOTP`,(req, res, next)=> {
             _controller.generateOTP(req, res, next);
         })
-        this.routes.get(`${this.path}planets`,( req, res, next)=>{
+        this.routes.get(`${this.path}planets/:id?`,( req, res, next)=>{
             _controller.getPlanets(req, res, next);       
         })
         this.routes.post(`${this.path}planet`,( req, res, next)=>{
