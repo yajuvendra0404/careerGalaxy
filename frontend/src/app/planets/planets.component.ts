@@ -25,9 +25,16 @@ export class PlanetsComponent {
   pointer: THREE.Vector2;
 
   subscriptionStore : Subscription[] = [];
-  planet: { mesh:THREE.Mesh, obj:THREE.Object3D, rotation: number, revolve: number }[] = [];
+  planet: { 
+    mesh:THREE.Mesh, 
+    obj:THREE.Object3D, 
+    rotation: number, 
+    revolve: number,
+    id:string,
+    name:string 
+  } [] = [];
   planetsData: IPlanetsData[] = [];
-    // {_id:"home", name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}];
+  // {_id:"home", name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}];
   
   @ViewChild("canvas", { static: true }) canvas!: ElementRef;
 
@@ -39,7 +46,7 @@ export class PlanetsComponent {
     ));
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(105, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.set(90, 90, 70);
+    this.camera.position.set(0, 140, 50);
 
     /*provide Light to the spheres*/
     this.ambientLight =  new THREE.AmbientLight( 0xffffff );
@@ -62,19 +69,23 @@ export class PlanetsComponent {
     this.orbitControls.update();
   }
 
-  createPlanets(size: number, texture:string, position:number, name: string) {
+  createPlanets(size: number, texture:string, position:number, name: string, id:string) {
 
     const geo = new THREE.SphereGeometry(size, 30, 30);
     const mat = new THREE.MeshStandardMaterial({
         map: new THREE.TextureLoader().load(this.DOMAIN+""+texture)
     });
     const mesh = new THREE.Mesh(geo, mat);
+    mesh.userData['id'] = id;
+    mesh.position.x = position;
+
     const obj = new THREE.Object3D();
     obj.add(mesh);
+    obj.userData['name'] = name;
+    obj.name = name;
 
     this.scene.add(obj);
-    mesh.userData['name'] = name;
-    mesh.position.x = position;
+
     return {mesh, obj}
   }
 
@@ -100,6 +111,7 @@ export class PlanetsComponent {
   onPointerMove(event: any) {
     this.pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     this.pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    
     // update the picking ray with the camera and pointer position
     this.raycaster.setFromCamera( this.pointer, this.camera );
 
@@ -107,10 +119,11 @@ export class PlanetsComponent {
     const found = this.raycaster.intersectObjects( this.scene.children );
   
     if(found.length > 0){
-      console.log(found);
-      console.log('Mesh clicked!');
+      console.log("-- found --", found[0].object.userData['id']);
+      this._planetService.data.next(this.planetsData.filter((ele) => {
+        ele._id == found[0].object.userData['id'];
+      }))
     }
-  
   }
 
   ngAfterViewInit() {
@@ -121,7 +134,9 @@ export class PlanetsComponent {
       this.addOrbitControl();
       this.planetsData.forEach( ele => {
         this.planet.push({
-          ...this.createPlanets( ele.size , ele.texture, ele.position, ele.name),
+          id: ele._id,
+          name: ele.name,
+          ...this.createPlanets( ele.size , ele.texture, ele.position, ele.name, ele._id),
           rotation: ele.rotationSpeed, 
           revolve: ele.orbitingSpeed
         });
@@ -132,11 +147,29 @@ export class PlanetsComponent {
 
   }
 
-  ngDestroy (): void {
+  clearScene(): void {
+    this.scene.children.forEach((object) => {
+      this.scene.remove(object);
+    });
+  }
+
+  private disposeMaterial(material: THREE.Material | THREE.Material[]): void {
+    if (Array.isArray(material)) {
+      material.forEach((mat) => this.disposeMaterial(mat));
+    } else if (material) {
+      material.dispose();
+    }
+  }
+  
+  ngOnDestroy (): void {
+
     this.subscriptionStore.forEach( (e) => {
       e.unsubscribe();
     })
     this.renderer.dispose();
+    this.clearScene();
+    this.planet= [];
+
 
   }
 

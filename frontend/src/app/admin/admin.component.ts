@@ -53,7 +53,7 @@ export class AdminComponent {
   onFileSelected (event:any) {
     this.selectedFile = event.target.files[0];
   }
-  ngDestroy() {
+  ngOnDestroy() {
     this.subscriptionStore.forEach(el => {
       el.unsubscribe();
     })

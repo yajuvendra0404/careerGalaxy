@@ -35,7 +35,7 @@ export class MapComponent {
     )
   }
   
-  ngDestroy() {
+  ngOnDestroy() {
     this.subscriptionStore.forEach( (ele) => {
       ele.unsubscribe();
     })
