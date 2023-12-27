@@ -3,9 +3,10 @@ import { injectable } from "tsyringe";
 import nodemailer from 'nodemailer';
 import Config from "../configs/config";
 import Models from "../models/model";
-import fileUpload from "express-fileupload";
+import mongoose from 'mongoose';
 import HttpException from "@/exceptions/httpExceptions";
 import { IPlanetsData } from "@/interfaces/common.interface";
+
 
 @injectable()
 export class Service {
@@ -69,7 +70,7 @@ export class Service {
 
     }
     async createPlanet (_body: any, file: any): Promise<{[key:string]:string }> {
-
+        
 
             let error: string = "";
             let fileName : string = file.texture.name;
@@ -87,7 +88,7 @@ export class Service {
             if( !fileName ) throw new HttpException(400,`Please upload planet surface image.`)
             
             /* move the file to uploads folder. */
-            file.texture.mv( this._config.UPLOAD_PATH + fileName);
+            file.texture.mv( "src/" + this._config.UPLOAD_PATH + fileName);
             
             /* check if the planet's name already exist */
             let data = await this._models.Planets.findOne({name: _body.name});
@@ -111,10 +112,37 @@ export class Service {
 
         if(!data[0]) throw new HttpException( 404 , 'Planet data not found' );
 
+
         return data;
     }
 
+    async checkTransactions () : Promise<any> {
+        let session = await mongoose.startSession();
+        try {
+            session.startTransaction();
+            const user = await this._models.User.create ([
+                {
+                    data1: "data1",
+                    data2: "data2"
+                }
+            ], {session});
 
+            const planet = await this._models.Post.create ([
+                {
+                    dataX: "dataX",
+                    dataY: "dataY"
+                }
+            ], {session});
+            
+            await session.commitTransaction();
+            // session.endSession(); // Make sure
+        } catch (exp) {
+            await session.abortTransaction();
+            // session.endSession(); // Make sure to end the session after aborting
+            throw exp; // Re-thro
+        }
+        return {message : "transcation completed"};
+    }
 
     private getTemplate(): string {
         this.generatedOTP = parseInt((Math.random()*1000000).toFixed(0));
@@ -132,3 +160,14 @@ export class Service {
     }
 
 }
+
+// User = mongoose.model ('user', new mongoose.Schema({
+//     data1 : { type:String, required: true, trim: true },
+//     data2 : { type:String, required: true, trim: true },
+// }))
+
+
+// Post = mongoose.model ('post', new mongoose.Schema({
+//     dataX : { type:String, required: true, trim: true },
+//     dataY : { type:String, required: true, trim: true },
+// }))

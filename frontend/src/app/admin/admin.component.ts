@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlanetsData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
 import { Subscription } from 'rxjs';
@@ -13,9 +13,7 @@ export class AdminComponent {
   planetAppearanceFormGroup:FormGroup;
   selectedFile!: File;
   subscriptionStore: Subscription[] = [];
-  skillPassportFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
+  skillPassportFormGroup: FormGroup;
   
   isEditable = false;
 
@@ -24,15 +22,18 @@ export class AdminComponent {
     private _apiService: ApiService
   ) {
     this.planetAppearanceFormGroup = this._formBuilder.group({
-      name: [null],
+      name: [null, Validators.required],
       size: [null, Validators.required],
       texture: [null, Validators.required],
       position: [null, Validators.required],
       rotationSpeed: [null, Validators.required],
       orbitingSpeed: [null, Validators.required],
     });
+    this.skillPassportFormGroup = this._formBuilder.group({
+      lanes:  [null, Validators.required],
+    })
   }
-  
+
   onSubmit () {
     const formData = new FormData();
 

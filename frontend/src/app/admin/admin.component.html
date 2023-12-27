@@ -45,6 +45,7 @@
               <input 
                 matInput 
                 placeholder="Size" 
+                type="number"
                 class="input"
                 formControlName="size"
               >
@@ -65,7 +66,8 @@
               </label>
               <input 
                 matInput 
-                placeholder="Size" 
+                placeholder="Position" 
+                type="number"
                 class="input"
                 formControlName="position"
               >
@@ -84,7 +86,8 @@
               </span></label>
               <input 
                 matInput 
-                placeholder="Size" 
+                type="number"
+                placeholder="Rotation Speed" 
                 class="input"
                 formControlName="rotationSpeed"
               >
@@ -104,8 +107,9 @@
                 </span>
               </label>
               <input 
+                type="number"
                 matInput 
-                placeholder="Size" 
+                placeholder="Orbiting Speed" 
                 class="input"
                 formControlName="orbitingSpeed"
               >
@@ -113,7 +117,7 @@
 
             <div class="m-3">
               <label for="formFileLg" class="form-label bold">Planet Surface <small>( Choose a file to upload. )</small></label>
-              <input class="form-control form-control-sm input" id="formFileLg" type="file" (change)="onFileSelected($event)">
+              <input class="form-control form-control-sm input" formControlName="texture" id="formFileLg" type="file" (change)="onFileSelected($event)">
             </div>
 
           </div>
@@ -127,8 +131,8 @@
         <form [formGroup]="skillPassportFormGroup">
           <ng-template matStepLabel><span class="stepper-label">Skill Passport</span></ng-template>
           <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+            <mat-label>Lanes</mat-label>
+            <input matInput formControlName="lanes" placeholder="Ex. 1 Main St, New York, NY" required>
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>

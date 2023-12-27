@@ -19,9 +19,13 @@ export default class Controller {
     ) {}
 
     // ------ test route.
-    testRoute(_req: Request, _res: Response, _next: NextFunction) {
-        console.log()
+    async testRoute(_req: Request, _res: Response, _next: NextFunction) {
+
+        let testResults = await this._service.checkTransactions();
+        console.log(" ----- test results -----", testResults);
+        
         _res.status(200).json({ title: 'Test Complete.' }); 
+
     }
 
     // ------ save message after OTP verification.

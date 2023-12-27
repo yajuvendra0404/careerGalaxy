@@ -11,7 +11,7 @@ export default class Routes {
     constructor(
         _controller: Controller
         ) {
-        this.routes.get(`${this.path}greet`, ( req, res, next)=>{
+        this.routes.get(`${this.path}test`, ( req, res, next)=>{
             _controller.testRoute(req, res, next);       
         })
         this.routes.post(`${this.path}submitMessage`, ( req, res, next)=>{
