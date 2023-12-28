@@ -5,10 +5,11 @@
       <h1>Admin Panel </h1>
     </div>
 
-    <mat-stepper linear #stepper>
+    <mat-stepper [linear]="'Disable linear mode'" #stepper>
       <mat-step [stepControl]="planetAppearanceFormGroup">
-        <form [formGroup]="planetAppearanceFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-          <ng-template matStepLabel><span class="stepper-label">Planet Appearance 
+        <form [formGroup]="planetAppearanceFormGroup" enctype="multipart/form-data">
+          <!-- (ngSubmit)="onSubmit()" -->
+          <ng-template matStepLabel><span class="stepper-label form-label">Planet Appearance 
           </span></ng-template>
           
           <div class="custom-form">
@@ -123,29 +124,74 @@
           </div>
 
           <div>
-            <button mat-button matStepperNext mat-flat-button color="primary">Submit</button>
+            <button mat-button matStepperNext mat-flat-button color="primary" class="custom-button">Next</button>
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="skillPassportFormGroup">
-        <form [formGroup]="skillPassportFormGroup">
-          <ng-template matStepLabel><span class="stepper-label">Skill Passport</span></ng-template>
-          <mat-form-field>
-            <mat-label>Lanes</mat-label>
-            <input matInput formControlName="lanes" placeholder="Ex. 1 Main St, New York, NY" required>
-          </mat-form-field>
+      <mat-step [stepControl]="lanesAndJobsFormGroup">
+        <form [formGroup]="lanesAndJobsFormGroup">
+          <ng-template matStepLabel><span class="stepper-label">Lanes And Jobs</span></ng-template>
+          <div class="row m-6">
+            <div class="col-md-6">
+              <button mat-button mat-flat-button color="primary" (click) = "addNewLane()">Add New Lanes</button><br>
+              <!-- <mat-form-field class="custom_mat-form_field" *ngFor = "let lane of lanesControl; let i = index">
+                <mat-label>Lanes</mat-label>
+                <input matInput [formControlName]="i" class="input" placeholder="Ex. 1 Main St, New York, NY" required>
+              </mat-form-field><br> -->
+              <mat-form-field formArrayName="lanes" appearance="outline" class="custom_mat-form_field" *ngFor = "let lane of lanesControl; let i = index">
+                <label>
+                  <span class="field-label">Lane {{ i+1 }} 
+                    <mat-icon 
+                      aria-hidden="false" 
+                      aria-label="Example home icon" 
+                      color="primary" 
+                      fontIcon="info"
+                      title="Info about the action"
+                      matTooltipPosition="bottom"> 
+                    </mat-icon>
+                  </span>
+                </label>
+                <input 
+                  matInput 
+                  placeholder="Lane Name" 
+                  class="input"
+                  [formControlName]="i" 
+                >
+              </mat-form-field><br>
+            </div>
+            <div class="col-md-6">
+              <h2>This place is reserved for adding jobs.</h2>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                It has survived not only five centuries, but also the leap into electronic typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset 
+                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+                like Aldus PageMaker including versions of Lorem Ipsum.
+              </p>
+            </div>
+          </div>
+
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious mat-flat-button color="primary" class="custom-button">Back</button>&nbsp;
+            <button mat-button matStepperNext mat-flat-button color="primary" class="custom-button">Next</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel><span class="stepper-label">Done</span></ng-template>
-        <p>You are now done.</p>
+
+        <mat-grid-list cols="1" rowHeight="4:1">
+          <mat-grid-tile>
+            <p>You are now done. Just click the "Submit" button.</p>
+          </mat-grid-tile>
+
+        </mat-grid-list>
         <div>
-          <button mat-button mat-flat-button color="primary" matStepperPrevious>Back</button>
-          <button mat-button mat-flat-button color="primary" (click)="stepper.reset()">Reset</button>
+          <button mat-button mat-flat-button color="primary" class="custom-button" matStepperPrevious>Back</button>
+          <button mat-button mat-flat-button color="primary" class="custom-button" (click)="onSubmit()">Submit</button>
+          <!-- (click)="stepper.reset()" -->
         </div>
       </mat-step>
     </mat-stepper>

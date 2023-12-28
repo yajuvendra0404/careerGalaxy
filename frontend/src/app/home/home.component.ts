@@ -24,7 +24,7 @@ export class HomeComponent {
     private _planetService : PlanetService,  
   ) {}
   planetsData: IPlanetsData[] = [
-    {_id:"home", name:"earth",size: 70, position: 0, texture: "uploads/earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}
+    {_id:"home", name:"earth",size: 70, position: 0, texture: "uploads/earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002, lanes: []}
   ];
   openSkillPassportDialog () {
     const dialogRef = this._dialog.open(SkillPassportComponent,{

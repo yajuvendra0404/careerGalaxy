@@ -23,6 +23,7 @@ export default class Models {
         rotationSpeed: { type: Number, required: true },  
         orbitingSpeed: { type: Number, required: true },  
         texture: { type: String, required: true},
+        lanes: { type: [String], required: true}
     }))
     
     

@@ -54,14 +54,11 @@ $text_color: rgb(0, 0, 0);
 
 .mat-stepper-horizontal {
     margin: 8px;
-    min-height: 60vh;
+    max-height: 70vh;
     background: rgba(255, 255, 255, 0.8);
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
-.mat-stepper-horizontal {
-    margin-top: 8px;
-}
 
 .mat-mdc-form-field {
     margin-top: 16px;
@@ -87,14 +84,24 @@ $text_color: rgb(0, 0, 0);
 .input {
     color: grey !important;
     // border-bottom: 1px solid #707070;
+
 }
 mat-icon {
     &:hover{
         cursor: pointer;
     }
 }
+.custom_mat-form_field {
+    width: 500px;
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+mat-step {
+    overflow-y: scroll;
+}
+.custom-button {
+    margin-right: 1%;
 }

@@ -71,17 +71,16 @@ export class Service {
     }
     async createPlanet (_body: any, file: any): Promise<{[key:string]:string }> {
         
-
             let error: string = "";
             let fileName : string = file.texture.name;
             
-            /* loop through all the key/ value to check if all key has value */
+            /* loop through all the properties to check if none of them is empty. */
             for(let key in _body){
                 if( !_body.hasOwnProperty(key) || _body[key] == null || _body[key] == "null" || _body[key] == ""  ) 
                     error = key;
             }
 
-            /* if any of the field is empty */
+            /* throw exception if any of the property is empty */
             if( error) throw new HttpException(400,`Please enter for ${error} the planet.`);
 
             /* if image for the planet's surface is not uploaded*/
@@ -97,6 +96,8 @@ export class Service {
             /* create custom "_id", set file path to "texture key" and save the data */
             _body._id = new Date().getTime() +"-"+ _body.name;
             _body.texture = this._config.UPLOAD_PATH + fileName;
+            _body.lanes = JSON.parse(_body.lanes);
+
             await this._models.Planets.create({..._body});  
 
             return { message: "Data saved."};

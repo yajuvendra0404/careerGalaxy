@@ -34,7 +34,6 @@ export class PlanetsComponent {
     name:string 
   } [] = [];
   planetsData: IPlanetsData[] = [];
-  // {_id:"home", name:"earth",size: 70, position: 0, texture: "earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}];
   
   @ViewChild("canvas", { static: true }) canvas!: ElementRef;
 
