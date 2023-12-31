@@ -16,16 +16,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MapComponent } from './map/map.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatStepperModule} from '@angular/material/stepper';
-import { MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSelectModule } from '@angular/material/select';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PlanetsComponent } from './planets/planets.component';
 import { AuthComponent } from './auth/auth.component';
+import { AddPlanetComponent } from './admin/add-planet/add-planet.component';
+import { AddLanesComponent } from './admin/add-lanes/add-lanes.component';
+import { AddJobsComponent } from './admin/add-jobs/add-jobs.component';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { LanesComponent } from './map/lanes/lanes.component';
+
 
 
 
@@ -42,6 +52,11 @@ import { AuthComponent } from './auth/auth.component';
     JobWalletComponent,
     ComparatorComponent,
     MapComponent,
+    AddPlanetComponent,
+    AddLanesComponent,
+    AddJobsComponent,
+    LanesComponent,
+
  
   ],
   imports: [
@@ -58,10 +73,17 @@ import { AuthComponent } from './auth/auth.component';
     MatFormFieldModule,
     MatStepperModule,
     MatIconModule,
-    MatGridListModule
-  
+    MatGridListModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
