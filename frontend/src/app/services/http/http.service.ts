@@ -25,6 +25,10 @@ export class HttpService {
     .pipe(catchError(this.errorHandler.bind(this)))
   }
 
+  createLanes(url : string, formData:FormData): Observable<any> {
+    return this._http.post<any>(`${this.baseURL}${url}`,formData)
+    .pipe(catchError(this.errorHandler.bind(this)))
+  }
   private errorHandler() {
     return "error occured";
   }

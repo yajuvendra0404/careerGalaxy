@@ -1,0 +1,57 @@
+.drawer-container {
+    height: 100vh;
+    width:40vh;
+    position: relative;
+    right:0px;
+    z-index : 20 !important;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.5);
+// .banner{
+//   background:url("../../../assets/images/pexels-fox-desktop.jpg") no-repeat;
+//   height: 100vh;
+//   background-size: cover;
+// }
+// .layer {
+//   background-image: radial-gradient(  rgba(161, 201, 254, 0.8) 1%,rgba(4, 110, 248, 0.8) 99%);
+//   position: relative;
+//   height: 100vh;
+// }
+    .drawer-header {
+        text-align: center;
+        margin: 0px auto;
+        color: white;
+        
+    }
+    .drawer-body {}
+    .card-body {
+        width: 30vh;
+        height: 30vh;
+        background-color: rgba(241, 97, 97, 0.6);
+        color: white;
+        .card-title {
+            padding:5%;
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(241, 97, 97, 0.8);
+        }
+    }
+    .banner{
+        border-radius: 10px;
+        background:url("../../../../../../grocers.jpg") no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background: grey;
+    box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 2px;
+}

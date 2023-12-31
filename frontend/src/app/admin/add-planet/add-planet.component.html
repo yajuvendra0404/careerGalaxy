@@ -1,0 +1,76 @@
+<mat-stepper [linear]="'Disable linear mode'" #stepper>
+  <mat-step [stepControl]="planetAppearanceFormGroup">
+    <form [formGroup]="planetAppearanceFormGroup"  (ngSubmit)="onSubmit()"  enctype="multipart/form-data">
+
+        <ng-template matStepLabel>
+            <span class="stepper-label form-label">Planet Appearance</span>
+        </ng-template>
+
+      <div class="custom-form">
+
+        <mat-form-field appearance="outline">
+          <label><span class="field-label">Planet Name
+              <mat-icon aria-hidden="false" color="primary" fontIcon="info" title="Info about the action"
+                matTooltipPosition="bottom">
+              </mat-icon>
+            </span></label>
+          <input matInput placeholder="Enter Name" class="input" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label><span class="field-label">Planet Size
+              <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
+                title="Info about the action" matTooltipPosition="bottom">
+              </mat-icon>
+            </span></label>
+          <input matInput placeholder="Enter Size" type="number" class="input" formControlName="size">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label>
+            <span class="field-label">Planet Position
+              <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
+                title="Info about the action" matTooltipPosition="bottom">
+              </mat-icon>
+            </span>
+          </label>
+          <input matInput placeholder=" Enter Position" type="number" class="input" formControlName="position">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label><span class="field-label">Rotaion Speed
+              <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
+                title="Info about the action" matTooltipPosition="bottom">
+              </mat-icon>
+            </span></label>
+          <input matInput type="number" placeholder="Enter Rotation Speed" class="input" formControlName="rotationSpeed">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <label>
+            <span class="field-label">Orbiting Speed
+              <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
+                title="Info about the action" matTooltipPosition="bottom">
+              </mat-icon>
+            </span>
+          </label>
+          <input type="number" matInput placeholder="Enter Orbiting Speed" class="input" formControlName="orbitingSpeed">
+        </mat-form-field>
+
+        <div class="m-3">
+          <label for="formFileLg" class="form-label bold">Planet Surface <small>( Choose a file to upload.
+              )</small></label>
+          <input class="form-control form-control-sm input" formControlName="texture" id="formFileLg" type="file"
+            (change)="onFileSelected($event)">
+        </div>
+
+      </div>
+
+      <div>
+        <button mat-button mat-flat-button color="primary" class="custom-button">Submit</button>
+      </div>
+    </form>
+  </mat-step>
+
+</mat-stepper>
+

@@ -19,5 +19,10 @@ export interface IPlanetsData {
     position: number;
     rotationSpeed: number;
     orbitingSpeed: number;
-    lanes: string[];
+    // lanes: string[];
+}
+export interface ILanesData {
+    laneName : string;
+    laneImage: string;
+    planetId?: string;
 }

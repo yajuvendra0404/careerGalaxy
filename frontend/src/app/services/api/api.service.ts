@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { Observable } from 'rxjs';
-import { IPlanetsData } from '@app/interface/common.interface';
+import { ILanesData, IPlanetsData } from '@app/interface/common.interface';
 
 
 @Injectable({
@@ -15,5 +15,8 @@ export class ApiService {
   }
   createPlanet( formData: FormData ): Observable<{[key:string]:string}>{
     return this._httpService.createPlanets("planet", formData);
+  }
+  createLanes (formData: FormData) : Observable<{[key:string]:string}> {
+    return this._httpService.createLanes("lanes", formData);
   }
 }
