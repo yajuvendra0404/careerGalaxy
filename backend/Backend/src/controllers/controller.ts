@@ -55,9 +55,9 @@ export default class Controller {
         }
     } 
     
-    /* Set planets data including the image file for planets' surface. 
+    /* create planets data including the image file for planets' surface. 
      * Returns  { message: "" } , if no exception occur.*/
-    async setPlanet (_req: Request, _res: Response, _next: NextFunction) {
+    async createPlanet (_req: Request, _res: Response, _next: NextFunction) {
         try {
             let data = await this._service.createPlanet( _req.body, _req.files);
             _res.status(200).json(data);
@@ -65,4 +65,14 @@ export default class Controller {
             _next(error);
         }
     }
-}
+    /* create planets data including the image file for planets' surface. 
+     * Returns  { message: "" } , if no exception occur.*/
+    async createLanes (_req : Request, _res: Response, _next: NextFunction) {
+        try {
+            let data = await this._service.createLanes( _req.body, _req.files);
+            _res.status(200).json(data);
+        } catch (error) {
+            _next(error);
+        }
+    }
+}   

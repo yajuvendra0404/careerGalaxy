@@ -24,7 +24,10 @@ export default class Routes {
             _controller.getPlanets(req, res, next);       
         })
         this.routes.post(`${this.path}planet`,( req, res, next)=>{
-            _controller.setPlanet(req, res, next);     
+            _controller.createPlanet(req, res, next);     
+        })
+        this.routes.post(`${this.path}lanes`,( req, res, next)=>{
+            _controller.createLanes(req, res, next);     
         })
     }
 }

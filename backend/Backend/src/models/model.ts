@@ -15,7 +15,7 @@ export default class Models {
         OTP:{ type:Number, trim:true, required:true},
         expiresAt: { type: Date, required: true, index: true, expires:'1m'},  
     }))
-    Planets = mongoose.model ("planet", new mongoose.Schema({
+    Planet = mongoose.model ("planet", new mongoose.Schema({
         _id:{ type:String, required: true, trim: true },
         name:{ type:String, required: true, trim: true },
         size:{ type: Number, trim:true, required:true },
@@ -23,9 +23,18 @@ export default class Models {
         rotationSpeed: { type: Number, required: true },  
         orbitingSpeed: { type: Number, required: true },  
         texture: { type: String, required: true},
-        lanes: { type: [String], required: true}
+        // lanes: { type: [String], required: true}
     }))
-    
+    Lane = mongoose.model ("lane", new mongoose.Schema({
+        _id:{ type:String, required: true, trim: true },
+        laneName:{ type:String, required: true, trim: true },
+        laneImage : { type:String, require: true, trim: true},
+        planetId: {
+            type:String,
+            ref:'Planet' 
+        }
+        // lanes: { type: [String], required: true}
+    }))
     
     User = mongoose.model ('user', new mongoose.Schema({
         data1 : { type:String, required: true, trim: true },

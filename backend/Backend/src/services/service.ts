@@ -50,6 +50,7 @@ export class Service {
             return {"error":exp};
         }
     }
+    
     async submitMessage (_body: any): Promise<{[key:string]:string }> {
 
         try{
@@ -69,6 +70,7 @@ export class Service {
         }
 
     }
+
     async createPlanet (_body: any, file: any): Promise<{[key:string]:string }> {
         
             let error: string = "";
@@ -90,29 +92,50 @@ export class Service {
             file.texture.mv( "src/" + this._config.UPLOAD_PATH + fileName);
             
             /* check if the planet's name already exist */
-            let data = await this._models.Planets.findOne({name: _body.name});
+            let data = await this._models.Planet.findOne({name: _body.name});
             if ( data?.name == _body.name ) throw new HttpException(409, "Planet name already exists.");
 
             /* create custom "_id", set file path to "texture key" and save the data */
             _body._id = new Date().getTime() +"-"+ _body.name;
             _body.texture = this._config.UPLOAD_PATH + fileName;
-            _body.lanes = JSON.parse(_body.lanes);
+            // _body.lanes = JSON.parse(_body.lanes);
 
-            await this._models.Planets.create({..._body});  
+            await this._models.Planet.create({..._body});  
 
             return { message: "Data saved."};
 
     }
+
+    async createLanes (_body: any, file: any): Promise<{[key:string]:string }> {
+
+        _body.data = JSON.parse(_body.data); 
+        
+        /* move the file to uploads folder. */
+        const keys = Object.keys(file);
+        keys.forEach( key => {
+            file[key].mv( "src/" + this._config.UPLOAD_PATH + file[key].name);
+        });
+
+        /* create custom "_id", set file path to "texture key" and save the data */
+        _body.data.forEach( (ele: { _id: string; laneName: string; }) => {
+            ele._id = new Date().getTime() +"-"+ ele.laneName;
+        });
+
+        await this._models.Lane.insertMany([
+            ..._body.data
+        ]);
+        
+        return {message :"Data saved"} 
+    } 
 
     async getPlanets ( id: string = "" ): Promise<IPlanetsData[]> {
 
         let filter = {};
         filter = ( id == "" || id == null || id =="null" ) ? {} : { "_id": id };
 
-        let data: IPlanetsData[] = await this._models.Planets.find(filter);
+        let data: IPlanetsData[] = await this._models.Planet.find(filter);
 
         if(!data[0]) throw new HttpException( 404 , 'Planet data not found' );
-
 
         return data;
     }
