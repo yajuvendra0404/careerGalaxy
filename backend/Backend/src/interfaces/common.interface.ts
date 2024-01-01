@@ -7,3 +7,9 @@ export interface IPlanetsData {
     rotationSpeed: number;
     orbitingSpeed: number;
 }
+export interface ILaneData {
+    _id:string;
+    laneName : string;
+    laneImage: string;
+    planetId: string;
+}

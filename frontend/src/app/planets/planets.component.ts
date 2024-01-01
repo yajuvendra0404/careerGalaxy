@@ -39,7 +39,7 @@ export class PlanetsComponent {
 
   constructor( private _planetService: PlanetService) {
     this.subscriptionStore.push(
-      this._planetService.data.subscribe((data : IPlanetsData[]) => {
+      this._planetService.planetData.subscribe((data : IPlanetsData[]) => {
         this.planetsData = data.slice();
       }
     ));
@@ -118,8 +118,8 @@ export class PlanetsComponent {
     const found = this.raycaster.intersectObjects( this.scene.children );
   
     if(found.length > 0){
-      console.log("-- found --", found[0].object.userData['id']);
-      this._planetService.data.next(this.planetsData.filter((ele) => {
+
+      this._planetService.planetData.next(this.planetsData.filter((ele) => {
         ele._id == found[0].object.userData['id'];
       }))
     }

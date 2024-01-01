@@ -20,27 +20,104 @@
         text-align: center;
         margin: 0px auto;
         color: white;
-        
     }
     .drawer-body {}
-    .card-body {
-        width: 30vh;
-        height: 30vh;
-        background-color: rgba(241, 97, 97, 0.6);
-        color: white;
-        .card-title {
-            padding:5%;
-        }
-        &:hover {
-            cursor: pointer;
-            background-color: rgba(241, 97, 97, 0.8);
-        }
-    }
+
     .banner{
         border-radius: 10px;
         background:url("../../../../../../grocers.jpg") no-repeat;
         background-size: cover;
         position: relative;
+        .card-body {
+            width: 30vh;
+            height: 30vh;
+            background-color: rgba(241, 97, 97, 0.5);
+            color: white;
+            h3 {
+                background-color: rgba(241, 97, 97, 1);
+                padding: 4%;
+                border-radius: 10px;
+            }
+            .card-title {
+                padding:5%;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(241, 97, 97, 0.8);
+            }
+        }
+    }
+    .banner-1{
+        border-radius: 10px;
+        background:url("../../../../../../banking.jpg") no-repeat;
+        background-size: cover;
+        position: relative;
+        .card-body {
+            width: 30vh;
+            height: 30vh;
+            background-color: rgba(241, 224, 97, 0.599);
+            color: white;
+            h3 {
+                background-color: rgba(241, 224, 97, 1);
+                padding: 4%;
+                border-radius: 10px;
+            }
+            .card-title {
+                padding:5%;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(241, 224, 97, 0.8);
+            }
+        }
+    }
+    .banner-2{
+        border-radius: 10px;
+        background:url("../../../../../../wallStreet.jpg") no-repeat;
+        background-size: cover;
+        position: relative;
+        .card-body {
+            width: 30vh;
+            height: 30vh;
+            background-color: rgba(97, 138, 241, 0.5);
+            color: white;
+            h3 {
+                background-color: rgba(97, 138, 241, 1);
+                padding: 4%;
+                border-radius: 10px;
+            }
+            .card-title {
+                padding:5%;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(97, 138, 241, 0.8);
+            }
+        }
+    }
+    .banner-3{
+        border-radius: 10px;
+        background:url("../../../../../../justice.jpg") no-repeat;
+        background-size: cover;
+        position: relative;
+        .card-body {
+            width: 30vh;
+            height: 30vh;
+            background-color: rgba(97, 241, 102, 0.5);
+            color: white;
+            h3 {
+                background-color: rgba(97, 241, 102, 1);
+                padding: 4%;
+                border-radius: 10px;
+            }
+            .card-title {
+                padding:5%;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(97, 241, 102, 0.8);
+            }
+        }
     }
 
 }

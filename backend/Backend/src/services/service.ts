@@ -5,7 +5,7 @@ import Config from "../configs/config";
 import Models from "../models/model";
 import mongoose from 'mongoose';
 import HttpException from "@/exceptions/httpExceptions";
-import { IPlanetsData } from "@/interfaces/common.interface";
+import { ILaneData, IPlanetsData } from "@/interfaces/common.interface";
 
 
 @injectable()
@@ -136,6 +136,20 @@ export class Service {
         let data: IPlanetsData[] = await this._models.Planet.find(filter);
 
         if(!data[0]) throw new HttpException( 404 , 'Planet data not found' );
+
+        return data;
+    }
+
+    async getLanesByPlanetId ( planetId: string ): Promise<ILaneData[]> {
+
+        let filter = {};
+        if ( planetId == "" || planetId == null || planetId =="null" ) throw new HttpException(500, "Something went wrong."); 
+        
+        filter = {"planetId": planetId};
+
+        let data: ILaneData[] = await this._models.Lane.find(filter);
+
+        if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
 
         return data;
     }

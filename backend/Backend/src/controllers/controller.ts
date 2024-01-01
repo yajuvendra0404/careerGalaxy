@@ -75,4 +75,14 @@ export default class Controller {
             _next(error);
         }
     }
+    async getLanesByPlanetId (_req: Request, _res: Response, _next: NextFunction){
+        try {
+            console.log('--- Planet Id ---', _req.params.planetId);
+
+            let data = await this._service.getLanesByPlanetId(_req.params.planetId);
+            _res.status(200).json(data);
+        } catch (error) {
+            _next(error);
+        }
+    }
 }   

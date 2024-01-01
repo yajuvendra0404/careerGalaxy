@@ -26,6 +26,7 @@ export class HomeComponent {
   planetsData: IPlanetsData[] = [
     {_id:"home", name:"earth",size: 70, position: 0, texture: "uploads/earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}
   ];
+  
   openSkillPassportDialog () {
     const dialogRef = this._dialog.open(SkillPassportComponent,{
       enterAnimationDuration:"500ms",
@@ -72,7 +73,7 @@ export class HomeComponent {
   } 
 
   ngOnInit() {
-    this._planetService.data.next(this.planetsData);
+    this._planetService.planetData.next(this.planetsData);
   }
 
 }

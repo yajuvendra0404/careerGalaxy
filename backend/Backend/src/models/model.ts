@@ -36,6 +36,8 @@ export default class Models {
         // lanes: { type: [String], required: true}
     }))
     
+
+    /* for testing "Transactions" in mongoDB  */
     User = mongoose.model ('user', new mongoose.Schema({
         data1 : { type:String, required: true, trim: true },
         data2 : { type:String, required: true, trim: true },
@@ -46,5 +48,6 @@ export default class Models {
         dataX : { type:String, required: true, trim: true },
         dataY : { type:String, required: true, trim: true },
     }))
+    
 }
 

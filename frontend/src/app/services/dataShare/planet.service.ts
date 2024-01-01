@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { IPlanetsData } from '@app/interface/common.interface';
+import { ILanesData, IPlanetsData } from '@app/interface/common.interface';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanetService {
-  data: BehaviorSubject<IPlanetsData[]> = new BehaviorSubject<IPlanetsData[]>([]);
+  planetData: BehaviorSubject<IPlanetsData[]> = new BehaviorSubject<IPlanetsData[]>([]);
+  laneData : BehaviorSubject<ILanesData[]> = new BehaviorSubject<ILanesData[]>([]);
   isDataAvailable:Boolean = false;
   constructor() { }
 }
