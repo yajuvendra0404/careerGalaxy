@@ -74,6 +74,7 @@ export class PlanetsComponent {
     const mat = new THREE.MeshStandardMaterial({
         map: new THREE.TextureLoader().load(this.DOMAIN+""+texture)
     });
+    
     const mesh = new THREE.Mesh(geo, mat);
     mesh.userData['id'] = id;
     mesh.position.x = position;
@@ -118,10 +119,8 @@ export class PlanetsComponent {
     const found = this.raycaster.intersectObjects( this.scene.children );
   
     if(found.length > 0){
-
-      this._planetService.planetData.next(this.planetsData.filter((ele) => {
-        ele._id == found[0].object.userData['id'];
-      }))
+      /* emits data when a planet is clicked*/ 
+      this._planetService.planetId.next(found[0].object.userData['id']);
     }
   }
 

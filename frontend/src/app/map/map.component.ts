@@ -29,7 +29,7 @@ export class MapComponent {
     this.subscriptionStore.push(
       this._apiService.fetchPlanets().subscribe(( data ) => {
         console.log('map - conponent ---', data);
-        this._planetService.data.next(data);
+        this._planetService.planetData.next(data);
         this.isDataAvailable = true;
       })
     )

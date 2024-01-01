@@ -109,7 +109,7 @@ export class Service {
     async createLanes (_body: any, file: any): Promise<{[key:string]:string }> {
 
         _body.data = JSON.parse(_body.data); 
-        
+
         /* move the file to uploads folder. */
         const keys = Object.keys(file);
         keys.forEach( key => {
@@ -117,8 +117,9 @@ export class Service {
         });
 
         /* create custom "_id", set file path to "texture key" and save the data */
-        _body.data.forEach( (ele: { _id: string; laneName: string; }) => {
+        _body.data.forEach( (ele: { _id: string; laneName: string;  laneImage:string }) => {
             ele._id = new Date().getTime() +"-"+ ele.laneName;
+            ele.laneImage = this._config.UPLOAD_PATH + ele.laneImage;
         });
 
         await this._models.Lane.insertMany([
@@ -143,6 +144,7 @@ export class Service {
     async getLanesByPlanetId ( planetId: string ): Promise<ILaneData[]> {
 
         let filter = {};
+
         if ( planetId == "" || planetId == null || planetId =="null" ) throw new HttpException(500, "Something went wrong."); 
         
         filter = {"planetId": planetId};

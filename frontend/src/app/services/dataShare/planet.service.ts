@@ -6,8 +6,12 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PlanetService {
+/* should be used to send data to --- planet.component.ts --- */
   planetData: BehaviorSubject<IPlanetsData[]> = new BehaviorSubject<IPlanetsData[]>([]);
-  laneData : BehaviorSubject<ILanesData[]> = new BehaviorSubject<ILanesData[]>([]);
+
+/* should be used to send data outside --- planet.component.ts ---*/   
+  planetId : BehaviorSubject<string> = new BehaviorSubject<string>("");
+
   isDataAvailable:Boolean = false;
   constructor() { }
 }

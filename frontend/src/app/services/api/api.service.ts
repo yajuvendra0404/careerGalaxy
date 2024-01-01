@@ -19,4 +19,7 @@ export class ApiService {
   createLanes (formData: FormData) : Observable<{[key:string]:string}> {
     return this._httpService.createLanes("lanes", formData);
   }
+  fetchLanesByPlanetId(planetId : string) : Observable<ILanesData[]> {
+    return this._httpService.fetchLanesByPlanetId('lanesByPlanetId',planetId);
+  }
 }

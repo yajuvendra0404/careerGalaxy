@@ -70,7 +70,9 @@ export class AddLanesComponent {
     this.lanesFormGroup.value.lanes.forEach((ele:ILanesData ) => {
       ele.planetId = this.selectedPlanet;
     });
-
+    this.selectedLaneImage.forEach( ( ele,index ) => {
+      this.lanesFormGroup.value.lanes[index].laneImage = ele.name;
+    })
     formData.append("data", JSON.stringify(this.lanesFormGroup.value.lanes));
 
     this.selectedLaneImage.forEach((ele: File,index: number) => {

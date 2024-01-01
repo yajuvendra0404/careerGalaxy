@@ -65,6 +65,7 @@ export default class Controller {
             _next(error);
         }
     }
+
     /* create planets data including the image file for planets' surface. 
      * Returns  { message: "" } , if no exception occur.*/
     async createLanes (_req : Request, _res: Response, _next: NextFunction) {
@@ -75,6 +76,7 @@ export default class Controller {
             _next(error);
         }
     }
+    
     async getLanesByPlanetId (_req: Request, _res: Response, _next: NextFunction){
         try {
             console.log('--- Planet Id ---', _req.params.planetId);

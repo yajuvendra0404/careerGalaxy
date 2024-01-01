@@ -29,6 +29,12 @@ export class HttpService {
     return this._http.post<any>(`${this.baseURL}${url}`,formData)
     .pipe(catchError(this.errorHandler.bind(this)))
   }
+
+  fetchLanesByPlanetId(url : string, planetId: string): Observable<any> {
+    return this._http.get<any>(`${this.baseURL}${url}/${planetId}`)
+    .pipe(catchError(this.errorHandler.bind(this)))
+  }
+
   private errorHandler() {
     return "error occured";
   }

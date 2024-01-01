@@ -6,44 +6,25 @@
             <h5>( Business Planet )</h5>
         </div>
 
-        <div class="drawer-body">
-            <div class=" m-3 d-flex justify-content-center">
-                <div class="banner-2">
-                    <div class="card-body" data-aos="fade-left">
-                        <div class="card-title">
-                            <h3>Banking Lane</h3>
+
+            <div class="drawer-body" *ngFor="let lane of lanesData">
+
+                <div class="m-4 d-flex justify-content-center">
+                    <div class="overlay" [ngStyle] = "{
+                        'background': 'url('+ baseURL + lane.laneImage +') no-repeat',
+                        'background-size': 'cover'
+                    }">
+                        <div class="card-body pt-4" data-aos="fade-left">
+                            <div class="card-title">
+                                <h4>{{lane.laneName | lowercase}}.</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class=" m-3 d-flex justify-content-center">
-                <div class="banner-3">
-                    <div class="card-body" data-aos="fade-left">
-                        <div class="card-title">
-                            <h3>Banking Lane</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" m-3 d-flex justify-content-center">
-                <div class="banner-1">
-                    <div class="card-body" data-aos="fade-left">
-                        <div class="card-title">
-                            <h3>Banking Lane</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" m-3 d-flex justify-content-center">
-                <div class="banner">
-                    <div class="card-body" data-aos="fade-left">
-                        <div class="card-title">
-                            <h3>Banking Lane</h3>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
-        </div>
+
+
     </div>
 </div>
