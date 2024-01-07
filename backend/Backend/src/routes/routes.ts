@@ -32,5 +32,8 @@ export default class Routes {
         this.routes.get(`${this.path}lanesByPlanetId/:planetId`,( req, res, next)=>{
             _controller.getLanesByPlanetId(req, res, next);     
         })
+        this.routes.post(`${this.path}jobs`, ( req, res, next)=>{
+            _controller.createJobs(req,res,next);
+        })
     }
 }

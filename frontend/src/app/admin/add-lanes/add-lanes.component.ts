@@ -34,14 +34,12 @@ export class AddLanesComponent {
   get lanesControl () {
     return (<FormArray>this.lanesFormGroup.get('lanes')).controls as FormGroup[];
   }
-
   initLaneFormGroup() {
     return this._formBuilder.group({
       laneName: [null, Validators.required],
       laneImage: [null, Validators.required],
     });
   }
-
   addNewLane() {
     const lanesArray = this.lanesFormGroup.get('lanes') as FormArray;
     lanesArray.push(
@@ -90,11 +88,9 @@ export class AddLanesComponent {
       })
     );
   }
-
   onLaneImageSelected (event:any) {
     this.selectedLaneImage.push(event.target.files[0]);
   }
-
   removeItem(index: number) {
     const lanesArray = this.lanesFormGroup.get('lanes') as FormArray;
     // Remove the item at the specified index from the FormArray
@@ -102,7 +98,6 @@ export class AddLanesComponent {
     // Remove the corresponding selectedLaneImage
     this.selectedLaneImage.splice(index, 1);
   }
-
   removeAllItems () {
     /* remove all images from the array*/
     this.selectedLaneImage = [];
@@ -116,11 +111,9 @@ export class AddLanesComponent {
     const lanesArray = this.lanesFormGroup.get('lanes') as FormArray;
     lanesArray.clear();
   }
-  
   ngOnInit() {
     this.getPlanetList();
   }
-
   ngOnDestroy() {
     this.subscriptionStore.forEach(el => {
       el.unsubscribe();

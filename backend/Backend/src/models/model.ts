@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
+import { ISkill } from'../interfaces/common.interface';
 @injectable()
 export default class Models {
     
@@ -34,6 +35,16 @@ export default class Models {
             ref:'Planet' 
         }
         // lanes: { type: [String], required: true}
+    }))
+    Job = mongoose.model("job", new mongoose.Schema({
+        _id: {type:String, required:true, trim: true},
+        title: {type:String, required:true, trim: true},
+        description: {type:String, required:true, trim: true},
+        salary: {type:String, required:true, trim: true},
+        qualification: {type:String, required:true, trim: true},
+        skills: {type:[
+            { skillName: String, skillLevel: Number}
+        ], required:true}
     }))
     
 

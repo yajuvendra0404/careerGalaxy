@@ -83,7 +83,7 @@ export class Service {
             }
 
             /* throw exception if any of the property is empty */
-            if( error) throw new HttpException(400,`Please enter for ${error} the planet.`);
+            if( error) throw new HttpException(400,`Please enter ${error} for the planet.`);
 
             /* if image for the planet's surface is not uploaded*/
             if( !fileName ) throw new HttpException(400,`Please upload planet surface image.`)
@@ -154,6 +154,27 @@ export class Service {
         if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
 
         return data;
+    }
+
+    async createJobs(_body:any): Promise<{[key:string]:string }> {
+
+        let error = "";
+        for(let key in _body){
+            if( !_body.hasOwnProperty(key) || _body[key] == null || _body[key] == "null" || _body[key] == ""  ) 
+                error = key;
+        }
+
+        /* throw exception if any of the property is empty */
+        if( error) throw new HttpException(400,`Please enter ${error}.`);
+        
+        _body._id = new Date().getTime() +"-"+ _body.title;
+
+        await this._models.Job.create({
+            ..._body
+        });
+        
+
+        return {message: 'Data Saved'};
     }
 
     async checkTransactions () : Promise<any> {

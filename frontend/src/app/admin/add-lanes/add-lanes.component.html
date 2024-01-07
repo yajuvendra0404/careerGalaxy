@@ -22,9 +22,10 @@
                         </mat-icon></button><br>
                     <small *ngIf=selectedPlanet color="primary">( Reset the form, if you wish to change the
                         planet.)</small><br>
+
+
                     <mat-form-field formArrayName="lanes" appearance="outline" class="custom_mat-form_field"
                         *ngFor="let laneFormGroup of lanesControl; let i = index">
-
                         <div [formGroupName]="i">
 
                             <div class="row m-6">
@@ -56,6 +57,7 @@
                                     </mat-icon>
                                 </div>
                             </div>
+                            
                         </div>
 
                     </mat-form-field><br>

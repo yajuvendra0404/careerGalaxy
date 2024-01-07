@@ -13,3 +13,7 @@ export interface ILaneData {
     laneImage: string;
     planetId: string;
 }
+export interface ISkill {
+    skillName: String;
+    skillLevel: number;
+}

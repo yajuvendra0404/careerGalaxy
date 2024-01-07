@@ -24,7 +24,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -35,7 +35,8 @@ import { AddLanesComponent } from './admin/add-lanes/add-lanes.component';
 import { AddJobsComponent } from './admin/add-jobs/add-jobs.component';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { LanesComponent } from './map/lanes/lanes.component';
-
+// import { MapTestComponent } from './map-test/map-test.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -56,8 +57,8 @@ import { LanesComponent } from './map/lanes/lanes.component';
     AddLanesComponent,
     AddJobsComponent,
     LanesComponent,
-
- 
+    
+    // MapTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,9 @@ import { LanesComponent } from './map/lanes/lanes.component';
     MatGridListModule,
     MatTabsModule,
     MatButtonToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule,
+    MatSliderModule
   ],
   providers: [
     {

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IJobData } from '@app/interface/common.interface';
 import { environment } from 'environments/environment.development';
 import { Observable, catchError, tap } from 'rxjs';
 
@@ -27,6 +28,10 @@ export class HttpService {
 
   createLanes(url : string, formData:FormData): Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,formData)
+    .pipe(catchError(this.errorHandler.bind(this)))
+  }
+  createJobs(url : string, data:IJobData): Observable<any> {
+    return this._http.post<any>(`${this.baseURL}${url}`,data)
     .pipe(catchError(this.errorHandler.bind(this)))
   }
 

@@ -14,7 +14,7 @@ export class LanesComponent {
   selectedPlanetId: string = "";
   lanesData:ILanesData[] = [];
   baseURL: string= environment.DOMAIN;
-  
+
   constructor(
     private _planetService : PlanetService,
     private _apiService : ApiService
