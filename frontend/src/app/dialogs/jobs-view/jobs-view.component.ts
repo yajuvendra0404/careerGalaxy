@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./jobs-view.component.scss']
 })
 export class JobsViewComponent {
-
+  panelOpenState = false;
 }

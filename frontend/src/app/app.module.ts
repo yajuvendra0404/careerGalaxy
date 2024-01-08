@@ -25,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -81,7 +82,8 @@ import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
     MatButtonToggleModule,
     MatSelectModule,
     MatRadioModule,
-    MatSliderModule
+    MatSliderModule,
+    MatExpansionModule
   ],
   providers: [
     {

@@ -3,17 +3,17 @@ $text_color: rgb(0, 0, 0);
 ._container {
     background-color: white;
 }
-::-webkit-scrollbar {
-    width: 7px;
+// ::-webkit-scrollbar {
+//     width: 7px;
 
-    background: grey;
-    box-shadow: inset 0 0 4px #707070;
-}
+//     background: grey;
+//     box-shadow: inset 0 0 4px #707070;
+// }
 
-::-webkit-scrollbar-thumb {
-    background: white;
-    border-radius: 2px;
-}
+// ::-webkit-scrollbar-thumb {
+//     background: white;
+//     border-radius: 2px;
+// }
 
 .mat-stepper-horizontal {
     margin: 8px;
