@@ -40,6 +40,14 @@ export class HttpService {
     .pipe(catchError(this.errorHandler.bind(this)))
   }
 
+  fetchLanes(url: string, id: string = ""): Observable<any> {
+    return this._http.get<any>(`${this.baseURL}${url}`)
+    .pipe(
+      tap((data) => {
+        console.log("--tap data respose--", data );
+      }),
+      catchError(this.errorHandler.bind(this)))
+  }
   private errorHandler() {
     return "error occured";
   }

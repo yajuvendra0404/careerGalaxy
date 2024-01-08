@@ -5,8 +5,8 @@ import Config from "../configs/config";
 import Models from "../models/model";
 import mongoose from 'mongoose';
 import HttpException from "@/exceptions/httpExceptions";
-import { ILaneData, IPlanetsData } from "@/interfaces/common.interface";
-
+import { IJobData, ILaneData, IPlanetsData } from "@/interfaces/common.interface";
+import { Request } from "express";
 
 @injectable()
 export class Service {
@@ -97,6 +97,7 @@ export class Service {
 
             /* create custom "_id", set file path to "texture key" and save the data */
             _body._id = new Date().getTime() +"-"+ _body.name;
+            _body._id.replace(" ", "-");
             _body.texture = this._config.UPLOAD_PATH + fileName;
             // _body.lanes = JSON.parse(_body.lanes);
 
@@ -119,6 +120,7 @@ export class Service {
         /* create custom "_id", set file path to "texture key" and save the data */
         _body.data.forEach( (ele: { _id: string; laneName: string;  laneImage:string }) => {
             ele._id = new Date().getTime() +"-"+ ele.laneName;
+            ele._id.replace(" ", "-");
             ele.laneImage = this._config.UPLOAD_PATH + ele.laneImage;
         });
 
@@ -155,6 +157,21 @@ export class Service {
 
         return data;
     }
+    
+    async getLanes ( _req: Request ): Promise<ILaneData[]> {
+
+        // if ( planetId == "" || planetId == null || planetId =="null" ) throw new HttpException(500, "Something went wrong."); 
+
+        let data: ILaneData[] = await this._models.Lane.find({});
+        console.log("---- Lane -----", data);
+
+
+
+        if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
+
+        return data;
+
+    }
 
     async createJobs(_body:any): Promise<{[key:string]:string }> {
 
@@ -168,13 +185,16 @@ export class Service {
         if( error) throw new HttpException(400,`Please enter ${error}.`);
         
         _body._id = new Date().getTime() +"-"+ _body.title;
-
+        _body._id.replace(" ", "-");
         await this._models.Job.create({
             ..._body
         });
         
-
         return {message: 'Data Saved'};
+    }
+    // Promise<IJobData>
+    async getJobs (_body:any):Promise<void>{
+
     }
 
     async checkTransactions () : Promise<any> {

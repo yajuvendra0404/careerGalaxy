@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./add-jobs.component.scss']
 })
 export class AddJobsComponent {
-
+  selectedLane: string = "";
+  laneList: ILanesData[] = [];
   jobsFormGroup : FormGroup;
   skillArray: string[] = [ 
     "Reading",
@@ -45,8 +46,10 @@ export class AddJobsComponent {
       private _formBuilder : FormBuilder,
       private _apiService: ApiService
     ) {
+
     this.jobsFormGroup =  _formBuilder.group(
       {
+        laneId: [null, [Validators.required]],
         title: [null, [Validators.required]],
         description: [null, [Validators.required]],
         salary: [null, [Validators.required]],
@@ -56,7 +59,7 @@ export class AddJobsComponent {
     )
   }
 
-  addSkills () {
+  createSkillsFields () {
 
     this.skillArray.forEach( ele => {
       const skillFormArray = this.jobsFormGroup.get('skills') as FormArray;
@@ -70,26 +73,40 @@ export class AddJobsComponent {
     console.log("-jobs -form -group-",this.jobsFormGroup);
 
   }
+  
   get skillControls () {
     return (<FormArray>this.jobsFormGroup.get('skills')).controls as FormGroup[];
   }
+
+  fetchLanes () {
+      this._apiService.fetchLanes().subscribe({
+        next: (data) => {
+          this.laneList = [...data];
+          console.log(" --------- lane List --------", data);
+        },
+        error: (err) => {
+          console.log("--------- err -------", err);
+        }
+      })
+  }
+  
   onSubmit () {
-    console.log("--- job form data ---",this.jobsFormGroup.getRawValue())
-    // let jobsData: IJobData[] = this.jobsFormGroup.getRawValue().skills.forEach( (ele: ISkillData) => {
-    //   ele.skillLevel = ele.skillLevel.parseInt();
-    // });
+
     this._apiService.createJobs(this.jobsFormGroup.getRawValue()).subscribe({
       next: (data)=> {
         console.log("data saved", data);
+        this.jobsFormGroup.reset();
       },
       error: (err) => {
         console.log("error === ", err);
       }
-
     })
+    
   }
+
   ngOnInit () {
-    this.addSkills();
+    this.createSkillsFields();
+    this.fetchLanes();
   }
 
 }

@@ -23,6 +23,7 @@ export interface IPlanetsData {
 }
 
 export interface ILanesData {
+    _id?: string;
     laneName : string;
     laneImage: string;
     planetId?: string;
@@ -34,6 +35,7 @@ export interface ISkillData {
 }
 
 export interface IJobData {
+    lane:string;
     title:string;
     description: string;
     salary: number;

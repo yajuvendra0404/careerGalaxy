@@ -17,7 +17,7 @@ export default class Routes {
         this.routes.post(`${this.path}submitMessage`, ( req, res, next)=>{
             _controller.submitMessage(req, res, next);     
         })
-        this.routes.post(`${this.path}generateOTP`,(req, res, next)=> {
+        this.routes.post(`${this.path}generateOTP`,( req, res, next)=> {
             _controller.generateOTP(req, res, next);
         })
         this.routes.get(`${this.path}planets/:id?`,( req, res, next)=>{
@@ -26,14 +26,21 @@ export default class Routes {
         this.routes.post(`${this.path}planet`,( req, res, next)=>{
             _controller.createPlanet(req, res, next);     
         })
+        this.routes.get(`${this.path}lanes`,( req, res, next)=>{
+            console.log("---- dash -----");
+            _controller.getLane(req, res, next);       
+        })
         this.routes.post(`${this.path}lanes`,( req, res, next)=>{
             _controller.createLanes(req, res, next);     
         })
         this.routes.get(`${this.path}lanesByPlanetId/:planetId`,( req, res, next)=>{
-            _controller.getLanesByPlanetId(req, res, next);     
+            _controller.getLanesByPlanetId( req, res, next);     
         })
         this.routes.post(`${this.path}jobs`, ( req, res, next)=>{
             _controller.createJobs(req,res,next);
+        })
+        this.routes.get(`${this.path}jobs`, ( req, res, next)=> {
+            _controller.getJobs(req,res,next);
         })
     }
 }

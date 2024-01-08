@@ -12,7 +12,7 @@
                         <mat-select [(ngModel)]="selectedPlanet" 
                             [ngModelOptions]="{standalone: true}" [disabled]="selectedPlanet != '' ? true: false">
                             <mat-option [value]="planet._id"
-                                *ngFor="let planet of planetList; track planet">{{planet.name}}</mat-option>
+                                *ngFor="let planet of planetList">{{planet.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <button mat-button mat-flat-button color="primary" type="button" (click)="addNewLane()"

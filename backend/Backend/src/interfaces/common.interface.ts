@@ -8,11 +8,21 @@ export interface IPlanetsData {
     orbitingSpeed: number;
 }
 export interface ILaneData {
-    _id:string;
-    laneName : string;
+    _id: string;
+    laneName: string;
     laneImage: string;
     planetId: string;
 }
+
+export interface IJobData {
+    laneId:string;
+    title: string;
+    description: string;
+    salary: number;
+    qualification: number;
+    skill: ISkill[];
+}
+
 export interface ISkill {
     skillName: String;
     skillLevel: number;

@@ -13,6 +13,9 @@ export class ApiService {
   fetchPlanets( id: string = "" ): Observable<IPlanetsData[]>{
     return this._httpService.fetchPlanets("planets",id);
   }
+  fetchLanes( ): Observable<ILanesData[]>{
+    return this._httpService.fetchLanes("lanes");
+  }
   createPlanet( formData: FormData ): Observable<{[key:string]:string}>{
     return this._httpService.createPlanets("planet", formData);
   }

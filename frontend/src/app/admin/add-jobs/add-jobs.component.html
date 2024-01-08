@@ -4,6 +4,15 @@
             <ng-template matStepLabel><span class="stepper-label form-label">Create Job
                 </span></ng-template>
 
+            <mat-form-field>
+                    <mat-label>All Lanes</mat-label>
+                    <mat-select [(ngModel)]="selectedLane" formControlName="laneId">
+                        <mat-option [value]="lane._id"
+                            *ngFor="let lane of laneList">{{lane.laneName}}</mat-option>
+                    </mat-select>
+            </mat-form-field>
+            <br>
+
             <mat-form-field appearance="outline">
                 <label><span class="field-label">Job Title
                         <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
@@ -32,7 +41,6 @@
                 <input matInput placeholder="Enter Qualification" type="text" class="input"
                     formControlName="qualification">
             </mat-form-field>
-
 
             <mat-form-field appearance="outline">
                 <label><span class="field-label">Expected Salary
@@ -82,8 +90,7 @@
                 </div>
             </mat-form-field>
 
-            <button mat-button mat-flat-button color="primary" type="button" class="custom-button"
-                >Reset</button>
+            <button mat-button mat-flat-button color="primary" type="button" class="custom-button">Reset</button>
             <button mat-button mat-flat-button color="primary" type="submit" class="custom-button">Submit</button>
         </form>
 

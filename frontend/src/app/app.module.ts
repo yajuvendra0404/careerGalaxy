@@ -37,6 +37,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { LanesComponent } from './map/lanes/lanes.component';
 // import { MapTestComponent } from './map-test/map-test.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
 
 
 
@@ -57,6 +58,7 @@ import {MatRadioModule} from '@angular/material/radio';
     AddLanesComponent,
     AddJobsComponent,
     LanesComponent,
+    JobsViewComponent,
     
     // MapTestComponent,
   ],
