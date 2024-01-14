@@ -160,12 +160,7 @@ export class Service {
     
     async getLanes ( _req: Request ): Promise<ILaneData[]> {
 
-        // if ( planetId == "" || planetId == null || planetId =="null" ) throw new HttpException(500, "Something went wrong."); 
-
         let data: ILaneData[] = await this._models.Lane.find({});
-        console.log("---- Lane -----", data);
-
-
 
         if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
 
@@ -192,8 +187,14 @@ export class Service {
         
         return {message: 'Data Saved'};
     }
-    // Promise<IJobData>
-    async getJobs (_body:any):Promise<void>{
+
+    async getJobsByLaneId (laneId:string):Promise<IJobData[]>{
+        
+        let data: IJobData[] = await this._models.Job.find({laneId: laneId});
+        
+        if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
+
+        return data;
 
     }
 

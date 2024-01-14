@@ -48,6 +48,17 @@ export class HttpService {
       }),
       catchError(this.errorHandler.bind(this)))
   }
+
+  fetchJobsByLaneId(url: string, laneId: string = ""): Observable<any> {
+    return this._http.get<any>(`${this.baseURL}${url}/${laneId}`)
+    .pipe(
+      tap((data) => {
+        console.log("--tap data respose--", data );
+      }),
+      catchError(this.errorHandler.bind(this)))
+  }
+
+  
   private errorHandler() {
     return "error occured";
   }

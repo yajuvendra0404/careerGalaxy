@@ -25,7 +25,11 @@ export class ApiService {
   createJobs (data: IJobData) : Observable<{[key:string]:string}> {
     return this._httpService.createJobs("jobs", data);
   }
+  fetchJobsByLaneId (laneId : string) : Observable<IJobData[]> {
+    return this._httpService.fetchJobsByLaneId('jobsByLaneId',laneId);
+  } 
   fetchLanesByPlanetId(planetId : string) : Observable<ILanesData[]> {
     return this._httpService.fetchLanesByPlanetId('lanesByPlanetId',planetId);
   }
+
 }

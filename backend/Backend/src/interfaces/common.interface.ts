@@ -15,6 +15,7 @@ export interface ILaneData {
 }
 
 export interface IJobData {
+    _id:string;
     laneId:string;
     title: string;
     description: string;

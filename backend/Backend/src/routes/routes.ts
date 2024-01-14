@@ -27,7 +27,6 @@ export default class Routes {
             _controller.createPlanet(req, res, next);     
         })
         this.routes.get(`${this.path}lanes`,( req, res, next)=>{
-            console.log("---- dash -----");
             _controller.getLane(req, res, next);       
         })
         this.routes.post(`${this.path}lanes`,( req, res, next)=>{
@@ -39,8 +38,8 @@ export default class Routes {
         this.routes.post(`${this.path}jobs`, ( req, res, next)=>{
             _controller.createJobs(req,res,next);
         })
-        this.routes.get(`${this.path}jobs`, ( req, res, next)=> {
-            _controller.getJobs(req,res,next);
+        this.routes.get(`${this.path}jobsByLaneId/:laneId`, ( req, res, next)=> {
+            _controller.getJobsByLaneId(req,res,next);
         })
     }
 }
