@@ -1,0 +1,42 @@
+
+$text_color: rgb(0, 0, 0);
+
+._container {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('./../../assets/cosmos-1853491_1920.jpg') center/cover no-repeat;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    mat-form-field {
+        margin-left: 8px ;
+    }
+    small {
+        color: #3f51b5;
+    }
+}
+
+.overlay {
+    padding: 2em;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    width: 90vw;
+    height: 95vh;
+    background: rgba(50, 49, 49, 0.6);
+    /* Adjust the last value for opacity */
+    /*display: flex;
+     align-items: center;
+     justify-content: center;*/
+    // overflow-y: scroll;
+}
+
+/*
+.input-container {
+    text-align: center;
+    color: white;
+}*/

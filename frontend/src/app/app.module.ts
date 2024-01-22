@@ -39,6 +39,8 @@ import { LanesComponent } from './map/lanes/lanes.component';
 // import { MapTestComponent } from './map-test/map-test.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
+import { NewPlanetComponent } from './new-planet/new-planet.component';
+import { NgtCanvas } from 'angular-three';
 
 
 
@@ -60,7 +62,7 @@ import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
     AddJobsComponent,
     LanesComponent,
     JobsViewComponent,
-    
+    NewPlanetComponent
     // MapTestComponent,
   ],
   imports: [
@@ -83,7 +85,9 @@ import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
     MatSelectModule,
     MatRadioModule,
     MatSliderModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgtCanvas,
+
   ],
   providers: [
     {

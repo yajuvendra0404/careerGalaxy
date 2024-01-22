@@ -1,0 +1,48 @@
+{
+  "ts-node": {
+    "transpile-only": true,
+    "require": ["tsconfig-paths/register"],
+    "esm": false,
+    "experimental-specifier-resolution":"node"
+  },
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": false,
+    // "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "typeRoots": ["node_modules/@types"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*":["./*"],
+      "@controllers/*":["./controllers/*"],
+      "@services/*":["./services/*"],
+      "@middlewares/*":["./middlewares/*"],
+      "@routes/*":["./routes/*"],
+      "@models/*":["./models/*"],
+      "@interfaces/*":["./interfaces/*"],
+      "@configs/*":["./configs/*"],
+      "@utils/*":["./utils/*"],
+      "@server/*":["./server/*"],
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}

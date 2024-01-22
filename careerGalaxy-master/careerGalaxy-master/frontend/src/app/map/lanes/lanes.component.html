@@ -1,0 +1,24 @@
+<div class="row d-flex flex-row-reverse me-1">
+    <div class="drawer-container">
+
+            <div class="drawer-header mt-3">
+                <h4>Lanes and Street </h4>
+                <h5>( Business Planet )</h5>
+            </div>
+
+            <div class="drawer-body" *ngFor="let lane of lanesData" (click)="getJobsData(lane._id)">
+                <div class="m-4 d-flex justify-content-center">
+                    <div class="overlay" [ngStyle] = "{
+                        'background': 'url('+ baseURL + lane.laneImage +') no-repeat',
+                        'background-size': 'cover'
+                    }">
+                        <div class="card-body pt-4" data-aos="fade-left">
+                            <div class="card-title">
+                                <h4>{{lane.laneName | lowercase}}.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

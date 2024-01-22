@@ -153,7 +153,7 @@ export class Service {
 
         let data: ILaneData[] = await this._models.Lane.find(filter);
 
-        if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
+        if(!data[0]) throw new HttpException( 404 , 'No Lanes found.' );
 
         return data;
     }
@@ -162,7 +162,7 @@ export class Service {
 
         let data: ILaneData[] = await this._models.Lane.find({});
 
-        if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
+        if(!data[0]) throw new HttpException( 404 , 'No Lanes found.' );
 
         return data;
 
@@ -192,7 +192,7 @@ export class Service {
         
         let data: IJobData[] = await this._models.Job.find({laneId: laneId});
         
-        if(!data[0]) throw new HttpException( 404 , 'Lanes data not found' );
+        if(!data[0]) throw new HttpException( 404 , 'No jobs found for this lane.' );
 
         return data;
 
