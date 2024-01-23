@@ -41,6 +41,10 @@ export interface IJobData {
     salary: number;
     qualification: number;
     skill: ISkillData[];
+    certification: string,
+    responsibilites: string,
+    experience : number,
+    levelOfPrep: number,
     _id: string;
 }
 

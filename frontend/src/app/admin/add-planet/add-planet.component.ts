@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatStepper } from '@angular/material/stepper';
 import { IPlanetsData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
+import { NotifierService } from '@app/services/notifier/notifier.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,7 +19,8 @@ export class AddPlanetComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _apiService: ApiService
+    private _apiService: ApiService,
+    private _notifier : NotifierService
   ) {
     this.planetAppearanceFormGroup = this._formBuilder.group({
       name: [null,Validators.required],
@@ -40,14 +42,13 @@ export class AddPlanetComponent {
     formData.append('position', this.planetAppearanceFormGroup.value.position);
     formData.append('rotationSpeed', this.planetAppearanceFormGroup.value.rotationSpeed);
     formData.append('orbitingSpeed', this.planetAppearanceFormGroup.value.orbitingSpeed);
-    // formData.append('lanes', JSON.stringify(this.lanesAndJobsFormGroup.value.lanes));
 
     this.subscriptionStore.push(
       this._apiService.createPlanet(formData).subscribe({
         next :(data) => {
           this.planetAppearanceFormGroup.reset();
         },
-        error: (err) => console.log(" error occured", err) 
+        error: (err) => this._notifier.open(err.message, "error") 
       })
     );
 

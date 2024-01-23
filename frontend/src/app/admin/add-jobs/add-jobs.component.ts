@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IJobData, ILanesData, ISkillData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
+import { NotifierService } from '@app/services/notifier/notifier.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -44,31 +45,32 @@ export class AddJobsComponent {
     "Customer Service",
     "Enterpeneurship"
   ];
-  prepLevelList: string[] =[
-    "1","2","3","4","5"
+  prepLevelList: number[] =[
+    1,2,3,4,5
   ] 
-  experienceYearList: string[] =[
-    "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"
+  experienceYearList: number[] =[
+    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
   ] 
   
 
   constructor (
       private _formBuilder : FormBuilder,
-      private _apiService: ApiService
+      private _apiService: ApiService,
+      private _notifier: NotifierService
     ) {
 
     this.jobsFormGroup =  _formBuilder.group(
       {
-        laneId: [null, [Validators.required]],
+        lane: [null, [Validators.required]],
         title: [null, [Validators.required]],
         description: [null, [Validators.required]],
         salary: [null, [Validators.required]],
         qualification: [null, [Validators.required]],
         
         certification: [null, [Validators.required]],
-        Responsibilites: [null, [Validators.required]],
-        Experience : [null, [Validators.required]],
-        LevelOfPrep: [null, [Validators.required]],
+        responsibilites: [null, [Validators.required]],
+        experience : [null, [Validators.required]],
+        levelOfPrep: [null, [Validators.required]],
        
         skills: new FormArray([]),
       }
@@ -86,7 +88,6 @@ export class AddJobsComponent {
         })
       );
     })
-    console.log("-jobs -form -group-",this.jobsFormGroup);
 
   }
   
@@ -110,11 +111,12 @@ export class AddJobsComponent {
 
     this._apiService.createJobs(this.jobsFormGroup.getRawValue()).subscribe({
       next: (data)=> {
-        console.log("data saved", data);
+        console.log(" --- data -- on submit save", data);
         this.jobsFormGroup.reset();
+        // this._notifier.open(data.message,"done");
       },
       error: (err) => {
-        console.log("error === ", err);
+        this._notifier.open(err.message, "error");
       }
     })
     

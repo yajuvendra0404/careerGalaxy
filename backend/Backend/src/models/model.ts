@@ -45,10 +45,14 @@ export default class Models {
         skills: {type:[
             { skillName: String, skillLevel: Number}
         ], required:true},
-        laneId: {
+        lane: {
             type:String,
             ref:'Lane'
-        } 
+        }, 
+        certification: {type:String, required:true, trim: true},
+        responsibilites: {type:String, required:true, trim: true},
+        experience : {type:Number, required:true, trim: true},
+        levelOfPrep: {type:Number, required:true, trim: true},
     }))
     
 

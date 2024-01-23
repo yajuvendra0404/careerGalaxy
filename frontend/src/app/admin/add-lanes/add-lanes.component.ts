@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ILanesData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
+import { NotifierService } from '@app/services/notifier/notifier.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -24,7 +25,8 @@ export class AddLanesComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _apiService: ApiService
+    private _apiService: ApiService,
+    private _notifier : NotifierService
   ) {
     this.lanesFormGroup = this._formBuilder.group({
       lanes: new FormArray([]),
@@ -84,7 +86,7 @@ export class AddLanesComponent {
           this.removeAllItems();
 
         },
-        error: (err) => console.log(" error occured", err) 
+        error: (err) =>  this._notifier.open(err.message, "error")
       })
     );
   }

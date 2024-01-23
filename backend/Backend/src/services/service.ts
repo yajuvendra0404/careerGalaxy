@@ -190,7 +190,7 @@ export class Service {
 
     async getJobsByLaneId (laneId:string):Promise<IJobData[]>{
         
-        let data: IJobData[] = await this._models.Job.find({laneId: laneId});
+        let data: IJobData[] = await this._models.Job.find({lane: laneId});
         
         if(!data[0]) throw new HttpException( 404 , 'No jobs found for this lane.' );
 

@@ -16,12 +16,16 @@ export interface ILaneData {
 
 export interface IJobData {
     _id:string;
-    laneId:string;
+    lane:string;
     title: string;
     description: string;
     salary: number;
     qualification: number;
     skill: ISkill[];
+    certification: string,
+    responsibilites: string,
+    experience : number,
+    levelOfPrep: number,
 }
 
 export interface ISkill {
