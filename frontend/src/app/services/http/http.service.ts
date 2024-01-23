@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IJobData } from '@app/interface/common.interface';
 import { environment } from 'environments/environment.development';
-import { Observable, catchError, tap } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,26 +18,45 @@ export class HttpService {
       tap((data) => {
         console.log("--tap data respose--", data );
       }),
-      catchError(this.errorHandler.bind(this)))
+      catchError(err => {
+        throw err.error.error;
+      })
+    )
   }
 
   createPlanets(url: string, formData:FormData) : Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,formData)
-    .pipe(catchError(this.errorHandler.bind(this)))
+    .pipe(
+      catchError(err => {
+        throw err.error.error;
+      })
+    )
   }
 
   createLanes(url : string, formData:FormData): Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,formData)
-    .pipe(catchError(this.errorHandler.bind(this)))
+    .pipe(
+      catchError(err => {
+        throw err.error.error;
+      })
+    )
   }
   createJobs(url : string, data:IJobData): Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,data)
-    .pipe(catchError(this.errorHandler.bind(this)))
+    .pipe(
+      catchError(err => {
+        throw err.error.error;
+      })
+    )
   }
 
   fetchLanesByPlanetId(url : string, planetId: string): Observable<any> {
     return this._http.get<any>(`${this.baseURL}${url}/${planetId}`)
-    .pipe(catchError(this.errorHandler.bind(this)))
+    .pipe(
+      catchError(err => {
+        throw err.error.error;
+      })
+    )
   }
 
   fetchLanes(url: string, id: string = ""): Observable<any> {
@@ -46,7 +65,10 @@ export class HttpService {
       tap((data) => {
         console.log("--tap data respose--", data );
       }),
-      catchError(this.errorHandler.bind(this)))
+      catchError(err => {
+        throw err.error.error;
+      })
+    )
   }
 
   fetchJobsByLaneId(url: string, laneId: string = ""): Observable<any> {
@@ -55,11 +77,15 @@ export class HttpService {
       tap((data) => {
         console.log("--tap data respose--", data );
       }),
-      catchError(this.errorHandler.bind(this)))
+      catchError(err => {
+        throw err.error.error;
+      })
+    )
   }
 
   
-  private errorHandler() {
-    return "error occured";
+  private errorHandler(error : HttpErrorResponse) {
+    console.log("-----err handle 0---", error);
+    throw error;
   }
 }

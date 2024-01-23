@@ -7,7 +7,6 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { MapComponent } from './map/map.component';
 import { MapTestComponent } from './map-test/map-test.component';
-import { NewPlanetComponent } from './new-planet/new-planet.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'auth',pathMatch:'full'},
@@ -16,8 +15,6 @@ const routes: Routes = [
   { path:'planet',component:PlanetsComponent}, // , canActivate:[AuthGuard] 
   { path:'auth', component:AuthComponent},
   { path:'map', component:MapComponent},
-  { path:'newP', component:NewPlanetComponent},
-  
   // { path:'mapTest', component:MapTestComponent},
   { path:'admin', component:AdminComponent},  // , canActivate:[AuthGuard] 
   { path:'**',redirectTo:'auth'}

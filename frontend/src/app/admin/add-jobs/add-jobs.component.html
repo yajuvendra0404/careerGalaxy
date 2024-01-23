@@ -11,6 +11,22 @@
                             *ngFor="let lane of laneList">{{lane.laneName}}</mat-option>
                     </mat-select>
             </mat-form-field>
+            <mat-form-field>
+                <mat-label>Level Of Preperation</mat-label>
+                <mat-select [(ngModel)]="selectedPrepLevel" formControlName="laneId">
+                    <mat-option [value]="prepLevel"
+                        *ngFor="let prepLevel of prepLevelList">{{prepLevel}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Years Of Experience</mat-label>
+                <mat-select [(ngModel)]="selectedExpYear" formControlName="laneId">
+                    <mat-option [value]="expYear"
+                        *ngFor="let expYear of experienceYearList">{{expYear}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <br>
 
             <mat-form-field appearance="outline">
@@ -50,6 +66,30 @@
                     </span></label>
                 <input matInput placeholder="Enter Salary" type="number" class="input" formControlName="salary">
             </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <label><span class="field-label">Responsibilities
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
+                            title="Info about the action" matTooltipPosition="bottom">
+                        </mat-icon>
+                    </span></label>
+                <input matInput placeholder="Enter Responsibilities" type="number" class="input" formControlName="">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <label><span class="field-label">Certification Required
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
+                            title="Info about the action" matTooltipPosition="bottom">
+                        </mat-icon>
+                    </span></label>
+                <input matInput placeholder="Enter Responsibilities" type="number" class="input" formControlName="">
+            </mat-form-field>
+
+            <!--
+                Level Of Preperation
+                Experience
+                Certification
+                Responsibility
+            -->
 
             <mat-form-field formArrayName="skills" appearance="outline" class="custom_mat-form_field"
                 *ngFor="let skillCtrl of skillControls; let i = index">

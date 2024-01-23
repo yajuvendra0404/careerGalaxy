@@ -7,6 +7,8 @@ import { WorkHabitComponent } from '@app/dialogs/work-habit/work-habit.component
 import { IPlanetsData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
 import { PlanetService } from '@app/services/dataShare/planet.service';
+import { NotifierService } from '@app/services/notifier/notifier.service';
+import { WalletService } from '@app/services/wallet/wallet.service';
 import { faCircleCheck, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 @Component({
@@ -22,15 +24,23 @@ export class HomeComponent {
     private _dialog: MatDialog,
     private _apiService: ApiService,
     private _planetService : PlanetService,  
+    private _walletService : WalletService,
+    private _notifier: NotifierService
   ) {}
   planetsData: IPlanetsData[] = [
     {_id:"home", name:"earth",size: 70, position: 0, texture: "uploads/earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}
   ];
   
+  // try{
+  //   this.jobsInWallet = this._walletService.getJobsInWallet();
+  //   console.log("this.jobInWallet---------", this.jobsInWallet)
+  // } catch (e: any) {
+  //   this._notifier.open(e, "error")
+  // } 
   openSkillPassportDialog () {
     const dialogRef = this._dialog.open(SkillPassportComponent,{
-      enterAnimationDuration:"500ms",
-      exitAnimationDuration:"500ms",
+      enterAnimationDuration:"200ms",
+      exitAnimationDuration:"200ms",
       panelClass: ['my-outlined-dialog']
     });
 
@@ -40,8 +50,8 @@ export class HomeComponent {
   } 
   openWorkHabitDialog () {
     const dialogRef = this._dialog.open(WorkHabitComponent,{
-      enterAnimationDuration:"500ms",
-      exitAnimationDuration:"500ms",
+      enterAnimationDuration:"200ms",
+      exitAnimationDuration:"200ms",
       panelClass: ['my-outlined-dialog']
     });
 
@@ -49,21 +59,34 @@ export class HomeComponent {
       console.log(`Dialog result: ${result}`);
     });
   } 
+  // try{
+  //   this.jobsInWallet = this._walletService.getJobsInWallet();
+  //   console.log("this.jobInWallet---------", this.jobsInWallet)
+  // } catch (e: any) {
+  //   this._notifier.open(e, "error")
+  // } 
   openJobWalletDialog () {
-    const dialogRef = this._dialog.open(JobWalletComponent,{
-      enterAnimationDuration:"500ms",
-      exitAnimationDuration:"500ms",
-      panelClass: ['my-outlined-dialog']
-    });
+    try {
+      let jobsInWallet = this._walletService.getJobsInWallet();
+      const dialogRef = this._dialog.open(JobWalletComponent,{
+        data: jobsInWallet,
+        enterAnimationDuration:"200ms",
+        exitAnimationDuration:"200ms",
+        panelClass: ['my-outlined-dialog']
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    } catch (e: any) {
+        this._notifier.open(e, "warning")
+    } 
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   } 
   openComparatorDialog () {
     const dialogRef = this._dialog.open(ComparatorComponent,{
-      enterAnimationDuration:"500ms",
-      exitAnimationDuration:"500ms",
+      enterAnimationDuration:"200ms",
+      exitAnimationDuration:"200ms",
       panelClass: ['my-outlined-dialog']
     });
 

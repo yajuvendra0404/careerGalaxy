@@ -1,4 +1,5 @@
 
+
 <mat-dialog-content class="mat-typography _container">
   <h3>Jobs in business lane</h3>
   <mat-accordion>
@@ -14,7 +15,7 @@
       </mat-expansion-panel-header>
       <h2>Descrpition</h2>
       <p>{{ job.description }}</p>
-      <button mat-button color="primary" (click) ="addToWallet()">Add To Wallet
+      <button mat-button color="primary" (click) ="addToWallet(job)">Add To Wallet
         <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary"
             fontIcon="wallet" title="Info about the action"
             matTooltipPosition="bottom">

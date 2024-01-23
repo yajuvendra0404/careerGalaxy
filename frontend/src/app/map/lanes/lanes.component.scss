@@ -37,7 +37,8 @@
             .card-title {
                 // background-color: rgba(241, 97, 97, 1);
                 margin-top: 21vh;
-                background-color: rgba(97, 138, 241, 1);
+                // background-color: rgba(97, 138, 241, 1);
+                background-image:  linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
                 padding: 4%;
                 border-radius: 4px;
             }
@@ -147,3 +148,15 @@
     background: white;
     border-radius: 2px;
 }
+
+
+// .mat-mdc-snack-bar-container {
+//     .mdc-snackbar__surface {
+//         background-color: rgba(255, 0, 0, 0.5) !important;
+//         color: white !important;
+//     }
+// }
+
+// .mat-mdc-snack-bar-action {
+//     color: white !important;
+// }

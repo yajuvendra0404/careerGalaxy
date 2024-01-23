@@ -1,0 +1,10 @@
+.customer-card-header  {
+    background-image:  linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
+    .mat-mdc-card-title {
+        color: white !important;    
+    }
+    .mat-mdc-card-subtitle {
+        color: white !important;
+        margin-bottom: 5%;
+    }
+}

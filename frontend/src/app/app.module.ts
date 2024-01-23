@@ -13,8 +13,8 @@ import { ComparatorComponent } from './dialogs/comparator/comparator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+import {MatDividerModule} from '@angular/material/divider';
 import { MatDialogModule} from '@angular/material/dialog';
-import { MapComponent } from './map/map.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,8 +26,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppComponent } from './app.component';
+import { MapComponent } from './map/map.component';
 import { HomeComponent } from './home/home.component';
 import { PlanetsComponent } from './planets/planets.component';
 import { AuthComponent } from './auth/auth.component';
@@ -39,8 +42,8 @@ import { LanesComponent } from './map/lanes/lanes.component';
 // import { MapTestComponent } from './map-test/map-test.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
-import { NewPlanetComponent } from './new-planet/new-planet.component';
-import { NgtCanvas } from 'angular-three';
+import { NotifierComponent } from './notifier/notifier/notifier.component';
+
 
 
 
@@ -62,7 +65,7 @@ import { NgtCanvas } from 'angular-three';
     AddJobsComponent,
     LanesComponent,
     JobsViewComponent,
-    NewPlanetComponent
+    NotifierComponent,    
     // MapTestComponent,
   ],
   imports: [
@@ -86,8 +89,9 @@ import { NgtCanvas } from 'angular-three';
     MatRadioModule,
     MatSliderModule,
     MatExpansionModule,
-    NgtCanvas,
-
+    MatSnackBarModule,
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [
     {

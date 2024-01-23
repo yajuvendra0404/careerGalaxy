@@ -38,8 +38,10 @@ export class PlanetsComponent {
   @ViewChild("canvas", { static: true }) canvas!: ElementRef;
 
   constructor( private _planetService: PlanetService) {
+    console.log("----- planet constructor -----");
     this.subscriptionStore.push(
       this._planetService.planetData.subscribe((data : IPlanetsData[]) => {
+        console.log("----- planet subscribe-----");
         this.planetsData = data.slice();
       }
     ));
@@ -167,8 +169,7 @@ export class PlanetsComponent {
     this.renderer.dispose();
     this.clearScene();
     this.planet= [];
-
-
+    
   }
 
 }

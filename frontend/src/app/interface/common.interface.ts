@@ -41,4 +41,9 @@ export interface IJobData {
     salary: number;
     qualification: number;
     skill: ISkillData[];
+    _id: string;
+}
+
+export interface CustomExceptions extends Error {
+    message: string;
 }

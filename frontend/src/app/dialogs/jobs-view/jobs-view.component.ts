@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
-import { IJobData } from '@app/interface/common.interface';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CustomExceptions, IJobData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
+import { NotifierService } from '@app/services/notifier/notifier.service';
+import { WalletService } from '@app/services/wallet/wallet.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-jobs-view',
@@ -10,28 +14,26 @@ import { ApiService } from '@app/services/api/api.service';
 export class JobsViewComponent {
   panelOpenState = false;
   jobData: IJobData[]=[]; 
+  subscriptionStore : Subscription[] =[];
   constructor (
     private _apiService : ApiService,
-    // private _dataShareService : 
-  ) {}
-
-  getJobs() {
-    this._apiService.fetchJobsByLaneId("1704069990719-banking lane").subscribe({
-      next: (data) => {
-        this.jobData = data;
-      },
-      error: (err) => {
-
-      }
-    })
+    @Inject(MAT_DIALOG_DATA) public data: IJobData[],
+    private _walletService : WalletService,
+    private _notifier : NotifierService
+  ) {
+    this.jobData = [...data];
   }
+
   getJobId (index: number, item: any) {
     return item._id; 
   }
-  addToWallet () {
-    console.log("added to wallet");
+  addToWallet (job: IJobData) {
+    try {
+      this._walletService.addToWallet(job);
+      this._notifier.open( job.title+" added to the wallet.", "done")
+    } catch (e:any) {
+      this._notifier.open(e,"error");
+    }
   }
-  ngOnInit() {
-    this.getJobs();
-  } 
+  ngOnInit() {} 
 }

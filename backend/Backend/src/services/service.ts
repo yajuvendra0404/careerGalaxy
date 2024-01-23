@@ -138,7 +138,7 @@ export class Service {
 
         let data: IPlanetsData[] = await this._models.Planet.find(filter);
 
-        if(!data[0]) throw new HttpException( 404 , 'Planet data not found' );
+        if(!data[0]) throw new HttpException( 404 , 'No planets found' );
 
         return data;
     }
@@ -153,7 +153,7 @@ export class Service {
 
         let data: ILaneData[] = await this._models.Lane.find(filter);
 
-        if(!data[0]) throw new HttpException( 404 , 'No Lanes found.' );
+        if(!data[0]) throw new HttpException( 404 , 'No Lanes found for this planet.' );
 
         return data;
     }

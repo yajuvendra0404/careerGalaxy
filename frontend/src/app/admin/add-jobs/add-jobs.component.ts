@@ -11,6 +11,9 @@ import { Subscription } from 'rxjs';
 })
 export class AddJobsComponent {
   selectedLane: string = "";
+  selectedPrepLevel: string = "";
+  selectedExpYear: string ="";
+
   laneList: ILanesData[] = [];
   jobsFormGroup : FormGroup;
   skillArray: string[] = [ 
@@ -40,7 +43,14 @@ export class AddJobsComponent {
     "Self-Advocacy",
     "Customer Service",
     "Enterpeneurship"
-  ]; 
+  ];
+  prepLevelList: string[] =[
+    "1","2","3","4","5"
+  ] 
+  experienceYearList: string[] =[
+    "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"
+  ] 
+  
 
   constructor (
       private _formBuilder : FormBuilder,
@@ -54,6 +64,12 @@ export class AddJobsComponent {
         description: [null, [Validators.required]],
         salary: [null, [Validators.required]],
         qualification: [null, [Validators.required]],
+        
+        certification: [null, [Validators.required]],
+        Responsibilites: [null, [Validators.required]],
+        Experience : [null, [Validators.required]],
+        LevelOfPrep: [null, [Validators.required]],
+       
         skills: new FormArray([]),
       }
     )

@@ -60,3 +60,33 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+$primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
+@mixin snackBarStyle($background, $text-color, $border-color) {
+
+  .mdc-snackbar__surface {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) , $background);
+    color: $text-color !important;
+    border: 1px solid $border-color;
+  }
+
+  .mat-mdc-snack-bar-action {
+      color: $text-color !important;
+  }
+
+  .mat-icon {
+    color: $border-color;
+    margin: 2% 5% -2% 1%;
+  }
+
+}
+
+.done {
+  @include snackBarStyle(rgba(8, 184, 49, 0.4), white, green)
+}
+.error {
+  @include snackBarStyle(rgba(255, 0, 0, 0.4), white, red)
+}
+.warning {
+  @include snackBarStyle(rgba(255, 183, 0, 0.4), white, orange)
+}
