@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CustomExceptions, IJobData } from '@app/interface/common.interface';
+import {  IJobData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
 import { NotifierService } from '@app/services/notifier/notifier.service';
 import { WalletService } from '@app/services/wallet/wallet.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-jobs-view',
   templateUrl: './jobs-view.component.html',
-  styleUrls: ['./jobs-view.component.scss']
+  styleUrls: ['./jobs-view.component.scss', '../dialogs-common.scss']
 })
 export class JobsViewComponent {
   panelOpenState = false;
@@ -23,7 +23,7 @@ export class JobsViewComponent {
   ) {
     this.jobData = [...data];
   }
-
+ 
   getJobId (index: number, item: any) {
     return item._id; 
   }

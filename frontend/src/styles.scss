@@ -61,6 +61,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
+
+ /*
+  * customized css starts here
+  */
 $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
 @mixin snackBarStyle($background, $text-color, $border-color) {
 
@@ -97,4 +102,50 @@ $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
   max-height: 70vh;
   background: rgba(255, 255, 255, 0.6) !important;
   overflow-y: scroll;
+}
+
+.mat-mdc-dialog-container{
+  box-shadow: 10px 10px 10px white;
+  .mdc-dialog__surface {
+      background: rgba($color: #181818, $alpha: .8) !important;
+      .mdc-dialog__content{
+        color: rgb(183, 183, 183) !important;
+      }
+      .mdc-dialog__title {
+        color: rgb(183, 183, 183) !important;
+      }
+  }
+} 
+.mat-expansion-panel {
+  background: rgba($color: #212020, $alpha: .5) !important;
+}
+.mat-expansion-panel-content {
+
+}
+.mat-expansion-panel-body {
+
+  color: rgb(255, 253, 253) !important;
+  border: 0.5px solid gray; 
+  p{
+      font-size: small !important;
+  }
+  
+}
+.mat-expansion-panel-header {
+  background-image:  linear-gradient(to right, rgba(0, 0, 0, 0.5) , #3f51b5)!important;
+  // background: rgba($color: #c7c7c7, $alpha: .6) !important;
+  //   color: rgb(255, 253, 253) !important;
+  .mat-expansion-panel-header-title {
+    flex-grow: 0.5;
+    color: rgb(183, 183, 183) !important;
+  }
+  .mat-expansion-panel-header-description {
+    color: rgb(183, 183, 183) !important;
+  }
+  // .mat-content {
+  //   color: rgb(255, 253, 253) !important;
+  // }
+  // .mat-expansion-indicator {
+  //   color: rgb(255, 253, 253) !important;
+  // }
 }

@@ -9,16 +9,22 @@
          <b> {{ job.title }} </b>
         </mat-panel-title>
         <mat-panel-description>
-          Qualification - {{ job.qualification }} | Expected Salary - {{ job.salary}}$ CAD 
+          <b>Qualification</b> - {{ job.qualification }} | <b>Expected Salary</b> - {{ job.salary}}$ CAD | <b>Experience</b> - {{ job.experience }} yrs
 
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <h2>Descrpition</h2>
+      <br>
+      <h4>Job Qualification</h4>  {{ job.qualification }}
+      <h4>Expected Salary</h4> {{ job.salary}}$ CAD
+      <h4>Experience</h4> {{ job.experience }} yrs
+      <h4>Certification</h4> {{job.certification}}
+
+      <h4>Descrpition</h4>
       <p>{{ job.description }}</p>
-      <h2>Roles And Responsibilities</h2>
+      <h4>Roles And Responsibilities</h4>
       <p>{{ job.responsibilites }}</p>
-      <button mat-button color="primary" (click) ="addToWallet(job)">Add To Wallet
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary"
+      <button mat-flat-button  (click) ="addToWallet(job)">Add To Wallet
+        <mat-icon aria-hidden="false" aria-label="Example home icon" 
             fontIcon="wallet" title="Info about the action"
             matTooltipPosition="bottom">
         </mat-icon>
@@ -28,5 +34,5 @@
   </mat-accordion>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-flat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>

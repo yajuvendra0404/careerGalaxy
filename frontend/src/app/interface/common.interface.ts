@@ -48,6 +48,6 @@ export interface IJobData {
     _id: string;
 }
 
-export interface CustomExceptions extends Error {
-    message: string;
+export interface ISkillPassport  {
+    
 }
