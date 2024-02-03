@@ -12,7 +12,7 @@
 
             <mat-form-field class="_mat-form-field">
                 <mat-label>Level Of Preperation</mat-label>
-                <mat-select [(ngModel)]="selectedPrepLevel" formControlName="LevelOfPrep">
+                <mat-select [(ngModel)]="selectedPrepLevel" formControlName="levelOfPrep">
                     <mat-option [value]="prepLevel"
                         *ngFor="let prepLevel of prepLevelList">{{prepLevel}}</mat-option>
                 </mat-select>
@@ -20,7 +20,7 @@
 
             <mat-form-field class="_mat-form-field">
                 <mat-label>Years Of Experience</mat-label>
-                <mat-select [(ngModel)]="selectedExpYear" formControlName="Experience">
+                <mat-select [(ngModel)]="selectedExpYear" formControlName="experience">
                     <mat-option [value]="expYear"
                         *ngFor="let expYear of experienceYearList">{{expYear}}</mat-option>
                 </mat-select>
@@ -29,7 +29,7 @@
             <br>
 
             <mat-form-field appearance="outline" class="_mat-form-field">
-                <label><span class="field-label"> Required Qualification
+                <label><span class="field-label"> Qualification
                         <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
                             title="Info about the action" matTooltipPosition="bottom">
                         </mat-icon>
@@ -39,12 +39,12 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="_mat-form-field">
-                <label><span class="field-label">Certification Required
+                <label><span class="field-label">Certification
                         <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
                             title="Info about the action" matTooltipPosition="bottom">
                         </mat-icon>
                     </span></label>
-                <input matInput placeholder="Enter Responsibilities" type="text" class="input" formControlName="certification">
+                <input matInput placeholder="Enter Certification" type="text" class="input" formControlName="certification">
             </mat-form-field>
 
             <mat-form-field formArrayName="skills" appearance="outline" class="custom_mat-form_field"

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { SkillPassportService } from '@app/services/skillPassport/skill-passport.service';
 
 @Component({
   selector: 'app-skill-passport',
@@ -49,7 +50,9 @@ export class SkillPassportComponent {
     "Enterpeneurship"
   ];
 
-  constructor (private _formBuilder : FormBuilder) {
+  constructor (
+    private _formBuilder : FormBuilder,
+    private _skillPassport : SkillPassportService) {
     this.jobsFormGroup =  _formBuilder.group(
       {
         
@@ -81,7 +84,7 @@ export class SkillPassportComponent {
 
 
   onSubmit () {
-    console.log("------on submit ----");
+    this._skillPassport.addToSkillPasport(this.jobsFormGroup.value);
   }
 
   ngOnInit () {

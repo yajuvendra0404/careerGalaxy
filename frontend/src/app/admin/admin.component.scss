@@ -1,5 +1,5 @@
 
-$text_color: rgb(0, 0, 0);
+$text_color: rgb(239, 238, 238);
 
 ._container {
     margin: 0;
@@ -11,7 +11,7 @@ $text_color: rgb(0, 0, 0);
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    color: white;
+    color: rgb(255, 255, 255);
     mat-form-field {
         margin-left: 8px ;
     }
@@ -27,7 +27,7 @@ $text_color: rgb(0, 0, 0);
     left: 0;
     width: 90vw;
     height: 95vh;
-    background: rgba(50, 49, 49, 0.6);
+    background: rgba(151, 151, 151, 0.6);
     /* Adjust the last value for opacity */
     /*display: flex;
      align-items: center;

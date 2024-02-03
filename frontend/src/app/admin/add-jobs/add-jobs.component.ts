@@ -113,7 +113,7 @@ export class AddJobsComponent {
       next: (data)=> {
         console.log(" --- data -- on submit save", data);
         this.jobsFormGroup.reset();
-        // this._notifier.open(data.message,"done");
+        this._notifier.open(data['message'],"done");
       },
       error: (err) => {
         this._notifier.open(err.message, "error");

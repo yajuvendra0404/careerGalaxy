@@ -84,7 +84,7 @@ export class AddLanesComponent {
         next :(data) => {
 
           this.removeAllItems();
-
+          this._notifier.open(data['message'],"done");
         },
         error: (err) =>  this._notifier.open(err.message, "error")
       })

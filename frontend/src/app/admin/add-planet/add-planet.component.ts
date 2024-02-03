@@ -47,6 +47,7 @@ export class AddPlanetComponent {
       this._apiService.createPlanet(formData).subscribe({
         next :(data) => {
           this.planetAppearanceFormGroup.reset();
+          this._notifier.open(data['message'],"done");
         },
         error: (err) => this._notifier.open(err.message, "error") 
       })

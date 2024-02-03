@@ -49,5 +49,9 @@ export interface IJobData {
 }
 
 export interface ISkillPassport  {
-    
+    qualification: number;
+    skill: ISkillData[];
+    certification: string,
+    experience : number,
+    levelOfPrep: number,
 }

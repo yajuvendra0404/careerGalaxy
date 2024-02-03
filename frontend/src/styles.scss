@@ -101,6 +101,7 @@ $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
   margin: 8px;
   max-height: 70vh;
   background: rgba(255, 255, 255, 0.6) !important;
+  color: black;
   overflow-y: scroll;
 }
 
@@ -123,7 +124,7 @@ $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
 .mat-expansion-panel-body {
 
   color: rgb(255, 253, 253) !important;
-  background: rgba(31, 31, 31, 0.9) !important;
+  background: rgba(38, 37, 37, 0.9) !important;
   border: 0.5px solid gray; 
   p{
       font-size: small !important;
