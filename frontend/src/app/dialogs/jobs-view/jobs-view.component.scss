@@ -3,4 +3,8 @@
 ._container {
     color: grey !important;
 }
-
+.modal-background {
+    background:url("../../../assets/map.png") no-repeat;
+    height: 100vh;
+    background-size: cover;
+}

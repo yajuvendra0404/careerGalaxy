@@ -1,9 +1,8 @@
 
-
-<mat-dialog-content class="mat-typography _container">
-  <h3>Jobs in business lane</h3>
+<div mat-dialog-title><h2>Jobs in business lane</h2></div>
+<mat-dialog-content class="mat-typography _container modal-background">
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let job of jobData; trackBy: getJobId">
+    <mat-expansion-panel *ngFor="let job of jobData; trackBy: getJobId" class="mt-2">
       <mat-expansion-panel-header>
         <mat-panel-title>
          <b> {{ job.title }} </b>
@@ -30,7 +29,6 @@
         </mat-icon>
       </button>
     </mat-expansion-panel>
-
   </mat-accordion>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

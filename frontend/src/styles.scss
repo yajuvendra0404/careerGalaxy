@@ -107,7 +107,7 @@ $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
 .mat-mdc-dialog-container{
   box-shadow: 10px 10px 10px white;
   .mdc-dialog__surface {
-      background: rgba($color: #181818, $alpha: .8) !important;
+      background: rgba($color: #181818, $alpha: .9) !important;
       .mdc-dialog__content{
         color: rgb(183, 183, 183) !important;
       }
@@ -119,20 +119,20 @@ $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
 .mat-expansion-panel {
   background: rgba($color: #212020, $alpha: .5) !important;
 }
-.mat-expansion-panel-content {
 
-}
 .mat-expansion-panel-body {
 
   color: rgb(255, 253, 253) !important;
+  background: rgba(31, 31, 31, 0.9) !important;
   border: 0.5px solid gray; 
   p{
       font-size: small !important;
   }
   
 }
+
 .mat-expansion-panel-header {
-  background-image:  linear-gradient(to right, rgba(0, 0, 0, 0.5) , #3f51b5)!important;
+  background-image:  linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5)!important;
   // background: rgba($color: #c7c7c7, $alpha: .6) !important;
   //   color: rgb(255, 253, 253) !important;
   .mat-expansion-panel-header-title {
@@ -148,4 +148,34 @@ $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
   // .mat-expansion-indicator {
   //   color: rgb(255, 253, 253) !important;
   // }
+}
+.mat-radio-outer-circle {
+  .mat-radio-checked & {
+        border-color: #daddf2;
+      }
+}
+  
+.mat-radio-inner-circle {
+      background-color: #bec1d0;
+}
+  
+.mat-radio-ripple .mat-ripple-element {
+      background-color: rgba(#d2d4e4, 0.26);
+}
+
+// .mat-mdc-text-field-wrapper {
+//   background-color: white !important;
+// }
+
+.mat-mdc-text-field-wrapper {
+  border: 1px solid rgb(110, 110, 110) !important;
+}
+
+
+.mdc-radio__outer-circle {
+  border-color: grey !important;
+
+}
+.mdc-label {
+  color: grey !important;
 }

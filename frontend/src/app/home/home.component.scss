@@ -13,7 +13,7 @@
             // border:  0.5px solid white;
             border-radius: 5px;
             max-width: 20rem; 
-            min-height: 80vh; 
+            min-height: 20vh; 
             // overflow: hidden;
         }
         .card-body {
@@ -23,6 +23,10 @@
                 background: rgba(50, 49, 49, 0.7);
                 border-radius: 5px;
                 padding: 1% 5% 1% 5%;
+                // background:url("../../assets/constellation-1280.jpg") no-repeat;
+                // // height: 100vh;
+                // background-size: cover;
+            
                 &:hover {
                     cursor: pointer;
                     background: rgb(111, 83, 83);
@@ -62,6 +66,9 @@
             max-height: 100vh ;
             min-width: 20rem; 
             div {
+                background:url("../../assets/constellation-1280.jpg") no-repeat;
+                // height: 100vh;
+                background-size: cover;
                 background: rgba(50, 49, 49, 0.7);
             }
             div:hover {
@@ -72,6 +79,7 @@
             padding: 2%;
             text-align: center;
             // background: #38d11c;
+
             border: 1px solid grey;
             margin:4%;
             border-radius: 2%;

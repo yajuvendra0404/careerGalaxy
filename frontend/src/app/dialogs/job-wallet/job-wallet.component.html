@@ -1,6 +1,8 @@
 
-<mat-dialog-content class="mat-typography">
-  <h3>Job Wallet</h3>
+
+<div mat-dialog-title><h2>Job Wallet</h2></div>
+
+<mat-dialog-content class="mat-typography modal-background">
 <div *ngFor="let job of jobsInWallet; trackBy: trackByIdFn">
   <mat-card>
     <mat-card-header class="customer-card-header">
