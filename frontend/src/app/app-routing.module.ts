@@ -3,24 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 import { PlanetsComponent } from './planets/planets.component';
-import { AuthGuard } from './auth/auth.guard';
+import { authGuard } from './guards/authGuard/auth.guard'; 
 import { AdminComponent } from './admin/admin.component';
 import { MapComponent } from './map/map.component';
-import { MapTestComponent } from './map-test/map-test.component';
+import { skillPassportGuard } from './guards/skillPassportGuard/skill-passport.guard';
 
 const routes: Routes = [
   { path:'', redirectTo:'auth',pathMatch:'full'},
 
-  { path:'home',component:HomeComponent }, // , canActivate:[AuthGuard]
-  { path:'planet',component:PlanetsComponent}, // , canActivate:[AuthGuard] 
+  { path:'home',component:HomeComponent }, // canActivate:[authGuard]
+  { path:'planet',component:PlanetsComponent}, // canActivate:[authGuard] 
   { path:'auth', component:AuthComponent},
-  { path:'map', component:MapComponent},
-  // { path:'mapTest', component:MapTestComponent},
-  { path:'admin', component:AdminComponent},  // , canActivate:[AuthGuard] 
+  { path:'map', component:MapComponent, canActivate:[ skillPassportGuard ]}, // canActivate:[authGuard, skillPassportGuard]
+  { path:'admin', component:AdminComponent},  // canActivate:[authGuard] 
   { path:'**',redirectTo:'auth'}
 ];
-
-
 
 // { path:'', redirectTo:'recipes',pathMatch:'full'},
 // { path:'recipes',component:RecipesComponent, 

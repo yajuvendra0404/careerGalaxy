@@ -84,7 +84,7 @@ export class SkillPassportComponent {
 
 
   onSubmit () {
-    this._skillPassport.addToSkillPasport(this.jobsFormGroup.value);
+    this._skillPassport.addToSkillPasport({...this.jobsFormGroup.value, stamped: true });
   }
 
   ngOnInit () {

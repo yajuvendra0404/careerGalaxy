@@ -12,7 +12,6 @@ export class SkillPassportService {
   }
 
   getSkillPassport (): ISkillPassport {
-    if(!this.personalskill) throw "Please fill up the skill passport .";
     return this.personalskill;
   }
 

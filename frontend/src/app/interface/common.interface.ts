@@ -54,4 +54,5 @@ export interface ISkillPassport  {
     certification: string,
     experience : number,
     levelOfPrep: number,
+    stamped: boolean;
 }
