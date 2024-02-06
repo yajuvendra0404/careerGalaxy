@@ -15,7 +15,7 @@ const routes: Routes = [
   { path:'planet',component:PlanetsComponent}, // canActivate:[authGuard] 
   { path:'auth', component:AuthComponent},
   { path:'map', component:MapComponent, canActivate:[ skillPassportGuard ]}, // canActivate:[authGuard, skillPassportGuard]
-  { path:'admin', component:AdminComponent},  // canActivate:[authGuard] 
+  { path:'admin', component:AdminComponent },  // canActivate:[authGuard] 
   { path:'**',redirectTo:'auth'}
 ];
 

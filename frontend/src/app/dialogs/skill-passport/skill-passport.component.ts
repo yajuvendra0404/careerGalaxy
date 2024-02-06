@@ -13,7 +13,7 @@ export class SkillPassportComponent {
   selectedLane: string = "";
   selectedPrepLevel: string = "";
   selectedExpYear: string ="";
-  jobsFormGroup : FormGroup;
+  skillPassportFormGroup : FormGroup;
 
   prepLevelList: number[] =[
     1,2,3,4,5
@@ -53,7 +53,7 @@ export class SkillPassportComponent {
   constructor (
     private _formBuilder : FormBuilder,
     private _skillPassport : SkillPassportService) {
-    this.jobsFormGroup =  _formBuilder.group(
+    this.skillPassportFormGroup =  _formBuilder.group(
       {
         
         qualification: [null, [Validators.required]],
@@ -68,7 +68,7 @@ export class SkillPassportComponent {
 
   createSkillsFields () {
     this.skillArray.forEach( ele => {
-      const skillFormArray = this.jobsFormGroup.get('skills') as FormArray;
+      const skillFormArray = this.skillPassportFormGroup.get('skills') as FormArray;
       skillFormArray.push(
         this._formBuilder.group({
           skillName: [ele, Validators.required],
@@ -79,12 +79,13 @@ export class SkillPassportComponent {
   }
 
   get skillControls () {
-    return (<FormArray>this.jobsFormGroup.get('skills')).controls as FormGroup[];
+    return (<FormArray>this.skillPassportFormGroup.get('skills')).controls as FormGroup[];
   }
 
 
   onSubmit () {
-    this._skillPassport.addToSkillPasport({...this.jobsFormGroup.value, stamped: true });
+    this._skillPassport.addToSkillPasport({...this.skillPassportFormGroup.value, stamped: true });
+    this.skillPassportFormGroup.reset();
   }
 
   ngOnInit () {

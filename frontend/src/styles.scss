@@ -117,6 +117,9 @@ $primary-theme : linear-gradient(to right, rgba(0, 0, 0, 0.9) , #3f51b5);
       }
   }
 } 
+.mat-mdc-card {
+  background: rgba(38, 37, 37, 0.9) !important;
+}
 .mat-expansion-panel {
   background: rgba($color: #212020, $alpha: .5) !important;
 }
