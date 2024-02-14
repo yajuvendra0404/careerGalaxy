@@ -11,13 +11,16 @@ import { WalletService } from '@app/services/wallet/wallet.service';
 })
 export class JobWalletComponent {
   constructor (
-    @Inject(MAT_DIALOG_DATA) public jobsInWallet :IJobData[]
+    @Inject(MAT_DIALOG_DATA) public jobsInWallet :IJobData[],
+    private _walletService: WalletService
   ) {}
 
   trackByIdFn ( index: number, element: IJobData) {
     return element._id;
   }
-
+  removeFromWallet (job: IJobData) {
+    this._walletService.removeJobsFromWallet( job._id); 
+  }
   ngAfterViewInit () {
 
   }

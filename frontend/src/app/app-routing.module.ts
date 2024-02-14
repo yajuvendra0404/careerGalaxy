@@ -19,21 +19,6 @@ const routes: Routes = [
   { path:'**',redirectTo:'auth'}
 ];
 
-// { path:'', redirectTo:'recipes',pathMatch:'full'},
-// { path:'recipes',component:RecipesComponent, 
-//   canActivate:[AuthGuard], 
-//   children:[
-//     { path:'new',component:RecipesEditComponent },
-//     { path:':id',component:RecipeDetailComponent },
-//     { path:':id/edit',component:RecipesEditComponent },
-//   ]},
-// { path:'shopping-list',component:ShoppingListComponent},
-// { path:'auth',
-//   canActivate:[NoAuthGuard],
-//   component:AuthComponent
-// },
-// { path:'**',redirectTo:'recipes'}
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -24,6 +24,9 @@ export class WalletService {
     return this.jobsInWallet;
   }
 
+  removeJobsFromWallet (_id :string) {
+    console.log("request to remove a job");
+  }
   constructor() { }
 
 }
