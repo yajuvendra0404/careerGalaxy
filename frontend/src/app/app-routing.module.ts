@@ -14,7 +14,7 @@ const routes: Routes = [
   { path:'home',component:HomeComponent }, // canActivate:[authGuard]
   { path:'planet',component:PlanetsComponent}, // canActivate:[authGuard] 
   { path:'auth', component:AuthComponent},
-  { path:'map', component:MapComponent, canActivate:[ skillPassportGuard ]}, // canActivate:[authGuard, skillPassportGuard]
+  { path:'map', component:MapComponent}, // canActivate:[authGuard, skillPassportGuard]  , canActivate:[ skillPassportGuard ]
   { path:'admin', component:AdminComponent },  // canActivate:[authGuard] 
   { path:'**',redirectTo:'auth'}
 ];

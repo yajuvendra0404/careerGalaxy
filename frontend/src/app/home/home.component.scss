@@ -72,7 +72,8 @@
                 background: rgba(50, 49, 49, 0.7);
             }
             div:hover {
-                background: rgb(111, 83, 83);
+                background: rgba(174, 173, 173, 0.648);
+                cursor: pointer;
             }
             h3 {
                 margin-bottom: 0%;
@@ -99,7 +100,7 @@
         .custom-icon {
             // margin:;
             padding:3%;
-            background:  #d4a35a;
+            background:  #fa960087;
             // background-color: r;
         }
     }
