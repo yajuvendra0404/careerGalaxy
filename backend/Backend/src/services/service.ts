@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import HttpException from "@/exceptions/httpExceptions";
 import { IJobData, ILaneData, IPlanetsData } from "@/interfaces/common.interface";
 import { Request } from "express";
+import * as fs from 'fs';
 
 @injectable()
 export class Service {
@@ -75,7 +76,7 @@ export class Service {
         
             let error: string = "";
             let fileName : string = file.texture.name;
-            
+            const folderName = ""+this._config.UPLOAD_PATH;
             /* loop through all the properties to check if none of them is empty. */
             for(let key in _body){
                 if( !_body.hasOwnProperty(key) || _body[key] == null || _body[key] == "null" || _body[key] == ""  ) 
@@ -88,8 +89,11 @@ export class Service {
             /* if image for the planet's surface is not uploaded*/
             if( !fileName ) throw new HttpException(400,`Please upload planet surface image.`)
             
+            // Check if the folder exists
+            if (!fs.existsSync(folderName)) fs.mkdirSync(folderName); // If it doesn't exist, create it 
+                    
             /* move the file to uploads folder. */
-            file.texture.mv( "src/" + this._config.UPLOAD_PATH + fileName);
+            file.texture.mv( this._config.UPLOAD_PATH + fileName);
             
             /* check if the planet's name already exist */
             let data = await this._models.Planet.findOne({name: _body.name});
