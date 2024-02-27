@@ -9,6 +9,7 @@ import fileUpload from "express-fileupload";
 import HttpException from '../exceptions/httpExceptions';
 import Models from '@/models/model';
 import path from 'path';
+import * as fs from 'fs';
 
 const _fileUpload = fileUpload;
 
@@ -46,7 +47,7 @@ export default class InitializeApp {
     // ------ init database and routes initialization
     this.initalizeDatabase();
     this.initializeRouter();
-
+    this.initializeUploadsFolder(); 
     /* Ensures that home planet is always there in the mongoDB.*/
     // this.initializeHomePlanet();
 
@@ -62,7 +63,10 @@ export default class InitializeApp {
     });
 
   }
-
+  initializeUploadsFolder () {
+    const folderName = ""+this._config.UPLOAD_PATH;
+    if (!fs.existsSync(folderName)) fs.mkdirSync("dist/"+folderName);
+  }
   initializeRouter() {
     this.app.use("/", this.routes);
   }
@@ -78,6 +82,7 @@ export default class InitializeApp {
   // }
 
   initalizeDatabase() {
+
     mongoose.connect("mongodb" + this.MONGODB_CONNECTION_STRING).then(() => {
       this.listen();
       console.log(`------------ Database connection established ------------`);

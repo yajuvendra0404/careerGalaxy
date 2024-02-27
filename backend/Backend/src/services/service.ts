@@ -90,10 +90,10 @@ export class Service {
             if( !fileName ) throw new HttpException(400,`Please upload planet surface image.`)
             
             // Check if the folder exists
-            if (!fs.existsSync(folderName)) fs.mkdirSync(folderName); // If it doesn't exist, create it 
+            //if (!fs.existsSync(folderName)) fs.mkdirSync("dist/"+folderName); // If it doesn't exist, create it 
                     
             /* move the file to uploads folder. */
-            file.texture.mv( this._config.UPLOAD_PATH + fileName);
+            file.texture.mv( this._config.DIST +""+ this._config.UPLOAD_PATH + fileName);
             
             /* check if the planet's name already exist */
             let data = await this._models.Planet.findOne({name: _body.name});
