@@ -31,7 +31,7 @@ export class AuthComponent {
     this._authService.signIn(loginForm.value.email, loginForm.value.password).subscribe({
       next : (data) => {
         console.log("data", data)
-        this._router.navigate(["/planet"])
+        this._router.navigate(["/home"])
       },
       error: (err) => {
         console.log("err ---", err);
