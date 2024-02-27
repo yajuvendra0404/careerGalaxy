@@ -118,7 +118,7 @@ export class Service {
         /* move the file to uploads folder. */
         const keys = Object.keys(file);
         keys.forEach( key => {
-            file[key].mv( "src/" + this._config.UPLOAD_PATH + file[key].name);
+            file[key].mv( this._config.DIST +"" + this._config.UPLOAD_PATH + file[key].name);
         });
 
         /* create custom "_id", set file path to "texture key" and save the data */
