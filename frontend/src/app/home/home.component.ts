@@ -30,7 +30,7 @@ export class HomeComponent {
     private _notifier: NotifierService
   ) {}
   planetsData: IPlanetsData[] = [
-    {_id:"home", name:"earth",size: 70, position: 0, texture: `${environment.ASSETS_PATH}/earth.jpg`,rotationSpeed: 0.0, orbitingSpeed: 0.002}
+    {_id:"home", name:"earth",size: 70, position: 0, texture: `uploads/earth.jpg`,rotationSpeed: 0.0, orbitingSpeed: 0.002}
   ];
   
   // try{
