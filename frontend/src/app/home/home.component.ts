@@ -11,6 +11,8 @@ import { NotifierService } from '@app/services/notifier/notifier.service';
 import { WalletService } from '@app/services/wallet/wallet.service';
 import { faCircleCheck, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
+import { environment } from 'environments/environment.development';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -28,7 +30,7 @@ export class HomeComponent {
     private _notifier: NotifierService
   ) {}
   planetsData: IPlanetsData[] = [
-    {_id:"home", name:"earth",size: 70, position: 0, texture: "uploads/earth.jpg",rotationSpeed: 0.0, orbitingSpeed: 0.002}
+    {_id:"home", name:"earth",size: 70, position: 0, texture: `${environment.ASSETS_PATH}/earth.jpg`,rotationSpeed: 0.0, orbitingSpeed: 0.002}
   ];
   
   // try{
