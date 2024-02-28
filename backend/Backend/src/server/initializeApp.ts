@@ -64,8 +64,8 @@ export default class InitializeApp {
 
   }
   initializeUploadsFolder () {
-    const folderName = ""+this._config.UPLOAD_PATH;
-    if (!fs.existsSync(folderName)) fs.mkdirSync("dist/"+folderName);
+    const folderName = this._config.DIST+""+this._config.UPLOAD_PATH;
+    if (!fs.existsSync(folderName)) fs.mkdirSync(folderName);
   }
   initializeRouter() {
     this.app.use("/", this.routes);

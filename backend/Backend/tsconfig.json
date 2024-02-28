@@ -9,7 +9,7 @@
     "target": "ES2017",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./dist/career-galaxy",
     "moduleResolution": "node",
     "removeComments": true,
     "noImplicitAny": true,
