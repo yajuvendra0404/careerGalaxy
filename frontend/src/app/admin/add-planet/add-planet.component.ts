@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./add-planet.component.scss']
 })
 export class AddPlanetComponent {
+  
   planetAppearanceFormGroup:FormGroup;
   selectedFile!: File;
   subscriptionStore: Subscription[] = [];
