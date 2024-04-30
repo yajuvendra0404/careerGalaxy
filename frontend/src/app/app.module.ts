@@ -28,6 +28,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
@@ -43,6 +44,8 @@ import { LanesComponent } from './map/lanes/lanes.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
 import { NotifierComponent } from './notifier/notifier/notifier.component';
+import { AddCertificateComponent } from './admin/add-certificate/add-certificate.component';
+import { AddQualificationsComponent } from './admin/add-qualifications/add-qualifications.component';
 
 
 
@@ -65,7 +68,9 @@ import { NotifierComponent } from './notifier/notifier/notifier.component';
     AddJobsComponent,
     LanesComponent,
     JobsViewComponent,
-    NotifierComponent,    
+    NotifierComponent,
+    AddCertificateComponent,
+    AddQualificationsComponent,    
     // MapTestComponent,
   ],
   imports: [
@@ -91,7 +96,8 @@ import { NotifierComponent } from './notifier/notifier/notifier.component';
     MatExpansionModule,
     MatSnackBarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatChipsModule
   ],
   providers: [
     {

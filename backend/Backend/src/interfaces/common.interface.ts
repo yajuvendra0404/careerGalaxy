@@ -20,9 +20,9 @@ export interface IJobData {
     title: string;
     description: string;
     salary: number;
-    qualification: number;
+    qualification: string[];
     skill: ISkill[];
-    certification: string,
+    certification: string[],
     responsibilites: string,
     experience : number,
     levelOfPrep: number,
@@ -31,4 +31,14 @@ export interface IJobData {
 export interface ISkill {
     skillName: String;
     skillLevel: number;
+}
+
+export interface ICertification {
+    _id?:String,
+    name: String
+}
+
+export interface IQualifications {
+    _id?:String,
+    name: String
 }

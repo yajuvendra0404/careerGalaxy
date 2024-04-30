@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { Observable } from 'rxjs';
-import { IJobData, ILanesData, IPlanetsData } from '@app/interface/common.interface';
+import { ICertificate, IJobData, ILanesData, IPlanetsData, IQualification } from '@app/interface/common.interface';
 
 
 @Injectable({
@@ -30,6 +30,18 @@ export class ApiService {
   } 
   fetchLanesByPlanetId(planetId : string) : Observable<ILanesData[]> {
     return this._httpService.fetchLanesByPlanetId('lanesByPlanetId',planetId);
+  }
+  fetchCertifications(): Observable<ICertificate[]>{
+    return this._httpService.fetchCertificateList('certificate');
+  }
+  fetchQualifications(): Observable<IQualification[]>{
+    return this._httpService.fetchQualificationList('qualification');
+  }
+  addCertifications(list:ICertificate[]): Observable<{[key:string]:string}> {
+    return this._httpService.addCertifications("certificate", list)
+  }
+  addQualifications(list:ICertificate[]): Observable<{[key:string]:string}> {
+    return this._httpService.addQualifications("qualification", list)
   }
 
 }

@@ -67,7 +67,8 @@ export default class Controller {
     }
 
     /* create planets data including the image file for planets' surface. 
-     * Returns  { message: "" } , if no exception occur.*/
+     * Returns  { message: "" } , 
+    if no exception occur.*/
     async createLanes (_req : Request, _res: Response, _next: NextFunction) {
         try {
             let data = await this._service.createLanes( _req.body, _req.files);
@@ -87,6 +88,7 @@ export default class Controller {
             _next(error);
         }
     }
+
     async getLane (_req: Request, _res: Response, _next: NextFunction) {
         try {
             let data = await this._service.getLanes(_req);
@@ -105,6 +107,7 @@ export default class Controller {
             _next(error);
         }
     }
+    
     async getJobsByLaneId (_req:Request, _res: Response, _next: NextFunction) {
         try {
             let data = await this._service.getJobsByLaneId(_req.params.laneId);
@@ -112,5 +115,41 @@ export default class Controller {
         } catch (error) {
             _next(error);
         }
+    }
+
+    async addCertifications (_req:Request, _res: Response, _next: NextFunction) {
+        try {
+            let data = await this._service.addNewCertifications(_req);
+            _res.status(200).json(data);
+        } catch (error) {
+            _next(error);
+        } 
+    }
+
+    async addQualifications (_req:Request, _res: Response, _next: NextFunction) {
+        try {
+            let data = await this._service.addNewQualifications(_req);
+            _res.status(200).json(data);
+        } catch (error) {
+            _next(error);
+        } 
+    }
+
+    async getQualifications (_req:Request, _res: Response, _next: NextFunction) {
+        try {
+            let data = await this._service.getQualifications();
+            _res.status(200).json(data);
+        } catch (error) {
+            _next(error);
+        } 
+    }
+
+    async getCertifications (_req:Request, _res: Response, _next: NextFunction) {
+        try {
+            let data = await this._service.getCertifications();
+            _res.status(200).json(data);
+        } catch (error) {
+            _next(error);
+        } 
     }
 }   

@@ -56,3 +56,13 @@ export interface ISkillPassport  {
     levelOfPrep: number,
     stamped: boolean;
 }
+
+export interface IQualification {
+    _id?:string,
+    name: string
+}
+
+export interface ICertificate {
+    _id?:string,
+    name: string
+}

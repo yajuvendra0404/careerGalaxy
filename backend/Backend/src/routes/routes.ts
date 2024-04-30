@@ -41,5 +41,29 @@ export default class Routes {
         this.routes.get(`${this.path}jobsByLaneId/:laneId`, ( req, res, next)=> {
             _controller.getJobsByLaneId(req,res,next);
         })
+
+
+        /* Get list of qualifications in the database, 
+           no parameter should be passed*/
+        this.routes.get(`${this.path}certificate`, ( req, res, next)=> {
+            _controller.getCertifications(req,res,next);
+        })
+
+        /* Get list of certifiactions in the database, 
+           no parameter should be passed*/
+
+        this.routes.get(`${this.path}qualification`, ( req, res, next)=> {
+            _controller.getQualifications(req,res,next);
+        })
+
+
+        this.routes.post(`${this.path}certificate`,( req, res, next)=>{
+            _controller.addCertifications(req, res, next);     
+        })
+        this.routes.post(`${this.path}qualification`,( req, res, next)=>{
+            _controller.addQualifications(req, res, next);     
+        })
+
+
     }
 }

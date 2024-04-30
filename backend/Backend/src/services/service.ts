@@ -5,7 +5,7 @@ import Config from "../configs/config";
 import Models from "../models/model";
 import mongoose from 'mongoose';
 import HttpException from "@/exceptions/httpExceptions";
-import { IJobData, ILaneData, IPlanetsData } from "@/interfaces/common.interface";
+import { ICertification, IJobData, ILaneData, IPlanetsData, IQualifications } from "@/interfaces/common.interface";
 import { Request } from "express";
 import * as fs from 'fs';
 
@@ -184,7 +184,8 @@ export class Service {
         if( error) throw new HttpException(400,`Please enter ${error}.`);
         
         _body._id = new Date().getTime() +"-"+ _body.title;
-        _body._id.replace(" ", "-");
+        console.log()
+        _body._id = _body._id.replace(" ", "-");
         await this._models.Job.create({
             ..._body
         });
@@ -200,6 +201,71 @@ export class Service {
 
         return data;
 
+    }
+
+
+    async getCertifications ():Promise<ICertification[]>{
+        
+        let data: ICertification[] = await this._models.Certification.find();
+        if(!data[0]) throw new HttpException( 404 , 'No Certifications Found .' );
+        data = data.map( ele => {
+            return {
+                _id: ele._id,
+                name: ele.name
+            }
+        })
+        return data;
+
+    }
+
+    async getQualifications ():Promise<IQualifications[]>{
+        
+        let data: IQualifications[] = await this._models.Qualification.find();
+        if(!data[0]) throw new HttpException( 404 , 'No Qualifications Found.' );
+        data = data.map( ele => {
+            return {
+                _id: ele._id,
+                name: ele.name
+            }
+        })
+        return data;
+
+    }
+
+    async addNewCertifications (_req :Request): Promise<{[key:string]:string }> {
+
+        let _body = _req.body;
+
+        if(!_body)  throw new HttpException(400,`Please enter a list of certifications.`);
+        
+        const data = _body.map( (ele:{name: String}) => {
+            return {
+                _id: new Date().getTime() +"-"+ ele.name,
+                name:ele.name
+            }
+        })
+
+        await this._models.Certification.insertMany([
+            ...data
+        ])
+        return {message: 'Data Saved'};
+    } 
+
+    async addNewQualifications (_req :Request): Promise<{[key:string]:string }> {
+        let _body = _req.body;
+        if(!_body)  throw new HttpException(400,`Please enter a list of qualifications.`);
+        
+        const data = _body.map( (ele:{name: String}) => {
+            return {
+                _id: new Date().getTime() +"-"+ ele.name,
+                name:ele.name
+            }
+        })
+        await this._models.Qualification.insertMany([
+            ...data
+        ]);
+
+        return {message: 'Data Saved'};
     }
 
     async checkTransactions () : Promise<any> {
