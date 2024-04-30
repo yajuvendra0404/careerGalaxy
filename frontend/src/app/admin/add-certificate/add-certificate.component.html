@@ -1,0 +1,48 @@
+<mat-stepper [linear]="'Disable linear mode'" #stepper>
+    <mat-step [stepControl]="certificateFormGroup">
+        <form [formGroup]="certificateFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <ng-template matStepLabel><span class="stepper-label form-label">Create New Certificate
+                </span></ng-template>
+            <div class="row m-6">
+                <small>( Type the name of the certificate before you click on Add.)</small>
+                <div class="col-md-12">
+                    <!-- [disabled]="selectedPlanet" -->
+                    <mat-form-field appearance="outline">
+                        <label><span class="field-label">Certificate Name
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
+                                    title="Info about the action" matTooltipPosition="bottom">
+                                </mat-icon>
+                            </span></label>
+                        <input matInput placeholder="Enter Name" type="text" class="input" formControlName="name">
+                    </mat-form-field>
+        
+                    <button mat-button mat-flat-button color="primary" type="button" (click)="addNewCertificate()"
+                        >Add New Certificate<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"
+                            title="Info about the action" matTooltipPosition="bottom">
+                        </mat-icon></button><br>
+
+
+                                    <mat-chip-row *ngFor="let certificate of certificates;"
+                                    class="m-1"
+                                      [editable]="true">
+                                      {{certificate.name}}
+                                      <button matChipRemove (click)="remove(certificate.name) ">
+                                        <mat-icon>cancel</mat-icon>
+                                      </button>
+                                    </mat-chip-row>
+                                
+                                <div class="col-md-2 d-flex flex-row-reverse"></div>
+
+                    <br>
+                    <button mat-button mat-flat-button color="primary" type="button"
+                        class="custom-button" (click) = "removeAllItems()">Reset</button>
+                    <button mat-button mat-flat-button color="primary" type="submit"
+                        class="custom-button">Submit</button>
+                </div>
+            </div>
+
+
+        </form>
+
+    </mat-step>
+</mat-stepper>

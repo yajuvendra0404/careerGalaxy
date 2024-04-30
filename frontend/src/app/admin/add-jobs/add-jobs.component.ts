@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IJobData, ILanesData, ISkillData } from '@app/interface/common.interface';
+import { ICertificate, IJobData, ILanesData, IQualification, ISkillData } from '@app/interface/common.interface';
 import { ApiService } from '@app/services/api/api.service';
 import { NotifierService } from '@app/services/notifier/notifier.service';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,13 @@ export class AddJobsComponent {
 
   laneList: ILanesData[] = [];
   jobsFormGroup : FormGroup;
+  certificationList:ICertificate[] =[];
+  qualificationList:IQualification[] =[];
 
+
+  selectedQualification: string="";
+  selectedCertification: string="";
+  
   skillArray: string[] = [ 
     "Reading",
     "Writing", 
@@ -99,10 +105,10 @@ export class AddJobsComponent {
       this._apiService.fetchLanes().subscribe({
         next: (data) => {
           this.laneList = [...data];
-          console.log(" --------- lane List --------", data);
+          console.log("--------- lane List --------", data);
         },
         error: (err) => {
-          console.log("--------- err -------", err);
+          console.log("------- err -------", err);
         }
       })
   }
@@ -121,10 +127,37 @@ export class AddJobsComponent {
     })
     
   }
-
+  fetchListOfCertifications() {
+    this._apiService.fetchCertifications().subscribe({
+      next: (data) => {
+        this.certificationList = [...data];
+        console.log(" --------- lane List --------", data);
+      },
+      error: (err) => {
+        this._notifier.open(err.message, "error");
+      }
+    })
+  }
+  fetchListOfQualifications(){
+    this._apiService.fetchQualifications().subscribe({
+      next: (data) => {
+        this.qualificationList = [...data];
+        console.log(" --------- lane List --------", data);
+      },
+      error: (err) => {
+        this._notifier.open(err.message, "error");
+      }
+    })
+  }
   ngOnInit () {
     this.createSkillsFields();
     this.fetchLanes();
+    this.fetchListOfCertifications();
+    this.fetchListOfQualifications();
+  }
+
+  ngOnDestroy () {
+
   }
 
 }
