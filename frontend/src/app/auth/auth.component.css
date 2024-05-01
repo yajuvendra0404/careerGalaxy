@@ -11,12 +11,17 @@
 ._container h1 {
   font-family: fantasy;
 }
-._container ._login_form {
+._container ._form {
   background-color: white;
   border-radius: 2%;
   color: black;
 }
-._container ._login_form a:hover {
+._container ._form a:hover {
   cursor: pointer;
   color: rgb(74, 74, 254);
 }/*# sourceMappingURL=auth.component.css.map */
+
+
+.mode{
+  color:cornflowerblue;
+}

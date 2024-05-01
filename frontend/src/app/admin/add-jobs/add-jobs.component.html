@@ -55,28 +55,6 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <label><span class="field-label">Job Description
-                        <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
-                            title="Info about the action" matTooltipPosition="bottom">
-                        </mat-icon>
-                    </span></label>
-                <input matInput placeholder="Enter Description" type="text" class="input"
-                    formControlName="description">
-            </mat-form-field>
-
-<!-- 
-            <mat-form-field appearance="outline">
-                <label><span class="field-label"> Required Qualification
-                        <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
-                            title="Info about the action" matTooltipPosition="bottom">
-                        </mat-icon>
-                    </span></label>
-                <input matInput placeholder="Enter Qualification" type="text" class="input"
-                    formControlName="qualification">
-            </mat-form-field> 
--->
-
-            <mat-form-field appearance="outline">
                 <label><span class="field-label">Expected Salary
                         <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
                             title="Info about the action" matTooltipPosition="bottom">
@@ -92,18 +70,19 @@
                             title="Info about the action" matTooltipPosition="bottom">
                         </mat-icon>
                     </span></label>
-                <input matInput placeholder="Enter Responsibilities" type="text" class="input" formControlName="responsibilites">
+                <textarea matInput placeholder="Enter Responsibilities" class="input" 
+                    formControlName="responsibilites"></textarea>
             </mat-form-field>
-<!-- 
+
             <mat-form-field appearance="outline">
-                <label><span class="field-label">Certification Required
+                <label><span class="field-label">Job Description
                         <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" fontIcon="info"
                             title="Info about the action" matTooltipPosition="bottom">
                         </mat-icon>
                     </span></label>
-                <input matInput placeholder="Enter Certification" type="text" class="input" formControlName="certification">
-            </mat-form-field> 
--->
+                <textarea matInput placeholder="Enter Description" class="input"
+                    formControlName="description"></textarea>
+            </mat-form-field>
 
             <mat-form-field formArrayName="skills" appearance="outline" class="custom_mat-form_field"
                 *ngFor="let skillCtrl of skillControls; let i = index">

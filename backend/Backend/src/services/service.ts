@@ -101,7 +101,7 @@ export class Service {
 
             /* create custom "_id", set file path to "texture key" and save the data */
             _body._id = new Date().getTime() +"-"+ _body.name;
-            _body._id.replace(" ", "-");
+            _body._id = _body._id.replace(" ", "-");
             _body.texture = this._config.UPLOAD_PATH + fileName;
             // _body.lanes = JSON.parse(_body.lanes);
 
@@ -124,7 +124,7 @@ export class Service {
         /* create custom "_id", set file path to "texture key" and save the data */
         _body.data.forEach( (ele: { _id: string; laneName: string;  laneImage:string }) => {
             ele._id = new Date().getTime() +"-"+ ele.laneName;
-            ele._id.replace(" ", "-");
+            ele._id = ele._id.replace(" ", "-");
             ele.laneImage = this._config.UPLOAD_PATH + ele.laneImage;
         });
 
@@ -239,8 +239,10 @@ export class Service {
         if(!_body)  throw new HttpException(400,`Please enter a list of certifications.`);
         
         const data = _body.map( (ele:{name: String}) => {
+            let id = new Date().getTime() +"-"+ ele.name;
+            id = id.replace(" ","-")
             return {
-                _id: new Date().getTime() +"-"+ ele.name,
+                _id: id,
                 name:ele.name
             }
         })
@@ -256,8 +258,10 @@ export class Service {
         if(!_body)  throw new HttpException(400,`Please enter a list of qualifications.`);
         
         const data = _body.map( (ele:{name: String}) => {
+            let id = new Date().getTime() +"-"+ ele.name;
+            id = id.replace(" ","-")
             return {
-                _id: new Date().getTime() +"-"+ ele.name,
+                _id: id,
                 name:ele.name
             }
         })

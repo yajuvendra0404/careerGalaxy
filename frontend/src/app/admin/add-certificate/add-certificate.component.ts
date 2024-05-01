@@ -49,13 +49,18 @@ export class AddCertificateComponent {
   }
 
   onSubmit() {
-
-    this._apiService.addCertifications(this.certificates).subscribe( data => {
-
+    this._apiService.addCertifications(this.certificates).subscribe({
+      next: (data)=> {
+        console.log("-------data----",data)
+        this.removeAllItems();
+      },
+      error: (err)=> {
+        console.log("-------error---",err)
+        this.removeAllItems();
+      }
     })
-    
-  }
 
+  }
 
   removeAllItems () {
     this.certificates = []

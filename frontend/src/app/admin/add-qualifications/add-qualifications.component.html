@@ -1,7 +1,7 @@
 <mat-stepper [linear]="'Disable linear mode'" #stepper>
-    <mat-step [stepControl]="certificateFormGroup">
-        <form [formGroup]="certificateFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-            <ng-template matStepLabel><span class="stepper-label form-label">Create New Certificate
+    <mat-step [stepControl]="qualificationFormGroup">
+        <form [formGroup]="qualificationFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <ng-template matStepLabel><span class="stepper-label form-label">Create New Qualification
                 </span></ng-template>
             <div class="row m-6">
                 <small>( Type the name of the certificate before you click on Add.)</small>
@@ -16,13 +16,13 @@
                         <input matInput placeholder="Enter Name" type="text" class="input" formControlName="name">
                     </mat-form-field>
         
-                    <button mat-button mat-flat-button color="primary" type="button" (click)="addNewCertificate()"
+                    <button mat-button mat-flat-button color="primary" type="button" (click)="addNewQualification()"
                         >Add New Certificate<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"
                             title="Info about the action" matTooltipPosition="bottom">
                         </mat-icon></button><br>
 
 
-                                    <mat-chip-row *ngFor="let certificate of certificates;"
+                                    <mat-chip-row *ngFor="let certificate of qualifications;"
                                     class="m-1"
                                       [editable]="true">
                                       {{certificate.name}}

@@ -16,6 +16,7 @@ export default class Models {
         OTP:{ type:Number, trim:true, required:true },
         expiresAt: { type: Date, required: true, index: true, expires:'1m'},  
     }))
+
     Planet = mongoose.model ("planet", new mongoose.Schema({
         _id:{ type:String, required: true, trim: true },
         name:{ type:String, required: true, trim: true },
@@ -26,6 +27,7 @@ export default class Models {
         texture: { type: String, required: true},
         // lanes: { type: [String], required: true}
     }))
+
     Lane = mongoose.model ("lane", new mongoose.Schema({
         _id:{ type:String, required: true, trim: true },
         laneName:{ type:String, required: true, trim: true },
@@ -36,6 +38,7 @@ export default class Models {
         }
         // lanes: { type: [String], required: true}
     }))
+    
     Job = mongoose.model("job", new mongoose.Schema({
         _id: {type:String, required:true, trim: true},
         title: {type:String, required:true, trim: true},
@@ -64,12 +67,6 @@ export default class Models {
         _id: {type:String, required:true, trim: true},
         name: {type:String, required:true, trim: true},
     }))
-
-
-
-
-
-
     
     /* for testing "Transactions" in mongoDB  */
     User = mongoose.model ('user', new mongoose.Schema({

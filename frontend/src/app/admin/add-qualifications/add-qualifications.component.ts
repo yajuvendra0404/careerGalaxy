@@ -14,42 +14,51 @@ import { Subscription } from 'rxjs';
 })
 export class AddQualificationsComponent {
   subscriptionStore: Subscription[] = [];
-  certificateFormGroup: FormGroup;
-  certificates: IQualification[] = [];
+  qualificationFormGroup: FormGroup;
+  qualifications: IQualification[] = [];
 
   constructor(
     private _formBuilder: FormBuilder,
     private _apiService: ApiService,
     private _notifier : NotifierService
   ) {
-    this.certificateFormGroup = this._formBuilder.group({
+    this.qualificationFormGroup = this._formBuilder.group({
       name: [null, [Validators.required]],
     });
   }
 
-  remove(certificate: any): void { debugger;
-    this.certificates = this.certificates.filter( ele => {
-      return ele.name != certificate
+  remove(qualificationName: any): void {
+    this.qualifications = this.qualifications.filter( ele => {
+      return ele.name != qualificationName
     })
   }
 
-  addNewCertificate() {
-    let certificateName = this.certificateFormGroup.value;
-    if(certificateName.name == null) {
+  addNewQualification() {
+    let qualificationName = this.qualificationFormGroup.value;
+    if(qualificationName.name == null) {
       this._notifier.open("Please type the name of the certificate before adding", "error")
       return
     }
-    this.certificates.push(certificateName);
-    this.certificateFormGroup.reset();
+    this.qualifications.push(qualificationName);
+    this.qualificationFormGroup.reset();
   }
 
   onSubmit() {
-
+    this._apiService.addQualifications(this.qualifications).subscribe({
+      next: (data) => {
+        this.removeAllItems()
+        console.log("data --------- ", data)
+      },
+      error: (err)=>{
+        this.removeAllItems()
+        console.log("error --------- ", err)
+      }
+    })
   }
 
 
   removeAllItems () {
-    this.certificates = []
+    this.qualifications = []
   }
   ngOnInit() {
   }
