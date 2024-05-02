@@ -11,16 +11,15 @@
         font-family:fantasy;
     }
 
-    ._login_form {
+    ._form {
         background-color: white;
         border-radius: 2%;
         color: black;
         // background-image: linear-gradient(to right, rgba(233, 215, 215, 0.8), rgba(208, 182, 182, 0.8)) , url("../../assets/login_background.jpg");
-        a:hover {
 
-            cursor: pointer;
-            color: rgb(74, 74, 254);
-        }
     }
-
+    a:hover {
+        cursor: pointer;
+        color: rgb(74, 74, 254);
+    }
 }

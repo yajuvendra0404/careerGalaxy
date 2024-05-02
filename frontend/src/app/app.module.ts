@@ -46,8 +46,8 @@ import { JobsViewComponent } from './dialogs/jobs-view/jobs-view.component';
 import { NotifierComponent } from './notifier/notifier/notifier.component';
 import { AddCertificateComponent } from './admin/add-certificate/add-certificate.component';
 import { AddQualificationsComponent } from './admin/add-qualifications/add-qualifications.component';
-
-
+import { LoginComponent } from './auth/login/login.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -70,7 +70,9 @@ import { AddQualificationsComponent } from './admin/add-qualifications/add-quali
     JobsViewComponent,
     NotifierComponent,
     AddCertificateComponent,
-    AddQualificationsComponent,    
+    AddQualificationsComponent,   
+    LoginComponent,
+    SignInComponent
     // MapTestComponent,
   ],
   imports: [

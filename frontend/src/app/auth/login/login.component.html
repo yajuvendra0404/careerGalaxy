@@ -1,0 +1,35 @@
+<form class="p-3 mt-5 mb-1" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+    <h2>Login</h2>
+    <p>
+        <small>
+            Login in with your Fleming College Username
+        </small>
+    </p>
+    <div class="form-floating mt-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            formControlName="email">
+        <label for="floatingInput">Email address</label>
+    </div>
+    <span *ngIf="!loginForm.get('emailId')?.valid && loginForm.get('emailId')?.touched" >
+          <p *ngIf="loginForm.get('email')?.errors?.['required']"><small> This field is required. </small></p>
+          <p *ngIf="loginForm.get('email')?.errors?.['email']"><small> Invalid email address. </small></p>
+    </span>
+    <div class="form-floating mt-3">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName = "password">
+        <label for="floatingPassword">Password</label>
+    </div>
+    <span *ngIf="!loginForm.get('subject')?.valid && loginForm.get('password')?.touched" >
+          <p *ngIf="loginForm.get('password')?.errors?.['required']"><small> This field is required. </small></p>
+          <p *ngIf="loginForm.get('password')?.errors?.['maxlength']"><small> Max length is 50 characters. </small></p>
+    </span>
+
+    <small class="mt-4"><a herf="#">Forgot Password?</a></small>
+    <div class="mt-3">
+        <div class="mb-3 form-check">
+
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1"><small> Login as Admin. </small></label>
+        </div>
+        <button type="submit" class="btn btn-dark">Login</button><br>
+    </div>
+</form>
