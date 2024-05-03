@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, tap , Subject, throwError, BehaviorSubject} from 'rxjs';
-import { IAuthResponseData } from '@interfaces/common.interface';
+import { IAuthResponseData, IUserData } from '@interfaces/common.interface';
 import { User } from '@model/user.model';
 import { Router } from '@angular/router';
+import { environment } from 'environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -17,26 +18,24 @@ export class AuthService {
   */
   userSubject= new BehaviorSubject<User | null>(null); 
 
+  private baseURL: string= environment.DOMAIN;
+
   constructor( 
     private _http: HttpClient,
     private _router: Router
   ) { }
 
-  signUp (email: string, password: string): Observable<IAuthResponseData> {
-    return this._http.post<IAuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBZFgYFCm4c6LfqMyTYdulA3JTDFF0J21s", {
-      email: email,
-      password: password,
-      returnSecureToken: true
-    }).pipe ( 
-      tap( res => {
-      let expiresIn = new Date().getTime() + +res.expiresIn * 1000; // the + plus sign in ""+res.expiresIn"" is used to convert the string into number
-      let user  = new User(res.email, res.localId, res.idToken, expiresIn);
-      this.userSubject.next(user);
-    })) 
+  signUp (userData: IUserData): Observable<IAuthResponseData> {
+    return this._http.post<IAuthResponseData>(`${this.baseURL}signup`,userData).pipe ( 
+        tap( res => {
+          console.log(" --------- res --------", res)
+        }
+      )
+    ) 
   }
 
   signIn(email: string, password: string): Observable<IAuthResponseData> {
-    return this._http.post<IAuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBZFgYFCm4c6LfqMyTYdulA3JTDFF0J21s", {
+    return this._http.post<IAuthResponseData>("", {
       email: email,
       password: password,
       returnSecureToken: true

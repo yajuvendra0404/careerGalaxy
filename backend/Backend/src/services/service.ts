@@ -8,6 +8,11 @@ import HttpException from "@/exceptions/httpExceptions";
 import { ICertification, IJobData, ILaneData, IPlanetsData, IQualifications } from "@/interfaces/common.interface";
 import { Request } from "express";
 import * as fs from 'fs';
+import { IUserData,  ITokenData, IUser} from "@/interfaces/common.interface";
+import { isEmpty } from "@/utils/utils";
+import { compare, hash } from 'bcrypt';
+import { sign } from 'jsonwebtoken'
+
 
 @injectable()
 export class Service {
@@ -203,7 +208,6 @@ export class Service {
 
     }
 
-
     async getCertifications ():Promise<ICertification[]>{
         
         let data: ICertification[] = await this._models.Certification.find();
@@ -313,6 +317,49 @@ export class Service {
         template += "</html>";
 
         return template;
+    }
+
+    async signup(userData: IUserData): Promise<{ cookie: string; createdUserData: IUser }> {
+
+        if (isEmpty(userData)) throw new HttpException(400, "userData is empty");
+
+        const findUser = await this._models.User.findOne({ where: { email: userData.user_email } });
+        if (findUser) throw new HttpException(409, `This email ${userData.user_email} already exists`);
+   
+        const hashedPassword = await hash(userData.user_password, 10);
+        
+        let security_code = Math.floor(100000 + Math.random() * 900000);
+        let user_status = false;
+        let _id = new Date().getTime() +"-"+ userData.user_first_name.substring(0,1) + userData.user_last_name;
+        _id = _id.replace(" ", "-");
+
+        const createdUserData:IUser = await this._models.User.create({ 
+            ...userData, 
+            _id: _id,
+            user_activation_code: security_code, 
+            user_password: hashedPassword,
+            user_status: user_status
+        });
+
+        // MailService.getInstance().sendMail(createdUserData);
+
+        const tokenData = this.createToken(createdUserData, userData.user_role);
+        const cookie = this.createCookie(tokenData);
+
+        return { cookie, createdUserData };
+
+    }
+    
+    public createToken(user: IUser, user_role: string): ITokenData {
+        const dataStoredInToken = { user_id: user._id, user_role };
+        const secretKey: string = this._config.SECRET_KEY as string;
+        const expiresIn: number = 60 * 60;
+    
+        return { expiresIn, token: sign(dataStoredInToken, secretKey, { expiresIn }) };
+    }
+
+    public createCookie(tokenData: ITokenData): string {
+        return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
     }
 
 }

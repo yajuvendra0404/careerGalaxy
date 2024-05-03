@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
 import { ISkill } from'../interfaces/common.interface';
+import { required } from 'mongoose-typescript';
 @injectable()
 export default class Models {
     
@@ -68,11 +69,26 @@ export default class Models {
         name: {type:String, required:true, trim: true},
     }))
     
-    /* for testing "Transactions" in mongoDB  */
-    User = mongoose.model ('user', new mongoose.Schema({
-        data1 : { type:String, required: true, trim: true },
-        data2 : { type:String, required: true, trim: true },
+    User =mongoose.model("user", new mongoose.Schema({
+        _id: {type:String, required:true, trim: true},
+        user_email: {type:String, required:true, trim: true},
+        user_first_name: {type:String, required:true, trim: true},
+        user_last_name: {type:String, required:true, trim: true},
+        user_password: {type:String, required:true, trim: true},
+        user_role: {type:String,enum : ['TEACHER','STUDENT','ADMIN'], required:true, trim: true},
+        user_status: {type:Boolean, required: true, trim: true},
+        user_activation_code : {type:Number, required: true, trim: true} 
+
     }))
+
+
+
+
+    /* for testing "Transactions" in mongoDB  */
+    // User = mongoose.model ('user', new mongoose.Schema({
+    //     data1 : { type:String, required: true, trim: true },
+    //     data2 : { type:String, required: true, trim: true },
+    // }))
 
     Post = mongoose.model ('post', new mongoose.Schema({
         dataX : { type:String, required: true, trim: true },

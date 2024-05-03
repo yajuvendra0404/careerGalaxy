@@ -64,6 +64,8 @@ export default class Routes {
             _controller.addQualifications(req, res, next);     
         })
 
-
+        this.routes.post(`${this.path}signup`,( req, res, next)=>{
+            _controller.signUp(req, res, next);     
+        })
     }
 }

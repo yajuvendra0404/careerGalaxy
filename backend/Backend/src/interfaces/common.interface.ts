@@ -42,3 +42,24 @@ export interface IQualifications {
     _id?:String,
     name: String
 }
+
+
+
+export interface IUserData {
+    user_email: string;
+    user_role: string;
+    user_password: string ;
+    user_first_name: string;
+    user_last_name: string;
+}
+
+export interface IUser extends IUserData {
+    _id:string;
+    user_status: boolean ;
+    user_activation_code: number |undefined ;
+}
+
+export interface ITokenData {
+    token: string;
+    expiresIn: number;
+  }

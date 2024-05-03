@@ -5,11 +5,11 @@ import { AuthService } from '@app/services/auth/auth-service.service';
 import { environment } from 'environments/environment.development';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss']
 })
-export class SignInComponent {
+export class SignUpComponent {
   assets: string = environment.ASSETS_PATH + "/";
   loginImg: string = this.assets + "login.avif"; 
   signUpImg: string = this.assets + "signUp.avif"
@@ -20,17 +20,21 @@ export class SignInComponent {
     private _router: Router
   ) { 
     this.signInForm = new FormGroup({
-      "email":new FormControl( null, [ Validators.required ]),
-      "password": new FormControl( null, [ Validators.required ])
+      "user_email":new FormControl( null, [ Validators.required ]),
+      "user_first_name":new FormControl( null, [ Validators.required ]),
+      "user_last_name":new FormControl( null, [ Validators.required ]),
+      "user_password": new FormControl( null, [ Validators.required ]),
+      "user_re-password": new FormControl( null, [ Validators.required ]),
+      "user_role": new FormControl( "STUDENT", [ Validators.required ])
     })
   }
 
   onSubmit (signInForm : FormGroup) {
     if(!signInForm.valid) return;
-    this._authService.signIn(signInForm.value.email, signInForm.value.password).subscribe({
+    this._authService.signUp(this.signInForm.value).subscribe({
       next : (data) => {
         console.log("data", data)
-        this._router.navigate(["/home"])
+        // this._router.navigate(["/home"])
       },
       error: (err) => {
         console.log("err ---", err);

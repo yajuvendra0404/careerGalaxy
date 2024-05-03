@@ -11,6 +11,15 @@ export interface IAuthResponseData {
     registered?:	boolean;
 }
   
+export interface IUserData {
+    "user_email":string,
+    "user_first_name":string,
+    "user_last_name":string,
+    "user_password": string,
+    "user_re-password": string,
+    "user_role": string
+}
+
 export interface IPlanetsData {
     _id:string;
     name: string;

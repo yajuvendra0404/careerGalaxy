@@ -47,7 +47,8 @@ import { NotifierComponent } from './notifier/notifier/notifier.component';
 import { AddCertificateComponent } from './admin/add-certificate/add-certificate.component';
 import { AddQualificationsComponent } from './admin/add-qualifications/add-qualifications.component';
 import { LoginComponent } from './auth/login/login.component';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
+
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -72,7 +73,7 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
     AddCertificateComponent,
     AddQualificationsComponent,   
     LoginComponent,
-    SignInComponent
+    SignUpComponent
     // MapTestComponent,
   ],
   imports: [

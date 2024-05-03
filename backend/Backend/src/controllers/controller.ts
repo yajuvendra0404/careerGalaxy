@@ -9,7 +9,7 @@
 import { injectable } from "tsyringe";
 import { NextFunction,Request, Response } from "express";
 import { Service } from "../services/service";
-import { IPlanetsData } from "@/interfaces/common.interface";
+import { IPlanetsData, IUser } from "@/interfaces/common.interface";
 
 @injectable()
 export default class Controller {
@@ -152,4 +152,18 @@ export default class Controller {
             _next(error);
         } 
     }
+
+    async signUp (_req: Request, _res: Response, _next: NextFunction): Promise<void>  {
+        try {
+
+            const userData: IUser  = _req.body;
+            const { cookie, createdUserData } = await this._service.signup(userData);
+            _res.setHeader('Set-Cookie', [cookie]);
+            _res.status(201).json({ data: createdUserData, message: 'signup' });
+          
+            //  _res.status(201).json({ data: "data", message: 'signup' });
+        } catch (error) {
+            _next(error);
+        }
+    };
 }   

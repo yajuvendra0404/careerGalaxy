@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import { injectable } from "tsyringe";
 import Config from "../configs/config";
 import Routes from '../routes/routes';
+
 import fileUpload from "express-fileupload";
 import HttpException from '../exceptions/httpExceptions';
 import Models from '@/models/model';
@@ -20,10 +21,12 @@ export default class InitializeApp {
   private MONGODB_CONNECTION_STRING: string;
   private PORT: string;
   private routes: express.IRouter;
+  // private authRoutes: express.IRouter;
 
   constructor(
     private _config: Config,
     private _routes: Routes,
+    // private _authRoutes: AuthRoutes
     // private _models: Models
   ) {
 
@@ -31,7 +34,7 @@ export default class InitializeApp {
     this.MONGODB_CONNECTION_STRING = this._config.MONGODB_CONNECTION_STRING || "";
     this.PORT = this._config.PORT || "";
     this.routes = this._routes.routes;
-
+    // this.authRoutes = this._authRoutes.routes;
     // ------ express initialization
     this.app = express();
     this.app.use(morgan('tiny'));
@@ -69,6 +72,7 @@ export default class InitializeApp {
   }
   initializeRouter() {
     this.app.use("/", this.routes);
+    // this.app.use("/", this.authRoutes);
   }
 
   // async initializeHomePlanet () {

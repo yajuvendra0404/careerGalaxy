@@ -1,0 +1,65 @@
+<form class="p-3 mt-5 mb-1" [formGroup]="signInForm" (ngSubmit)="onSubmit(signInForm)">
+    <h2>Sign Up</h2>
+    <p>
+        <small>
+            Sign Up with your Fleming College Username
+        </small>
+    </p>
+    <div class="form-floating mt-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            formControlName="user_email">
+        <label for="floatingInput">Email address</label>
+    </div>
+    <span *ngIf="!signInForm.get('user_email')?.valid && signInForm.get('user_email')?.touched" >
+          <p *ngIf="signInForm.get('user_email')?.errors?.['required']"><small> This field is required. </small></p>
+          <p *ngIf="signInForm.get('user_email')?.errors?.['user_email']"><small> Invalid email address. </small></p>
+    </span>
+
+    <div class="form-floating mt-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+            formControlName="user_first_name">
+        <label for="floatingInput">Name</label>
+    </div>
+    <span *ngIf="!signInForm.get('user_first_name')?.valid && signInForm.get('user_first_name')?.touched" >
+          <p *ngIf="signInForm.get('user_first_name')?.errors?.['required']"><small> This field is required. </small></p>
+    </span>
+
+    
+    <div class="form-floating mt-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+            formControlName="user_last_name">
+        <label for="floatingInput">Last Name</label>
+    </div>
+    <span *ngIf="!signInForm.get('user_last_name')?.valid && signInForm.get('user_last_name')?.touched" >
+          <p *ngIf="signInForm.get('user_last_name')?.errors?.['required']"><small> This field is required. </small></p>
+    </span>
+
+
+    <div class="form-floating mt-3">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName = "user_password">
+        <label for="floatingPassword">Password</label>
+    </div>
+    <span *ngIf="!signInForm.get('user_password')?.valid && signInForm.get('user_password')?.touched" >
+          <p *ngIf="signInForm.get('user_password')?.errors?.['required']"><small> This field is required. </small></p>
+          <p *ngIf="signInForm.get('user_password')?.errors?.['maxlength']"><small> Max length is 50 characters. </small></p>
+    </span>
+    
+
+    <div class="form-floating mt-3">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName = "user_re-password">
+        <label for="floatingPassword">Retype Password</label>
+    </div>
+    <span *ngIf="!signInForm.get('user_re-password')?.valid && signInForm.get('user_re-password')?.touched" >
+          <p *ngIf="signInForm.get('user_re-password')?.errors?.['required']"><small> This field is required. </small></p>
+          <p *ngIf="signInForm.get('user_re-password')?.errors?.['maxlength']"><small> Max length is 50 characters. </small></p>
+    </span>
+    
+
+
+
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-dark">Sign Up</button><br>
+    </div>
+
+</form>
