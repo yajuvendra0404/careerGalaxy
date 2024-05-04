@@ -341,8 +341,6 @@ export class Service {
             user_status: user_status
         });
 
-        // MailService.getInstance().sendMail(createdUserData);
-
         const tokenData = this.createToken(createdUserData, userData.user_role);
         const cookie = this.createCookie(tokenData);
 

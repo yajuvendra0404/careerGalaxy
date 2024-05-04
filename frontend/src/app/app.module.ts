@@ -49,6 +49,7 @@ import { AddQualificationsComponent } from './admin/add-qualifications/add-quali
 import { LoginComponent } from './auth/login/login.component';
 
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { OtpVerifyComponent } from './auth/otp-verify/otp-verify.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     AddCertificateComponent,
     AddQualificationsComponent,   
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    OtpVerifyComponent
     // MapTestComponent,
   ],
   imports: [

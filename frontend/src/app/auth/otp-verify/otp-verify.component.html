@@ -1,0 +1,25 @@
+<form class="p-3 mt-5 mb-1" [formGroup]="verifyingForm" (ngSubmit)="onSubmit(verifyingForm)">
+    <h2>Sign Up</h2>
+    <p>
+        <small>
+            OTP has been sent to your mail Id.
+        </small>
+    </p>
+
+
+    <div class="form-floating mt-3">
+        <input type="text" class="form-control" id="floatingInput" 
+            formControlName="enter_OTP" placeholder="OTP">
+        <label for="floatingInput">Enter OTP</label>
+    </div>
+
+    <span *ngIf="!verifyingForm.get('user_first_name')?.valid && verifyingForm.get('user_first_name')?.touched" >
+          <p *ngIf="verifyingForm.get('user_first_name')?.errors?.['required']"><small> This field is required. </small></p>
+    </span>
+
+ 
+    <div class="mt-3">
+        <button type="submit" class="btn btn-dark">Verify</button><br>
+    </div>
+
+</form>

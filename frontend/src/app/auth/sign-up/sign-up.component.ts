@@ -10,6 +10,7 @@ import { environment } from 'environments/environment.development';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
+  
   assets: string = environment.ASSETS_PATH + "/";
   loginImg: string = this.assets + "login.avif"; 
   signUpImg: string = this.assets + "signUp.avif"

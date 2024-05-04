@@ -1,13 +1,19 @@
 <div class="_container">
-    <h1><img src="../../assets/fleming_logo.png" width="75">Career Games</h1>
+    <h1>Career Games</h1>
     <div class="row">
         <div class="col-sm-3 _form " *ngIf="isLoginMode">
             <app-login></app-login>
         </div>
 
-        <div class="col-sm-3 _form " *ngIf="!isLoginMode">
+        <div class="col-sm-3 _form " *ngIf="false">
             <app-sign-up></app-sign-up>
         </div>
+
+        <div class="col-sm-3 _form " *ngIf="!isLoginMode">
+            <app-otp-verify></app-otp-verify>
+        </div>
+
+        
 
         <div class="mb-5 mt-1 ms-5 me-5">
             <small class="mt-4" *ngIf="!isLoginMode">Already have an account? <a herf="#" class="mode" (click)="switchMode()" ><b>Login</b></a> here.</small>
