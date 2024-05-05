@@ -20,16 +20,16 @@ export class LoginComponent {
     private _router: Router
   ) { 
     this.loginForm = new FormGroup({
-      "email":new FormControl( null, [ Validators.required ]),
-      "password": new FormControl( null, [ Validators.required ])
+      "user_email":new FormControl( null, [ Validators.required ]),
+      "user_password": new FormControl( null, [ Validators.required ])
     })
   }
 
   onSubmit (loginForm : FormGroup) {
     if(!loginForm.valid) return;
-    this._authService.signIn(loginForm.value.email, loginForm.value.password).subscribe({
+    this._authService.loginIn(loginForm.value.user_email, loginForm.value.user_password).subscribe({
       next : (data) => {
-        console.log("data", data)
+        console.log("login ----data-------------", data)
         this._router.navigate(["/home"])
       },
       error: (err) => {

@@ -67,5 +67,13 @@ export default class Routes {
         this.routes.post(`${this.path}signup`,( req, res, next)=>{
             _controller.signUp(req, res, next);     
         })
+
+        this.routes.post(`${this.path}login`, ( req, res, next)=>{
+            console.log("--- inside login route ---")
+             _controller.logIn(req, res, next)
+        });
+        // this.routes.post(`${this.path}logout`, ( req, res, next)=>{
+        //       _controller.logOut(req, res, next)
+        // });
     }
 }

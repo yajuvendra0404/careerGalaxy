@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/services/auth/auth-service.service';
+import { NotifierService } from '@app/services/notifier/notifier.service';
 import { environment } from 'environments/environment.development';
 
 @Component({
@@ -18,7 +19,8 @@ export class SignUpComponent {
 
   constructor(
     private _authService : AuthService ,
-    private _router: Router
+    private _router: Router,
+    private _notifier: NotifierService
   ) { 
     this.signInForm = new FormGroup({
       "user_email":new FormControl( null, [ Validators.required ]),
@@ -36,6 +38,7 @@ export class SignUpComponent {
       next : (data) => {
         console.log("data", data)
         // this._router.navigate(["/home"])
+        this._notifier.open("Sign Up is complete, You can Login now.","done")
       },
       error: (err) => {
         console.log("err ---", err);

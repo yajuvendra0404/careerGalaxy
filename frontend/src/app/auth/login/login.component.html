@@ -7,20 +7,20 @@
     </p>
     <div class="form-floating mt-3">
         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-            formControlName="email">
+            formControlName="user_email">
         <label for="floatingInput">Email address</label>
     </div>
-    <span *ngIf="!loginForm.get('emailId')?.valid && loginForm.get('emailId')?.touched" >
-          <p *ngIf="loginForm.get('email')?.errors?.['required']"><small> This field is required. </small></p>
-          <p *ngIf="loginForm.get('email')?.errors?.['email']"><small> Invalid email address. </small></p>
+    <span *ngIf="!loginForm.get('user_email')?.valid && loginForm.get('user_email')?.touched" >
+          <p *ngIf="loginForm.get('user_email')?.errors?.['required']"><small> This field is required. </small></p>
+          <p *ngIf="loginForm.get('user_email')?.errors?.['user_email']"><small> Invalid email address. </small></p>
     </span>
     <div class="form-floating mt-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName = "password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName = "user_password">
         <label for="floatingPassword">Password</label>
     </div>
-    <span *ngIf="!loginForm.get('subject')?.valid && loginForm.get('password')?.touched" >
-          <p *ngIf="loginForm.get('password')?.errors?.['required']"><small> This field is required. </small></p>
-          <p *ngIf="loginForm.get('password')?.errors?.['maxlength']"><small> Max length is 50 characters. </small></p>
+    <span *ngIf="!loginForm.get('user_password')?.valid && loginForm.get('user_password')?.touched" >
+          <p *ngIf="loginForm.get('user_password')?.errors?.['required']"><small> This field is required. </small></p>
+          <p *ngIf="loginForm.get('user_password')?.errors?.['maxlength']"><small> Max length is 50 characters. </small></p>
     </span>
 
     <small class="mt-4"><a herf="#">Forgot Password?</a></small>

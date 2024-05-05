@@ -5,13 +5,14 @@ import Config from "../configs/config";
 import Models from "../models/model";
 import mongoose from 'mongoose';
 import HttpException from "@/exceptions/httpExceptions";
-import { ICertification, IJobData, ILaneData, IPlanetsData, IQualifications } from "@/interfaces/common.interface";
+import { ICertification, IJobData, ILaneData, ILogin, IPlanetsData, IQualifications } from "@/interfaces/common.interface";
 import { Request } from "express";
 import * as fs from 'fs';
 import { IUserData,  ITokenData, IUser} from "@/interfaces/common.interface";
 import { isEmpty } from "@/utils/utils";
 import { compare, hash } from 'bcrypt';
 import { sign } from 'jsonwebtoken'
+import TokenNotVerifiedException from "@/exceptions/tokenNotVerifiedException";
 
 
 @injectable()
@@ -323,13 +324,13 @@ export class Service {
 
         if (isEmpty(userData)) throw new HttpException(400, "userData is empty");
 
-        const findUser = await this._models.User.findOne({ where: { email: userData.user_email } });
+        const findUser = await this._models.User.findOne({ user_email: userData.user_email });
         if (findUser) throw new HttpException(409, `This email ${userData.user_email} already exists`);
    
         const hashedPassword = await hash(userData.user_password, 10);
         
         let security_code = Math.floor(100000 + Math.random() * 900000);
-        let user_status = false;
+        let user_status = true;
         let _id = new Date().getTime() +"-"+ userData.user_first_name.substring(0,1) + userData.user_last_name;
         _id = _id.replace(" ", "-");
 
@@ -344,6 +345,7 @@ export class Service {
         const tokenData = this.createToken(createdUserData, userData.user_role);
         const cookie = this.createCookie(tokenData);
 
+        createdUserData.user_password = "";
         return { cookie, createdUserData };
 
     }
@@ -360,5 +362,28 @@ export class Service {
         return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
     }
 
+
+    public async login(userData: ILogin): Promise<{ cookie: string; findUser: IUser }> {
+
+        if (isEmpty(userData)) throw new HttpException(400, "userData is empty");
+
+        const findUser = await this._models.User.findOne({ user_email: userData.user_email });
+        if (!findUser) throw new HttpException(409, `This email ${userData.user_email} was not found`);
+    
+        // if(!findUser.user_status){
+        //   //Setting up the temprory token
+        //   const tokenData = this.createToken(findUser, findUser.user_role);
+        //   const cookie = this.createCookie(tokenData);
+        //   throw new TokenNotVerifiedException(403, `This email ${userData.user_email} is not verified`, cookie);
+        // } 
+    
+        const isPasswordMatching: boolean = await compare(userData.user_password, findUser.user_password);
+        if (!isPasswordMatching) throw new HttpException(409, "Wrong Password, Try again.");
+    
+        const tokenData = this.createToken(findUser, findUser.user_role);
+        const cookie = this.createCookie(tokenData);
+        findUser.user_password = "";
+        return { cookie, findUser };
+      }
 }
 

@@ -10,6 +10,7 @@ import { injectable } from "tsyringe";
 import { NextFunction,Request, Response } from "express";
 import { Service } from "../services/service";
 import { IPlanetsData, IUser } from "@/interfaces/common.interface";
+import TokenNotVerifiedException from "@/exceptions/tokenNotVerifiedException";
 
 @injectable()
 export default class Controller {
@@ -159,11 +160,44 @@ export default class Controller {
             const userData: IUser  = _req.body;
             const { cookie, createdUserData } = await this._service.signup(userData);
             _res.setHeader('Set-Cookie', [cookie]);
-            _res.status(201).json({ data: createdUserData, message: 'signup' });
+            _res.status(201).json({ data: createdUserData, message: 'Signup Completed.' });
           
             //  _res.status(201).json({ data: "data", message: 'signup' });
         } catch (error) {
             _next(error);
         }
     };
+
+    public logIn = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        console.log("--- inside login controller ---")
+        try {
+          const userData = req.body;
+          const { cookie, findUser } = await this._service.login(userData);
+    
+          res.setHeader('Set-Cookie', [cookie]);
+          res.status(200).json({ data: findUser, message: 'login' });
+        }
+        // On HttpException add cookie header to response
+        catch (error) {
+          if (error instanceof TokenNotVerifiedException) {
+            res.setHeader('Set-Cookie', [error.cookie]);
+            next(error);
+          } else {
+            next(error);
+          }
+        }
+      };
+    
+      //Logout method to logout a user
+    //   public logOut = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
+    //     try {
+    //       const userData: User = req.user;
+    //       const logOutUserData: User = await this.authService.logout(userData);
+    
+    //       res.setHeader('Set-Cookie', ['Authorization=; Max-age=0']);
+    //       res.status(200).json({ data: logOutUserData, message: 'logout' });
+    //     } catch (error) {
+    //       next(error);
+    //     }
+    //   };
 }   

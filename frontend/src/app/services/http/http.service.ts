@@ -23,7 +23,6 @@ export class HttpService {
       })
     )
   }
-
   createPlanets(url: string, formData:FormData) : Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,formData)
     .pipe(
@@ -32,7 +31,6 @@ export class HttpService {
       })
     )
   }
-
   createLanes(url : string, formData:FormData): Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,formData)
     .pipe(
@@ -49,7 +47,6 @@ export class HttpService {
       })
     )
   }
-
   fetchLanesByPlanetId(url : string, planetId: string): Observable<any> {
     return this._http.get<any>(`${this.baseURL}${url}/${planetId}`)
     .pipe(
@@ -58,7 +55,6 @@ export class HttpService {
       })
     )
   }
-
   fetchLanes(url: string, id: string = ""): Observable<any> {
     return this._http.get<any>(`${this.baseURL}${url}`)
     .pipe(
@@ -70,7 +66,6 @@ export class HttpService {
       })
     )
   }
-
   fetchJobsByLaneId(url: string, laneId: string = ""): Observable<any> {
     return this._http.get<any>(`${this.baseURL}${url}/${laneId}`)
     .pipe(
@@ -82,7 +77,6 @@ export class HttpService {
       })
     )
   }
-
   fetchCertificateList(url: string): Observable<any>{
     return this._http.get<any>(`${this.baseURL}${url}`)
     .pipe(
@@ -94,7 +88,6 @@ export class HttpService {
       })
     )
   }
-
   fetchQualificationList(url: string): Observable<any>{
     return this._http.get<any>(`${this.baseURL}${url}`)
     .pipe(
@@ -106,7 +99,6 @@ export class HttpService {
       })
     )
   }
-
   addQualifications(url: string, list: ICertificate[]): Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,list)
     .pipe(
@@ -118,7 +110,6 @@ export class HttpService {
       })
     )
   }
-
   addCertifications(url: string, list: ICertificate[]): Observable<any> {
     return this._http.post<any>(`${this.baseURL}${url}`,list)
     .pipe(
@@ -130,7 +121,6 @@ export class HttpService {
       })
     )
   }
-  
   private errorHandler(error : HttpErrorResponse) {
     console.log("-----err handle 0---", error);
     throw error;

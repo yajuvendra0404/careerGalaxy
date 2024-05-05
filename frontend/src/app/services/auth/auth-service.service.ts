@@ -34,16 +34,16 @@ export class AuthService {
     ) 
   }
 
-  signIn(email: string, password: string): Observable<IAuthResponseData> {
-    return this._http.post<IAuthResponseData>("", {
-      email: email,
-      password: password,
-      returnSecureToken: true
+  loginIn(user_email: string, user_password: string): Observable<IAuthResponseData> {
+    return this._http.post<IAuthResponseData>(`${this.baseURL}login`, {
+      user_email,
+      user_password,
     })
     .pipe (
       tap( res => {
-      let expiresIn = new Date().getTime() + +res.expiresIn * 1000; // the + plus sign in ""+res.expiresIn"" is used to convert the string into number
-      let user  = new User(res.email, res.localId, res.idToken, expiresIn);
+
+      // let expiresIn = new Date().getTime() + +res.expiresIn * 1000; // the + plus sign in ""+res.expiresIn"" is used to convert the string into number
+      let user  = new User(res.user_email, res.user_first_name, res.user_last_name, res.role);
       this.userSubject.next(user);
     } ))
   } 

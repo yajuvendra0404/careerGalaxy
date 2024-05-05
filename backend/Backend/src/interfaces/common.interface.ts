@@ -62,4 +62,9 @@ export interface IUser extends IUserData {
 export interface ITokenData {
     token: string;
     expiresIn: number;
-  }
+}
+
+export interface ILogin {
+    user_email: string;
+    user_password: string;
+}
