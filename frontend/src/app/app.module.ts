@@ -51,6 +51,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { OtpVerifyComponent } from './auth/otp-verify/otp-verify.component';
 
+import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
+import { JoinGameComponent } from './join-game/join-game.component';
+
 
 @NgModule({
   declarations: [
@@ -75,7 +78,9 @@ import { OtpVerifyComponent } from './auth/otp-verify/otp-verify.component';
     AddQualificationsComponent,   
     LoginComponent,
     SignUpComponent,
-    OtpVerifyComponent
+    OtpVerifyComponent,
+    TeacherDashboardComponent,
+    JoinGameComponent
     // MapTestComponent,
   ],
   imports: [

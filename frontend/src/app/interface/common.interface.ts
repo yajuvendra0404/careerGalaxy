@@ -3,13 +3,16 @@ export interface IGeometry {
     planet:THREE.SphereGeometry | null,
 }
 export interface IAuthResponseData {
+    data: {
+        email:	string;
+        user_email:string; 
+        user_first_name:string;
+        user_last_name:string;
+        user_password:string;
+        user_role:string;
+    }
     // idToken:	string;	
-    email:	string;
-    user_email:string; 
-    user_first_name:string;
-    user_last_name:string;
-    user_password:string;
-    role:string;
+
     // refreshToken:	string;	
     // expiresIn:	string;	
     // localId:	string;	

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/services/auth/auth-service.service';
 import { environment } from 'environments/environment.development';
-
+import { Role_List_Enum } from '@app/enums/Role_List';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,9 +28,11 @@ export class LoginComponent {
   onSubmit (loginForm : FormGroup) {
     if(!loginForm.valid) return;
     this._authService.loginIn(loginForm.value.user_email, loginForm.value.user_password).subscribe({
-      next : (data) => {
-        console.log("login ----data-------------", data)
-        this._router.navigate(["/home"])
+      next : (user) => {
+        let currentRole = user.data.user_role;
+        if(currentRole.toUpperCase() === Role_List_Enum.ADMIN ) this._router.navigate(["/admin"])
+        if(currentRole.toUpperCase() === Role_List_Enum.STUDENT)  this._router.navigate(["/home"])
+        if(currentRole.toUpperCase() === Role_List_Enum.TEACHER)  this._router.navigate(["/teacher"])
       },
       error: (err) => {
         console.log("err ---", err);

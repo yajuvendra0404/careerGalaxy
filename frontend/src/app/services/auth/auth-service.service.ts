@@ -41,10 +41,10 @@ export class AuthService {
     })
     .pipe (
       tap( res => {
-
+        console.log("res ---- while authenticating",res);
       // let expiresIn = new Date().getTime() + +res.expiresIn * 1000; // the + plus sign in ""+res.expiresIn"" is used to convert the string into number
-      let user  = new User(res.user_email, res.user_first_name, res.user_last_name, res.role);
-      this.userSubject.next(user);
+        let user  = new User(res.data.user_email, res.data.user_first_name, res.data.user_last_name, res.data.user_role);
+        this.userSubject.next(user);
     } ))
   } 
   
